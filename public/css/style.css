@@ -1,0 +1,42 @@
+.navbar-brand {
+    font-size: 1.8em;
+}
+#topContainer {
+    background-image: url('../images/Homepage3.jpg');
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+}
+.contentContainer {
+    background-color: #eeede6;
+    width: 100%;
+    background-size: cover;
+}
+#topRow {
+    margin-top:100px;
+    text-align: center;
+    color:#f4e793;
+}
+#topRow h1 {
+    font-size:300%;
+}
+.bold {
+    font-weight: bold;
+}
+.marginTop{
+    margin-top: 30px;
+}
+.center {
+    text-align: center;
+}
+.title {
+    margin-top: 100px;
+    font-size: 300%;
+}
+.titleFooter {
+    margin-top: 30px;
+}
+.imgPadding {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
