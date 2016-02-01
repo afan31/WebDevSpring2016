@@ -153,3 +153,48 @@ body {
     text-align: left;
     float: left;
 }
+
+.glyphicon .glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-plus {
+    font-size: 20px;
+    color: green;
+}
+
+.glyphicon-remove {
+    font-size: 20px;
+    color: red;
+}
+.glyphicon-align-justify {
+    font-size: 20px;
+}
+
+.edit-icon-lt {
+    padding-right: 8px;
+}
+
+.g2 {
+    margin-top: -35px;
+    margin-left: -15px;
+}
+
+.ckbox1 {
+    margin-left: 15px;
+}
+
+.rad1 {
+    margin-left: 15px;
+}
+
+.lastLine {
+    color: #333;
+    height: 1px;
+}
+
+
