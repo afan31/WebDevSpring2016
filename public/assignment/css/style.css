@@ -1,0 +1,174 @@
+.navbar-brand {
+    font-size: 1.8em;
+}
+#topContainer {
+    background-image: url('../images/Homepage3.jpg');
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+}
+.contentContainer {
+    background-color: #eeede6;
+    width: 100%;
+    background-size: cover;
+}
+#topRow {
+    margin-top:100px;
+    text-align: center;
+    color:#f4e793;
+}
+#topRow h1 {
+    font-size:300%;
+}
+.bold {
+    font-weight: bold;
+}
+.marginTop{
+    margin-top: 30px;
+}
+.center {
+    text-align: center;
+}
+.title {
+    margin-top: 100px;
+    font-size: 300%;
+}
+.titleFooter {
+    margin-top: 30px;
+}
+.imgPadding {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+body {
+    padding-top: 50px;
+}
+
+
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.navbar-fixed-top {
+    border: 0;
+}
+
+.sidebar {
+    display: none;
+}
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+
+
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+
+.main {
+    padding: 20px;
+}
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+.main .page-header {
+    margin-top: 0;
+}
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.left {
+    text-align: left;
+    float: left;
+}
+
+.glyphicon .glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-plus {
+    font-size: 20px;
+    color: green;
+}
+
+.glyphicon-ok {
+    font-size: 20px;
+    color: blue;
+}
+
+.glyphicon-remove {
+    font-size: 20px;
+    color: red;
+}
+.glyphicon-align-justify {
+    font-size: 20px;
+}
+
+.edit-icon-lt {
+    padding-right: 8px;
+}
+
+.g2 {
+    margin-top: -35px;
+    margin-left: -15px;
+}
+
+.ckbox1 {
+    margin-left: 15px;
+}
+
+.rad1 {
+    margin-left: 15px;
+}
+
+.lastLine {
+    color: #333;
+    height: 1px;
+}
+
+
