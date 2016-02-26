@@ -11,39 +11,33 @@
                 // For Header links
                 .when('/register', {
                     templateUrl: 'views/users/register.view.html',
-                    //controller: 'HeaderController'
+                    //controller: 'RegisterController'
                 })
                 .when('/login', {
                     templateUrl: 'views/users/login.view.html',
-                    //controller: 'HeaderController'
-                })
-                .when('/', {
-                    templateUrl: 'views/home/home.view.html',
-                    //controller: 'HeaderController'
+                    //controller: 'LoginController'
                 })
                 .when('/home', {
-                    templateUrl: 'views/users/admin.view.html',
+                    templateUrl: 'views/users/home.view.html',
                     //controller: 'HeaderController'
                 })
 
-                // For Sidebar links
-
-                .when('/', {
-                    templateUrl: 'views/home/home.view.html',
-                    //controller: 'SidebarController'
-                })
                 .when('/forms', {
                     templateUrl: 'views/forms/forms.view.html',
-                    //controller: 'SidebarController'
+                    //controller: 'FormsController'
                 })
                 .when('/profile', {
                     templateUrl: 'views/users/profile.view.html',
-                    //controller: 'SidebarController'
+                    //controller: 'ProfileController'
                 })
                 .when('/admin', {
                     templateUrl: 'views/admin/admin.view.html',
                     //controller: 'SidebarController'
+                })
+                .otherwise( {
+                    redirectTo : "/home"
                 });
+
         }
 })();
 

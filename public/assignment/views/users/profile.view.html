@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- IE Edge Meta Tag -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Viewport : This is for the display on smaller devices such as mobile, tab etc.-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Minified CSS through CDN-->
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel = "stylesheet" href = "../../css/style.css">
-    <title>Profile</title>
 
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script>-->
 
-</head>
-<body>
-
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="ProfileController">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Profile</h1>
@@ -26,36 +9,36 @@
                 <div class="form-group">
                     <label class="col-sm-3" for="username">Username:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="username" placeholder="Username">
+                        <input ng-model="user.username" type="text" class="form-control" id="username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3" for="pwd">Password:</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="pwd" placeholder="Password">
+                        <input ng-model="user.pwd" type="password" class="form-control" id="pwd" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3" for="firstName">First Name:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <input ng-model="user.firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3" for="lastName">Last Name:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control search" id="lastName" placeholder="Last Name">
+                        <input ng-model="user.lastName" type="text" class="form-control search" id="lastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3" for="email">Email:</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Update</button>
+                        <a href="" ng-click="update(user)" class="btn btn-primary btn-block">Update</a>
                     </div>
                 </div>
             </form>
@@ -66,12 +49,3 @@
         </div>
     </div>
 </div>
-<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script>
-    $(".contentContainer").height($(window).height());
-</script>
-</body>
-</html>
