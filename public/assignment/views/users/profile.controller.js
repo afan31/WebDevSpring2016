@@ -6,10 +6,9 @@
         .controller('ProfileController', ProfileController);
 
     function ProfileController($scope, $location, $rootScope, UserService){
-
         $scope.user = $rootScope.user;
-
-        if (!scope.user){
+        //alert($scope.user);
+        if (!$scope.user){
             $location.url('/home');
         }
         if ($rootScope.user != undefined){
@@ -23,7 +22,7 @@
             UserService.updateUser(
                 user._id, user,
                 function(user){
-                    //
+                    console.log(user);
                 }
             )
         }

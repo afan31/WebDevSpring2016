@@ -1,0 +1,138 @@
+body {
+    padding-bottom: 40px;
+    color: #5a5a5a;
+}
+
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+.navbar-wrapper > .container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.navbar-wrapper .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-wrapper .navbar .container {
+    width: auto;
+}
+
+.carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+
+.carousel-caption{
+    z-index: 10;
+}
+
+.carousel .item {
+    height: 500px;
+    background-color: #777;
+    background-size: cover;
+}
+
+.carousel-inner > .item > img {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+.marginTop{
+    margin-top: 30px;
+}
+
+.item {
+    width: 100%;
+}
+
+div#homePageCarousel {
+    position: relative;
+}
+
+/*.search-class {*/
+    /*position:absolute;*/
+    /*z-index:1;*/
+    /*top:80%;*/
+    /*left: auto;*/
+    /*right: auto;*/
+    /*bottom: auto;*/
+    /*overflow: hidden;*/
+
+/*}*/
+
+div.form-group {
+    position:absolute;
+    z-index:1;
+    top:70%; /* change to whatever you want */
+    left:auto; /* change to whatever you want */
+    right:auto; /* change to whatever you want */
+    bottom:auto; /* change to whatever you want */
+    opacity: .85 !important;
+
+}
+#custom-search-input {
+    margin:0;
+    margin-top:10px;
+    padding: 0;
+}
+
+#custom-search-input .search-query {
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+.search-query:focus + button {
+    z-index: 3;
+}
+
+.homePageHeader {
+    position:absolute;
+    z-index:1;
+    top:20%; /* change to whatever you want */
+    left:auto; /* change to whatever you want */
+    right:auto; /* change to whatever you want */
+    bottom:auto; /* change to whatever you want */
+
+}
+
+#topRow {
+    text-align: center;
+    color: brown;
+    font-size: large;
+}
+#topRow h1 {
+    font-size:400%;
+}

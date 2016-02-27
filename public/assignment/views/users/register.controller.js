@@ -10,8 +10,8 @@
         $scope.register = register;
 
         // Implementation of event handler
-        function register(user){
-            UserService.createUser(user,
+        function register(userObject){
+            UserService.createUser(userObject,
             function(user){
                 $rootScope.user = user;
                 $location.url('/profile');

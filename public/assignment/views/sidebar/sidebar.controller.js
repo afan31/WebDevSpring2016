@@ -6,7 +6,6 @@
         .controller('SidebarController', SidebarController);
 
     function SidebarController($scope){
-
     }
 
 

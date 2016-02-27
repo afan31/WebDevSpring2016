@@ -40,12 +40,12 @@
                     <tr ng-repeat="form in forms">
                         <td>{{form.title}}</td>
                         <td>
-                            <a href="" ng-click="deleteForm($index)">
+                            <a ng-click="deleteForm($index)">
                                 <span class="edit-icon-lt glyphicon glyphicon-remove" aria-hidden="true">
                                 </span>
                             </a>
-                            <a href="" ng-click="selectForm($index)>
-                                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true">
+                            <a ng-click="selectForm($index)">
+                                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                                 </span>
                             </a>
                         </td>

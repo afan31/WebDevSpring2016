@@ -5,7 +5,7 @@
         .module("FormBuilderApp")
         .factory("UserService" , UserService);
 
-    function UserService() {
+    function UserService($rootScope) {
         var users = [
             {
                 "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
@@ -44,10 +44,11 @@
         }
 
         function findUserByCredentials(username, password, callback) {
-            var i = null;
+            var i = "";
             for (i in users) {
                 if (users[i].username == username && users[i].password == password) {
                     callback(users[i]);
+                    return;
                 }
                 else
                     callback(null);
@@ -60,7 +61,7 @@
 
         function createUser(user, callback) {
             user["_id"] = (new Date).getTime();
-            users.add(user);
+            users.push(user);
             callback(user);
         }
 

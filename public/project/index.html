@@ -1,2 +1,59 @@
-<h1>Home page for <a href="home.html">Project</a></h1>
-<h3>Yet to be implemented.</h3>
+<!DOCTYPE html>
+<html lang="en" ng-app="ShopaholicApp">
+<head>
+    <meta charset="UTF-8">
+    <!-- IE Edge Meta Tag -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Viewport : This is for the display on smaller devices such as mobile, tab etc.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Minified CSS through CDN-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel = "stylesheet" href = "css/style.css">
+    <link rel= "stylesheet" href = "css/animate.css">
+    <link rel= "stylesheet" href = "css/project_style.css">
+    <title>My Project</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Shopping App</h1>
+        <nav ng-controller="NavController">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="#/home">Home</a></li>
+            <li role="presentation"><a href="#/search">Search</a></li>
+        </ul>
+
+            {{location.url()}}
+
+            </nav>
+        <div ng-view></div>
+    </div>
+</body>
+
+
+
+
+<!-- javaScript code goes here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+<script src="app.js"></script>
+<script src="config.js"></script>
+<script src="navigation.controller.js"></script>
+<!--<script src="views/main/main.controller.js"></script>-->
+<!--<script src="views/header/header.controller.js"></script>-->
+<!--<script src="views/sidebar/sidebar.controller.js"></script>-->
+<!--<script src="services/user.service.client.js"></script>-->
+<!--<script src="views/users/register.controller.js"></script>-->
+<!--<script src="views/users/profile.controller.js"></script>-->
+<!--<script src="views/users/login.controller.js"></script>-->
+<!--<script src="services/forms.service.client.js"></script>-->
+<!--<script src="views/forms/forms.controller.js"></script>-->
+<!--<script src="views/admin/admin.controller.js"></script>-->
+
+
+
+</body>
+</html>

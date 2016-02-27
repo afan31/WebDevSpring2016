@@ -6,10 +6,11 @@
         .controller('FormController', FormController);
 
     function FormController($scope, $location, $rootScope, FormService){
+        //console.log("Hello");
 
         $scope.user = $rootScope.user;
 
-        if (!scope.user){
+        if (!$scope.user){
             $location.url('/home');
         }
         if ($rootScope.user != undefined){
@@ -19,6 +20,7 @@
             FormService.findAllFormsForUser(
                 userId,
                 function (form) {
+                    //console.log(form);
                     $scope.forms = form;
                 }
             );
@@ -29,22 +31,23 @@
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
+        var indexSelected = -1;
 
 
         // Implementation of event handler
         function addForm(formObject){
-            if (formObject == null || formObject.title == null){
-                return
+            if (!formObject || !formObject.title){
+                return;
             }
             FormService.createFormForUser(
-                user._id, formObject,
+                userId, formObject,
                 function(form){
                     FormService.findAllFormsForUser(
                         userId,
                         function(forms){
-                            var new_forms  =forms;
-                            $scope.forms = new_forms;
+                            $scope.forms = forms;
                             $scope.form = {};
+                            indexSelected = -1;
 
                         }
                     )
@@ -52,10 +55,9 @@
             )
         }
 
-        var indexSelected;
         function updateForm(formObject){
-            if (formObject == null || formObject.title == null){
-                return
+            if (!formObject || !formObject.title){
+                return;
             }
             FormService.updateFormById(
                 formObject._id, formObject,
@@ -87,6 +89,7 @@
                         function(form){
                             $scope.forms = form;
                             $scope.form = {};
+                            indexSelected = -1;
                         }
                     )
                 }
