@@ -1,0 +1,19 @@
+<section ng-show="categoryData">
+    <h2 class="search-header">Category Details</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in categoryData.products">
+            <td><img height="150px" width="150px" ng-src="{{product.image}}"/></td>
+            <td><a href="#/details/{{product.sku}}">{{product.name}}</a></td>
+            <td>{{product.salePrice}}</td>
+        </tr>
+        </tbody>
+    </table>
+</section>

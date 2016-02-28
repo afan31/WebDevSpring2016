@@ -18,14 +18,6 @@
                 templateUrl: "search/search.view.html",
                 controller: "SearchController"
             })
-            .when("/browse", {
-                templateUrl: "category/category.view.html",
-                controller: "CategoryController"
-            })
-            .when("/browse/:catg", {
-                templateUrl: "category/category.view.html",
-                controller: "CategoryController"
-            })
             .when("/details/:skuId", {
                 templateUrl: "details/details.view.html",
                 controller: "DetailsController"

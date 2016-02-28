@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel= "stylesheet" href = "css/animate.css">
     <link rel= "stylesheet" href = "css/project_style.css">
-    <title>My Project</title>
+    <title>Shopaholic</title>
 </head>
 
 <!--<body>-->
@@ -31,8 +31,14 @@
 
 <body ng-controller="ProjectMainController">
     <ng-include src = "'views/header/header.view.html'"></ng-include>
-    <ng-include src = "'views/carousel/carousel.view.html'"></ng-include>
+    <!--<ng-include src = "'views/carousel/carousel.view.html'"></ng-include>-->
+    <!--<ng-include src = "'views/home/home.view.html'"></ng-include>-->
     <div ng-view></div>
+    <!--<hr>-->
+    <!--<footer>-->
+        <!--<p class="pull-right"><a href="#">Back to top</a> </p>-->
+        <!--<p>&copy; Afan Ahmad Khan &middot;<a href="#"> Privacy </a> &middot;<a href="#"> Terms</a> </p>-->
+    <!--</footer>-->
 </body>
 
 
@@ -49,7 +55,9 @@
 <script src="projectMain.controller.js"></script>
 <script src="search/search.controller.js"></script>
 <script src="details/details.controller.js"></script>
+<script src="category/category.controller.js"></script>
 <script src="services/product.service.js"></script>
+
 
 
 

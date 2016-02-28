@@ -15,7 +15,7 @@
                 <div class="input-group col-sm-6 col-sm-offset-4">
                     <input ng-model="title" type="text" class="search-query form-control" placeholder="What do you wanna buy?"/>
                         <span class="input-group-btn">
-                            <a href="#/search"<button ng-click="search(title)" class="btn btn-danger" type="button">
+                            <a href="#/search"><button ng-click="search(title)" class="btn btn-danger" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button></a>
                         </span>
@@ -61,6 +61,42 @@
         <div class="item">
             <img class="item" src="../images/c3.jpeg" alt="Third Slide">
         </div>
+    </div>
+</div>
+
+<div class="container margin-section category-background" ng-controller="CategoryController">
+    <div class="row ">
+        <div class="col-lg-12">
+            <h3 class="page-header headerCatg">Pick a Category</h3>
+        </div>
+
+        <div class="col-sm-4 col-xs-6 img-hover">
+            <a href="#/browse/electronics">
+                <img class="img-responsive portfolio-item" src="../images/electronics.jpg" alt="http://placehold.it/500x300">
+                <div class="carousel-caption">
+                    <h4>Electronics</h4>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-4 col-xs-6 img-hover">
+            <a href="#/browse/music">
+                <img class="img-responsive portfolio-item" src="../images/music2.jpg" alt="http://placehold.it/500x300">
+                <div class="carousel-caption">
+                    <h4>Music</h4>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-4 col-xs-6 img-hover">
+            <a href="#/browse/games">
+                <img  class="img-responsive portfolio-item" src="../images/games.jpg" alt="http://placehold.it/500x300">
+                <div class="carousel-caption">
+                    <h4>Games</h4>
+                </div>
+            </a>
+        </div>
+        <br>
     </div>
 </div>
 

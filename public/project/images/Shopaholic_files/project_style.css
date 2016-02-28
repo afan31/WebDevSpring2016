@@ -97,20 +97,20 @@ div.form-group {
     border-radius: 3px;
 }
 
-/*#custom-search-input button {*/
-    /*border: 0;*/
-    /*!*background: none;*!*/
-    /*!** belows styles are working good *!*/
-    /*padding: 2px 5px;*/
-    /*margin-top: 2px;*/
-    /*position: relative;*/
-    /*!*left: -28px;*!*/
-    /*margin-bottom: 0;*/
-    /*-webkit-border-radius: 3px;*/
-    /*-moz-border-radius: 3px;*/
-    /*border-radius: 3px;*/
-    /*color:#ffff4f;*/
-/*}*/
+#custom-search-input button {
+    border: 0;
+    /*background: none;*/
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    /*left: -28px;*/
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#ffff4f;
+}
 
 .search-query:focus + button {
     z-index: 3;
@@ -169,7 +169,3 @@ section {
     margin-top: 4%;
     text-align: left;
 }
-
-/*.details-background {*/
-    /*background-color: #774747;*/
-/*}*/
