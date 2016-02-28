@@ -9,26 +9,30 @@
     <!-- Minified CSS through CDN-->
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel = "stylesheet" href = "css/style.css">
     <link rel= "stylesheet" href = "css/animate.css">
     <link rel= "stylesheet" href = "css/project_style.css">
     <title>My Project</title>
 </head>
 
-<body>
-    <div class="container">
-        <h1> Shopping App</h1>
-        <nav ng-controller="NavController">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#/home">Home</a></li>
-            <li><a href="#/search">Search</a></li>
-        </ul>
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h1> Shopping App</h1>-->
+        <!--<nav ng-controller="NavController">-->
+        <!--<ul class="nav nav-tabs">-->
+            <!--<li class="active"><a href="#/home">Home</a></li>-->
+            <!--<li><a href="#/search">Search</a></li>-->
+        <!--</ul>-->
 
-            {{location.url()}}
+            <!--{{location.url()}}-->
 
-            </nav>
-        <div ng-view></div>
-    </div>
+            <!--</nav>-->
+        <!--<div ng-view></div>-->
+    <!--</div>-->
+
+<body ng-controller="ProjectMainController">
+    <ng-include src = "'views/header/header.view.html'"></ng-include>
+    <ng-include src = "'views/carousel/carousel.view.html'"></ng-include>
+    <div ng-view></div>
 </body>
 
 
@@ -42,24 +46,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.7.0/jquery.raty.min.js"></script>
 <script src="app.js"></script>
 <script src="config.js"></script>
-<script src="navigation.controller.js"></script>
+<script src="projectMain.controller.js"></script>
 <script src="search/search.controller.js"></script>
 <script src="details/details.controller.js"></script>
 <script src="services/product.service.js"></script>
 
-
-
-
-<!--<script src="views/main/main.controller.js"></script>-->
-<!--<script src="views/header/header.controller.js"></script>-->
-<!--<script src="views/sidebar/sidebar.controller.js"></script>-->
-<!--<script src="services/user.service.client.js"></script>-->
-<!--<script src="views/users/register.controller.js"></script>-->
-<!--<script src="views/users/profile.controller.js"></script>-->
-<!--<script src="views/users/login.controller.js"></script>-->
-<!--<script src="services/forms.service.client.js"></script>-->
-<!--<script src="views/forms/forms.controller.js"></script>-->
-<!--<script src="views/admin/admin.controller.js"></script>-->
 
 
 

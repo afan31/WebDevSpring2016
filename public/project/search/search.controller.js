@@ -3,11 +3,11 @@
         .module("ShopaholicApp")
         .controller("SearchController", searchController);
 
-    function searchController($location, $scope, $http, $routeParams, ProductService) {
+    function searchController($location, $scope, $http, $routeParams, ProductService, $rootScope) {
 
         var apiKey ="ay4rd26c7bqjh9zutd5ynkm6";
         var title = $routeParams.title;
-
+        console.log(title);
         if (title){
             search(title);
         }
@@ -25,9 +25,9 @@
         }
 
         function render(response){
-            //console.log(response);
+            console.log(response);
 
-            $scope.data=response;
+            $rootScope.data=response;
 
 
         }

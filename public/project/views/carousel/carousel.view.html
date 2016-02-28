@@ -1,5 +1,5 @@
 <!-- carousel code -->
-<div ng-controller="CarouselController" id="homePageCarousel" class="carousel slide" data-ride="carousel">
+<div id="homePageCarousel" class="carousel slide" data-ride="carousel" ng-controller="SearchController">
     <div class="row homePageHeader container bounceInDown animated">
         <div class="col-sm-8 col-sm-offset-3" id="topRow">
             <h1>Welcome to Shopaholic!</h1>
@@ -13,16 +13,36 @@
         <div class="container bounce animated">
             <div id="custom-search-input">
                 <div class="input-group col-sm-6 col-sm-offset-4">
-                    <input type="text" class="search-query form-control" placeholder="What do you wanna buy?"/>
+                    <input ng-model="title" type="text" class="search-query form-control" placeholder="What do you wanna buy?"/>
                         <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button">
+                            <a href="#/search"<button ng-click="search(title)" class="btn btn-danger" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
-                            </button>
+                            </button></a>
                         </span>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-8 col-sm-offset-3" id="scroll">
+            <p class="bold marginTop" >Scroll below for search results!</p>
 
         </div>
+
+            <!--<input type="text" ng-model="title" class="search-query form-control" placeholder="What do you wanna buy?"/>-->
+                        <!--<span class="input-group-btn">-->
+                            <!--<button ng-click="search(title)" class="btn btn-danger" type="button">-->
+                                <!--<span class="glyphicon glyphicon-search"></span>-->
+                            <!--</button>-->
+                        <!--</span>-->
+                    <!--<ul><li><a href="#/search">Search</a></li></ul>-->
+
+                    <!--<input ng-model="title"-->
+                           <!--class="form-control"-->
+                           <!--placeholder="Samsung"/>-->
+                    <!--<a href="#/search"><button ng-click="search(title)" class="btn btn-primary btn-block">Search</button></a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
     </div>
     <ol class="carousel-indicators">
         <li data-target="#homePageCarousel" data-slide-to="0" class="active"></li>
@@ -43,3 +63,10 @@
         </div>
     </div>
 </div>
+
+
+<script>
+$(".item").height($(window).height());
+</script>
+
+
