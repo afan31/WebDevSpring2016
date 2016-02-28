@@ -1,0 +1,77 @@
+<h2>{{ product.name }}</h2>
+
+<div>
+
+<img ng-src="{{product.image}}" height="200px" class="pull-left"/>
+
+<p>{{product.longDescription}}</p>
+</div>
+<div >
+    <!--<h4>Product Details</h4>-->
+<table class="table table-striped">
+    <tr>
+        <th>Review Count</th>
+        <td>{{product.customerReviewCount}}</td>
+    </tr>
+    <tr>
+        <th>Review Average</th>
+        <td>{{product.customerReviewCount}}</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>{{product.salePrice}}</td>
+    </tr>
+    <tr>
+        <th>Manufacture</th>
+        <td>{{product.manufacturer}}</td>
+    </tr>
+    <tr>
+        <th>Model Number</th>
+        <td>{{product.modelNumber}}</td>
+    </tr>
+    <tr>
+        <th>Warrany Labor</th>
+        <td>{{product.warrantyLabor}}</td>
+    </tr>
+    <tr>
+        <th>Warranty Parts</th>
+        <td>{{product.warrantyParts}}</td>
+    </tr>
+    <tr>
+        <th>Condition</th>
+        <td>{{product.condition}}</td>
+    </tr>
+    <tr>
+        <th>In Store Pickup ?</th>
+        <td>{{product.inStorePickup}}</td>
+    </tr>
+    <tr>
+        <th>Home Delivery ?</th>
+        <td>{{product.homeDelivery}}</td>
+    </tr>
+</table>
+</div>
+<section ng-show="dataReview">
+    <h3>Reviews</h3>
+
+    <div ng-repeat="review in dataReview.reviews">
+        <p><b>Reviewer:  </b>{{review.reviewer[0].name}}</p>
+        <p class="star-rating" data-score = "4"></p>
+        <!--<p>{{review.rating}}</p>-->
+        <!--<p><b>Rating:  </b>{{review.rating}}</p>-->
+        <p><b>Title:  </b>{{review.title}}</p>
+        <p><b>Comment:  </b>{{review.comment}}</p>
+
+        <hr>
+        </div>
+</section>
+
+<script>
+    $('.star-rating').raty({
+        path: 'images/',
+        readOnly:true,
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
+</script>

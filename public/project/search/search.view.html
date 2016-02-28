@@ -1,0 +1,27 @@
+<h2>Search Page</h2>
+
+<input ng-model="title"
+       class="form-control"
+       placeholder="Samsung"/>
+<button ng-click="search(title)" class="btn btn-primary btn-block">Search</button>
+
+
+<section ng-show="data">
+    <h3> Search Results</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="product in data.products">
+            <td><img height="75px" ng-src="{{product.image}}"/></td>
+            <td><a href="#/details/{{product.sku}}">{{product.name}}</a></td>
+            <td>{{product.salePrice}}</td>
+        </tr>
+    </tbody>
+</table>
+</section>

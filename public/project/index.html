@@ -20,8 +20,8 @@
         <h1> Shopping App</h1>
         <nav ng-controller="NavController">
         <ul class="nav nav-tabs">
-            <li role="presentation"><a href="#/home">Home</a></li>
-            <li role="presentation"><a href="#/search">Search</a></li>
+            <li class="active"><a href="#/home">Home</a></li>
+            <li><a href="#/search">Search</a></li>
         </ul>
 
             {{location.url()}}
@@ -39,9 +39,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.7.0/jquery.raty.min.js"></script>
 <script src="app.js"></script>
 <script src="config.js"></script>
 <script src="navigation.controller.js"></script>
+<script src="search/search.controller.js"></script>
+<script src="details/details.controller.js"></script>
+<script src="services/product.service.js"></script>
+
+
+
+
 <!--<script src="views/main/main.controller.js"></script>-->
 <!--<script src="views/header/header.controller.js"></script>-->
 <!--<script src="views/sidebar/sidebar.controller.js"></script>-->
