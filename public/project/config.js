@@ -30,6 +30,18 @@
                 templateUrl: "details/details.view.html",
                 controller: "DetailsController"
             })
+            .when("/register", {
+                templateUrl: "users/register.view.html",
+                controller: "RegisterController"
+            })
+            .when("/login", {
+                templateUrl: "users/login.view.html",
+                controller: "LoginController"
+            })
+            .when('/profile', {
+                templateUrl: 'users/profile.view.html',
+                controller: 'ProfileController'
+            })
             .otherwise({
                 redirectTo: "/home",
                 templateUrl: "views/carousel/carousel.view.html"

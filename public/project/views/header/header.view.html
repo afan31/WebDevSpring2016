@@ -1,4 +1,4 @@
-<nav class="navbar-wrapper">
+<nav ng-controller="HeaderController" class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
@@ -18,8 +18,21 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
+                        <!--<li><a href="#/login">Login</a></li>-->
+                        <!--<li><a href="#/register">Register</a></li>-->
+                        <li ng-hide="user" ng-class="{'active': location.url() == '/register'}">
+                            <a href="#/register">Register</a>
+                        </li>
+                        <li ng-hide="user" ng-class="{'active': location.url() == '/login'}">
+                            <a href="#/login">Login</a>
+                        </li>
+                        <li ng-show="user">
+                            <a href="#/profile">{{user.username}}</a>
+                        </li>
+                        <li ng-hide="!user"
+                            ng-click="logout()">
+                            <a href="">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>

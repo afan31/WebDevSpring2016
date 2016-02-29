@@ -69,7 +69,7 @@ div#homePageCarousel {
 
 }
 
-div.form-group {
+.customFormGroup {
     position:absolute;
     z-index:1;
     top:70%; /* change to whatever you want */
@@ -157,9 +157,9 @@ div.form-group {
     color: #ffff4f;
 }
 
-.test{
-    background-color: #774747;
-}
+/*.test{*/
+    /*background-color: #774747;*/
+/*}*/
 
 section {
     background-color: whitesmoke;
@@ -173,3 +173,91 @@ section {
 /*.details-background {*/
     /*background-color: #774747;*/
 /*}*/
+
+
+/*LOGIN PAGE *************************************************************************************************/
+
+
+
+
+.main {
+    padding: 20px;
+}
+.main {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.left {
+    text-align: left;
+    float: left;
+}
+
+.glyphicon .glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-pencil {
+    font-size: 20px;
+    color: grey;
+}
+.glyphicon-plus {
+    font-size: 20px;
+    color: green;
+}
+
+.glyphicon-ok {
+    font-size: 20px;
+    color: blue;
+}
+
+.glyphicon-remove {
+    font-size: 20px;
+    color: red;
+}
+.glyphicon-align-justify {
+    font-size: 20px;
+}
+
+.edit-icon-lt {
+    padding-right: 8px;
+}
+
+.g2 {
+    margin-top: -35px;
+    margin-left: -15px;
+}
+
+.ckbox1 {
+    margin-left: 15px;
+}
+
+.rad1 {
+    margin-left: 15px;
+}
+
+.lastLine {
+    color: #333;
+    height: 1px;
+}
+
+.registerBackground {
+    background-color: #ffffff;
+}
+
+

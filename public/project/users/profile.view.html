@@ -1,14 +1,14 @@
-<div class="container-fluid" ng-controller="RegisterController">
+<div class="container-fluid" ng-controller="ProfileController">
     <div class="row">
-
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Register</h1>
+            <h1 class="page-header">Profile</h1>
 
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" action="profile.view.html">
                 <div class="form-group">
                     <label class="col-sm-3" for="username">Username:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.username" type="text" class="form-control" id="username" placeholder="Username">
+                        <input ng-model="user.username" type="text"
+                               class="form-control" id="username" placeholder="Username" ng-readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group">
@@ -18,9 +18,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3" for="verifyPwd">Verify Password:</label>
+                    <label class="col-sm-3" for="firstName">First Name:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.verifyPwd" type="password" class="form-control" id="verifyPwd" placeholder="Verify Password">
+                        <input ng-model="user.firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3" for="lastName">Last Name:</label>
+                    <div class="col-sm-9">
+                        <input ng-model="user.lastName" type="text" class="form-control search" id="lastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,10 +37,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <a href="" ng-click="register(user)" class="btn btn-primary btn-block">Register</a>
+                        <a href="" ng-click="update(user)" class="btn btn-primary btn-block">Update</a>
                     </div>
                 </div>
             </form>
+
+
+
+
         </div>
     </div>
 </div>
