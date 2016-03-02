@@ -3,7 +3,7 @@
 
 <div>
 
-<img ng-src="{{product.image}}" height="200px" class="pull-left"/>
+<img ng-src="{{product.image}}" class="pull-left"/>
 
 <p>{{product.longDescription}}</p>
 </div>
@@ -52,8 +52,31 @@
     </tr>
 </table>
 </div>
-<section ng-show="dataReview">
+<section class="reviewSection" ng-show="dataReview">
     <h3>Reviews</h3>
+
+    <div class="panel panel-default margin-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title ng-binding">Write a Review</h3>
+            </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="well margin-well">
+                    <h4>What do you think about the product?</h4>
+                    <p class="star-rating-custom"></p>
+                    <form role="form" class="ng-pristine ng-valid">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div ng-repeat="review in dataReview.reviews">
         <p><b>Reviewer:  </b>{{review.reviewer[0].name}}</p>
@@ -74,5 +97,8 @@
         score: function () {
             return $(this).attr('data-score');
         }
+    });
+    $('.star-rating-custom').raty({
+        path: 'images/'
     });
 </script>
