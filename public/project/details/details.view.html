@@ -52,7 +52,7 @@
     </tr>
 </table>
 </div>
-<section class="reviewSection" ng-show="dataReview">
+<section class="reviewSection" ng-show="reviewsData">
     <h3>Reviews</h3>
 
     <div class="panel panel-default margin-panel">
@@ -63,12 +63,16 @@
             <div class="row">
                 <div class="well margin-well">
                     <h4>What do you think about the product?</h4>
-                    <p class="star-rating-custom"></p>
+                    <p ng-model="review.rating" class="star-rating" data-score = "{{review.rating}}"></p>
+                    <p>{{callUpdate()}}</p>
                     <form role="form" class="ng-pristine ng-valid">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea ng-model="review.title" placeholder="Title" class="form-control" rows="1"></textarea>
                         </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <textarea ng-model="review.review" placeholder="Your Review"class="form-control" rows="3"></textarea>
+                        </div>
+                            <button type="submit" ng-click="addReview(review)" class="btn btn-primary">Submit</button>
                           </form>
                         </div>
                     </form>
@@ -77,28 +81,31 @@
             </div>
         </div>
     </div>
-
-    <div ng-repeat="review in dataReview.reviews">
-        <p><b>Reviewer:  </b>{{review.reviewer[0].name}}</p>
+    <hr>
+    <div ng-repeat="review in reviewsData">
+        <p><b>Reviewer:  </b>{{review.userId}}</p>
         <p class="star-rating" data-score = "{{review.rating}}"></p>
         <p>{{callUpdate()}}</p>
         <!--<p><b>Rating:  </b>{{review.rating}}</p>-->
         <p><b>Title:  </b>{{review.title}}</p>
-        <p><b>Comment:  </b>{{review.comment}}</p>
+        <p><b>Comment:  </b>{{review.review}}</p>
+
 
         <hr>
-        </div>
+    </div>
 </section>
 
 <script>
     $('.star-rating').raty({
         path: 'images/',
-        readOnly:true,
         score: function () {
             return $(this).attr('data-score');
         }
     });
     $('.star-rating-custom').raty({
-        path: 'images/'
+        path: 'images/',
+        score: function () {
+            return $(this).attr('data-score');
+        }
     });
 </script>

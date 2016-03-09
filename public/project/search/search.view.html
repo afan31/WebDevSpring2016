@@ -19,7 +19,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="product in data.products">
-            <td><img ng-src="{{product.image}}"/></td>
+            <td><img width="200px" height="200px" ng-src="{{product.image}}"/></td>
             <td><a href="#/details/{{product.sku}}">{{product.name}}</a></td>
             <td>{{product.salePrice}}</td>
             <td><div class="fb-like" data-href="http://localhost:3000/project/index.html#/search"
