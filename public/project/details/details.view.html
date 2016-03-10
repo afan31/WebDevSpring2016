@@ -1,99 +1,127 @@
 <h3 class="search-header details-background">Product Details</h3>
-<h4>{{ product.name }}</h4>
 
-<div>
+<div class="search-header details-background container">
 
-<img ng-src="{{product.image}}" class="pull-left"/>
+    <div class="row">
 
-<p>{{product.longDescription}}</p>
-</div>
-<div >
-    <!--<h4>Product Details</h4>-->
-<table class="table table-striped">
-    <tr>
-        <th>Review Count</th>
-        <td>{{product.customerReviewCount}}</td>
-    </tr>
-    <tr>
-        <th>Review Average</th>
-        <td>{{product.customerReviewCount}}</td>
-    </tr>
-    <tr>
-        <th>Price</th>
-        <td>{{product.salePrice}}</td>
-    </tr>
-    <tr>
-        <th>Manufacture</th>
-        <td>{{product.manufacturer}}</td>
-    </tr>
-    <tr>
-        <th>Model Number</th>
-        <td>{{product.modelNumber}}</td>
-    </tr>
-    <tr>
-        <th>Warrany Labor</th>
-        <td>{{product.warrantyLabor}}</td>
-    </tr>
-    <tr>
-        <th>Warranty Parts</th>
-        <td>{{product.warrantyParts}}</td>
-    </tr>
-    <tr>
-        <th>Condition</th>
-        <td>{{product.condition}}</td>
-    </tr>
-    <tr>
-        <th>In Store Pickup ?</th>
-        <td>{{product.inStorePickup}}</td>
-    </tr>
-    <tr>
-        <th>Home Delivery ?</th>
-        <td>{{product.homeDelivery}}</td>
-    </tr>
-</table>
-</div>
-<section class="reviewSection" ng-show="reviewsData">
-    <h3>Reviews</h3>
-
-    <div class="panel panel-default margin-panel">
-        <div class="panel-heading">
-            <h3 class="panel-title ng-binding">Write a Review</h3>
-            </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="well margin-well">
-                    <h4>What do you think about the product?</h4>
-                    <p ng-model="review.rating" class="star-rating" data-score = "{{review.rating}}"></p>
-                    <p>{{callUpdate()}}</p>
-                    <form role="form" class="ng-pristine ng-valid">
-                        <div class="form-group">
-                            <textarea ng-model="review.title" placeholder="Title" class="form-control" rows="1"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <textarea ng-model="review.review" placeholder="Your Review"class="form-control" rows="3"></textarea>
-                        </div>
-                            <button type="submit" ng-click="addReview(review)" class="btn btn-primary">Submit</button>
-                          </form>
-                        </div>
-                    </form>
-
-                </div>
+        <div class="col-sm-4">
+            <p class="lead">{{ product.name }}</p>
+            <div class="list-group table-responsive">
+                <!--<a href="#" class="list-group-item active">Category 1</a>-->
+                <!--<a href="#" class="list-group-item">Price {{product.salePrice}}</a>-->
+                <!--<a href="#" class="list-group-item">Category 3</a>-->
+                <table class="table table-striped">
+                    <tr>
+                        <th>Condition</th>
+                        <td>{{product.condition}}</td>
+                    </tr>
+                    <tr>
+                        <th>Manufacturer</th>
+                        <td>{{product.manufacturer}}</td>
+                    </tr>
+                    <tr>
+                        <th>Department</th>
+                        <td>{{product.department}}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{{product.salePrice}}</td>
+                    </tr>
+                    <tr>
+                        <th>Manufacture</th>
+                        <td>{{product.manufacturer}}</td>
+                    </tr>
+                    <tr>
+                        <th>Class</th>
+                        <td>{{product.class}}</td>
+                    </tr>
+                    <tr>
+                        <th>Model Number</th>
+                        <td>{{product.modelNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Warrany Labor</th>
+                        <td>{{product.warrantyLabor}}</td>
+                    </tr>
+                    <tr>
+                        <th>Warranty Parts</th>
+                        <td>{{product.warrantyParts}}</td>
+                    </tr>
+                    <tr>
+                        <th>Condition</th>
+                        <td>{{product.condition}}</td>
+                    </tr>
+                    <tr>
+                        <th>In Store Pickup ?</th>
+                        <td>{{product.inStorePickup}}</td>
+                    </tr>
+                    <tr>
+                        <th>Home Delivery ?</th>
+                        <td>{{product.homeDelivery}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </div>
-    <hr>
-    <div ng-repeat="review in reviewsData">
-        <p><b>Reviewer:  </b>{{review.userId}}</p>
-        <p class="star-rating" data-score = "{{review.rating}}"></p>
-        <p>{{callUpdate()}}</p>
-        <!--<p><b>Rating:  </b>{{review.rating}}</p>-->
-        <p><b>Title:  </b>{{review.title}}</p>
-        <p><b>Comment:  </b>{{review.review}}</p>
-        <p><a href="" ng-click="selectedReview(review)"> Edit </a>  | <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
 
-        <hr>
+        <div class="col-sm-8">
+
+            <div class="thumbnail">
+                <img class="img-responsive" ng-src="{{product.image}}" alt="http://placehold.it/800x300">
+                <div class="caption-full">
+                    <h4 class="pull-right">{{product.salePrice}}</h4>
+                    <h4><a href="">{{ product.name }}</a>
+                    </h4>
+                    <p>{{product.longDescription}}</p>
+                    <div class="ratings">
+                        <p class="pull-right">Total Reviews: {{product.customerReviewCount}}</p>
+                        <!--<p>{{product.customerReviewAverage}}</p>-->
+                        <p class="star-rating ratings" data-score = "{{product.customerReviewAverage}}"></p>
+                        <p>{{callUpdate()}}</p>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="well" ng-show="reviewsData">
+
+                <div class="text-right">
+                    <a class="btn btn-success" onclick="showWriteReviewDiv()">Leave a Review</a>
+                </div>
+
+                <div id="writeReviewDiv" style="display:none;" class="panel-body">
+                   <div class="row">
+                        <div class="well margin-well">
+                            <h4>What do you think about the product?</h4>
+                            <p ng-model="review.rating" class="star-rating" data-score = "{{review.rating}}"></p>
+                                 <p>{{callUpdate()}}</p>
+                            <form role="form" class="ng-pristine ng-valid">
+                                <div class="form-group">
+                                    <textarea ng-model="review.title" placeholder="Title" class="form-control" rows="1"></textarea>
+                                </div>
+                                 <div class="form-group">
+                                    <textarea ng-model="review.review" placeholder="Your Review"class="form-control" rows="3"></textarea>
+                                 </div>
+                                 <button type="submit" onclick="hideWriteReviewDiv()" ng-click="addReview(review)" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div ng-repeat="review in reviewsData">
+                    <p><b>Reviewer:  </b>{{review.userId}}</p>
+                    <p class="star-rating" data-score = "{{review.rating}}"></p>
+                    <p>{{callUpdate()}}</p>
+                    <p><b>Title:  </b>{{review.title}}</p>
+                    <p><b>Comment:  </b>{{review.review}}</p>
+                    <p><a href="" ng-click="selectedReview(review)"> Edit </a>  | <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
+                    <hr>
+                    </div>
+                </div>
+        </div>
     </div>
-</section>
+</div>
 
 <script>
     $('.star-rating').raty({
@@ -108,4 +136,10 @@
             return $(this).attr('data-score');
         }
     });
+    function showWriteReviewDiv() {
+        document.getElementById('writeReviewDiv').style.display = "block";
+    }
+    function hideWriteReviewDiv() {
+        document.getElementById('writeReviewDiv').style.display = "none";
+    }
 </script>

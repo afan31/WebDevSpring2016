@@ -441,3 +441,18 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .profileBackground {
     margin-top: 4%;
 }
+
+
+/** Details Page **/
+
+.list-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+    font-weight: bold;
+}
