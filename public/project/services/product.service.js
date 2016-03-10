@@ -6,24 +6,32 @@
     function ProductService($http) {
 
         var reviews = [
-            {"userId" : 234,
+            {
+                "_id" : 1,
+                "userId" : 234,
                 "title": "This is a test title 1",
                 "review" : "This is a test review for macbook pro. Product ID: 1219696697139",
                 "rating": 4,
                 "productId" : "7639085"},
 
-            {"userId" : 345,
+            {
+                "_id" : 2,
+                "userId" : 345,
                 "title": "This is a test title 2",
                 "review" : "This is a test review for macbook pro. Product ID: 1219696697139",
                 "rating": 4,
-                "productId" : "7619002"}
+                "productId" : "7639085"}
         ];
 
         var api = {
             findProductsByTitle: findProductsByTitle,
             browseProductsByCategory: browseProductsByCategory,
             findAllReviewsForProduct: findAllReviewsForProduct,
-            createReview:createReview
+            createReview: createReview,
+            selectedReview: selectedReview,
+            updateReview: updateReview,
+            getIndexByUserUdAndProductId : getIndexByUserUdAndProductId,
+            deleteReview : deleteReview
         };
         return api;
 
@@ -66,6 +74,43 @@
             console.log(reviews);
 
             return findAllReviewsForProduct(productId);
+        }
+
+        function selectedReview(userId, productId, reviewObj) {
+
+
+            //return findAllReviewsForProduct(productId);
+            return reviewObj;
+        }
+
+        function updateReview(userId, productId, review) {
+            var index = getIndexByUserIdAndProductId(userId,productId);
+            reviews[index].title = review.title;
+            reviews[index].review = review.review;
+
+            return findAllReviewsForProduct(productId);
+        }
+
+        function getIndexByUserUdAndProductId(userId, productId) {
+            for(var index in reviews){
+                if (reviews[index].productId === productId && reviews[index].userId === userId) {
+                    return index;
+                }
+            }
+        }
+
+        function deleteReview(reviewId,productId, reviewObj){
+            var index = getIndexByReviewId(reviewId);
+            reviews.splice(index,1);
+            return findAllReviewsForProduct(productId);
+        }
+
+        function getIndexByReviewId(reviewId) {
+            for(var index in reviews) {
+                if(reviews[index]._id === (reviewId + 1)) {
+                    return index;
+                }
+            }
         }
     }
 })();
