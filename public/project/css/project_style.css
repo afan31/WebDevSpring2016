@@ -329,7 +329,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     /*background-color: #f7ecb5;*/
 /*}*/
 
-.col-sm-4:nth-child(3n+1){
+.col-md-4:nth-child(3n+1){
     clear: left;
 }
 

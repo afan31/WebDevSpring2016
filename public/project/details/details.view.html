@@ -115,7 +115,7 @@
                     <p>{{callUpdate()}}</p>
                     <p><b>Title:  </b>{{review.title}}</p>
                     <p><b>Comment:  </b>{{review.review}}</p>
-                    <p><a href="" ng-click="selectedReview(review)"> Edit </a>  | <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
+                        <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"  ng-click="selectedReview(review)"> Edit </a> <a id="cancel" style="display:none;" href="" onclick="hideWriteReviewDivCancelLink()" ng-click="cancelReview($index)">Cancel</a> |  <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
                     <hr>
                     </div>
                 </div>
@@ -141,5 +141,16 @@
     }
     function hideWriteReviewDiv() {
         document.getElementById('writeReviewDiv').style.display = "none";
+    }
+    function showWriteReviewDivCancelLink() {
+        document.getElementById('writeReviewDiv').style.display = "block";
+        document.getElementById('edit').style.display = "none";
+        document.getElementById('cancel').style.display = "inline";
+    }
+
+    function hideWriteReviewDivCancelLink() {
+        document.getElementById('writeReviewDiv').style.display = "none";
+        document.getElementById('edit').style.display = "inline";
+        document.getElementById('cancel').style.display = "none";
     }
 </script>

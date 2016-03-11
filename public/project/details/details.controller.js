@@ -19,6 +19,7 @@
         $scope.addReview = addReview;
         $scope.selectedReview = selectedReview;
         $scope.deleteReview = deleteReview;
+        $scope.cancelReview = cancelReview;
 
 
         function callUpdate() {
@@ -49,6 +50,12 @@
 
         function deleteReview(reviewId, reviewObject){
             $scope.reviewsData = ProductService.deleteReview(reviewId,$routeParams.skuId,reviewObject);
+        }
+
+        function cancelReview(reviewIndex) {
+            $scope.selectedIndex = reviewIndex;
+            $scope.selectedIndex = -1;
+            $scope.review = null;
         }
 
     }

@@ -3,7 +3,7 @@
         <h2 class="search-header"> Search Results</h2>
 
         <div class="row">
-            <div class="col-sm-4" ng-repeat="product in categoryData.products" ng-if="product.image != undefined">
+            <div class="col-sm-6 col-md-4" ng-repeat="product in categoryData.products" ng-if="product.image != undefined">
                 <div class="thumbnail">
                     <a href="#/details/{{product.sku}}"><img width= "200" height="120" ng-src="{{product.image}}" alt="http://placehold.it/320x150"></a>
                     <div class="caption">
