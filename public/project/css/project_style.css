@@ -161,7 +161,7 @@ div#homePageCarousel {
 /*}*/
 
 section {
-    background-color: whitesmoke;
+    /**background-color: whitesmoke;**/
 }
 
 .search-header {
@@ -325,11 +325,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 
 /** Styles for the details page **/
-.categImg {
-    background-color: #f7ecb5;
-}
+/*.categImg {*/
+    /*background-color: #f7ecb5;*/
+/*}*/
 
-.col-md-4:nth-child(3n+1){
+.col-sm-4:nth-child(3n+1){
     clear: left;
 }
 
@@ -455,4 +455,13 @@ only screen and (min-device-pixel-ratio : 1.5) {
     padding-left: 10px;
     color: #d17581;
     font-weight: bold;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
 }
