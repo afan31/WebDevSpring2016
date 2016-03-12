@@ -12,6 +12,7 @@
                 "title": "This is a test title 1",
                 "review" : "This is a test review for macbook pro. Product ID: 1219696697139",
                 "rating": 4,
+                "timestamp": "Mar 8, 2016",
                 "productId" : "7639085"},
 
             {
@@ -20,6 +21,7 @@
                 "title": "This is a test title 2",
                 "review" : "This is a test review for macbook pro. Product ID: 1219696697139",
                 "rating": 4,
+                "timestamp": "Mar 9, 2016",
                 "productId" : "7639085"}
         ];
 
@@ -62,6 +64,7 @@
                 "productId": productId,
                 "title": review.title,
                 "review": review.review,
+                "timestamp": new Date(),
                 "rating": 2
 
             };
@@ -70,26 +73,17 @@
             review.rating = null;
             review.review = null;
             review.user = null;
+            review.timestamp = null;
             review.productId = null;
+
             console.log(reviews);
 
             return findAllReviewsForProduct(productId);
         }
 
         function selectedReview(userId, productId, reviewObj) {
-
-
-            //return findAllReviewsForProduct(productId);
             return reviewObj;
         }
-
-        //function updateReview(userId, productId, review) {
-        //    var index = getIndexByUserIdAndProductId(userId,productId);
-        //    reviews[index].title = review.title;
-        //    reviews[index].review = review.review;
-        //
-        //    return findAllReviewsForProduct(productId);
-        //}
 
         function updateReview(review, callback)
         {
@@ -101,6 +95,7 @@
                 "title": review.title,
                 "review" : review.review,
                 "rating": review.rating,
+                "timestamp": new Date(),
                 "productId" : review.productId
             };
             console.log(reviews[reviewIndex]);

@@ -3,7 +3,7 @@
         .module("ShopaholicApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($routeParams, $http, $scope, ProductService, $location) {
+    function DetailsController($routeParams, $http, $scope, ProductService, UserService) {
         var skuId = $routeParams.skuId;
 
         $http.get("http://api.bestbuy.com/v1/products/" + skuId + ".json?apiKey=ay4rd26c7bqjh9zutd5ynkm6")
@@ -20,6 +20,7 @@
         $scope.updateReview = updateReview;
         $scope.deleteReview = deleteReview;
         $scope.cancelReview = cancelReview;
+        $scope.findUserFirstNameByUserId = findUserFirstNameByUserId;
 
 
         function callUpdate() {
@@ -79,6 +80,16 @@
             $scope.selectedIndex = reviewIndex;
             $scope.selectedIndex = -1;
             $scope.review = null;
+        }
+
+        function findUserFirstNameByUserId(userId)
+        {
+            var userFirstName;
+            UserService.findUserFirstNameByUserId(userId, function(response){
+                userFirstName = response;
+            });
+
+            return userFirstName;
         }
 
     }

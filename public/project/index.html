@@ -32,18 +32,10 @@
     <!--</div>-->
 
 <body ng-controller="ProjectMainController">
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-    <ng-include src = "'views/header/header.view.html'"></ng-include>
-    <!--<ng-include src = "'views/carousel/carousel.view.html'"></ng-include>-->
-    <!--<ng-include src = "'views/home/home.view.html'"></ng-include>-->
-    <div ng-view ></div>
+
+<ng-include src = "'views/header/header.view.html'"></ng-include>
+        <div ng-view ></div>
+
     <!--<hr>-->
     <!--<footer>-->
         <!--<p class="pull-right"><a href="#">Back to top</a> </p>-->

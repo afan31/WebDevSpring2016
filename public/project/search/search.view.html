@@ -1,8 +1,8 @@
 <section ng-show="data">
     <h2 class="search-header"> Search Results</h2>
 
-    <div class="row">
-        <div class="col-sm-6 col-md-4" ng-repeat="product in data.products" ng-if="product.image != undefined">
+    <div>
+        <div class="col-md-4" ng-repeat="product in data.products" ng-if="product.image != undefined">
             <div class="thumbnail">
                 <a href="#/details/{{product.sku}}"><img height="120" width= "200"  ng-src="{{product.image}}" alt="http://placehold.it/320x150"></a>
                 <div class="caption">
