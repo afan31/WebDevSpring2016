@@ -13,11 +13,11 @@
         //    .success(renderReview);
 
 
-
         $scope.callUpdate = callUpdate;
         renderReview(skuId);
         $scope.addReview = addReview;
         $scope.selectedReview = selectedReview;
+        $scope.updateReview = updateReview;
         $scope.deleteReview = deleteReview;
         $scope.cancelReview = cancelReview;
 
@@ -40,16 +40,39 @@
             console.log($scope.reviewsData);
         }
 
-        function addReview(reviewObject){
-            $scope.reviewsData = ProductService.createReview(234,$routeParams.skuId,reviewObject);
+        function addReview(reviewObject) {
+            $scope.show = true;
+            $scope.reviewsData = ProductService.createReview(234, $routeParams.skuId, reviewObject);
         }
 
-        function selectedReview(reviewObject){
-            $scope.review = ProductService.selectedReview(234,$routeParams.skuId,reviewObject);
+        function selectedReview(ratingIndex) {
+            $scope.selectedIndex = ratingIndex;
+            //var editReview = ProductService.selectedReview(234,$routeParams.skuId,reviewObject);
+            var editReview = {
+                "_id": $scope.reviewsData[ratingIndex]._id,
+                "userId": $scope.reviewsData[ratingIndex].userId,
+                "title": $scope.reviewsData[ratingIndex].title,
+                "review": $scope.reviewsData[ratingIndex].review,
+                "rating": $scope.reviewsData[ratingIndex].rating,
+                "productId": $scope.reviewsData[ratingIndex].productId
+            }
+
+            console.log(editReview);
+
+            $scope.review = editReview;
         }
 
-        function deleteReview(reviewId, reviewObject){
-            $scope.reviewsData = ProductService.deleteReview(reviewId,$routeParams.skuId,reviewObject);
+        function updateReview(review) {
+            ProductService.updateReview(review, function (newReview) {
+                $scope.reviewsData[$scope.selectedIndex] = newReview;
+                $scope.selectedIndex = -1;
+                $scope.review = {};
+            });
+        }
+
+        function deleteReview(reviewId, reviewObject) {
+            $scope.reviewsData = ProductService.deleteReview(reviewId, $routeParams.skuId, reviewObject);
+            $scope.review = null;
         }
 
         function cancelReview(reviewIndex) {

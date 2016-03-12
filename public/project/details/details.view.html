@@ -75,7 +75,7 @@
                     <div class="ratings">
                         <p class="pull-right">Total Reviews: {{product.customerReviewCount}}</p>
                         <!--<p>{{product.customerReviewAverage}}</p>-->
-                        <p class="star-rating ratings" data-score = "{{product.customerReviewAverage}}"></p>
+                        <p class="star-rating ratings" data-score="{{product.customerReviewAverage}}"></p>
                         <p>{{callUpdate()}}</p>
 
 
@@ -90,19 +90,30 @@
                 </div>
 
                 <div id="writeReviewDiv" style="display:none;" class="panel-body">
-                   <div class="row">
+                    <div class="row">
                         <div class="well margin-well">
                             <h4>What do you think about the product?</h4>
-                            <p ng-model="review.rating" class="star-rating" data-score = "{{review.rating}}"></p>
-                                 <p>{{callUpdate()}}</p>
+                            <p ng-model="review.rating" class="star-rating" data-score="{{review.rating}}"></p>
+                            <p>{{callUpdate()}}</p>
                             <form role="form" class="ng-pristine ng-valid">
                                 <div class="form-group">
-                                    <textarea ng-model="review.title" placeholder="Title" class="form-control" rows="1"></textarea>
+                                    <textarea ng-model="review.title" placeholder="Title" class="form-control"
+                                              rows="1"></textarea>
                                 </div>
-                                 <div class="form-group">
-                                    <textarea ng-model="review.review" placeholder="Your Review"class="form-control" rows="3"></textarea>
-                                 </div>
-                                 <button type="submit" onclick="hideWriteReviewDiv()" ng-click="addReview(review)" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <textarea ng-model="review.review" placeholder="Your Review" class="form-control"
+                                              rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="submit" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="addReview(review)"
+                                        >Submit
+                                </button>
+                                <button type="submit" class="btn btn-warning" id="update" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="updateReview(review)">Update
+                                </button>
+
+                                <button type="submit" class="btn btn-info" id="cancel" style="display:none;" href="" onclick="hideWriteReviewDivCancelLink()"
+                                        ng-click="cancelReview($index)">
+                                    Cancel
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -110,15 +121,28 @@
 
                 <hr>
                 <div ng-repeat="review in reviewsData">
-                    <p><b>Reviewer:  </b>{{review.userId}}</p>
-                    <p class="star-rating" data-score = "{{review.rating}}"></p>
+                    <p><b>Reviewer: </b>{{review.userId}}</p>
+                    <p class="star-rating" data-score="{{review.rating}}"></p>
                     <p>{{callUpdate()}}</p>
-                    <p><b>Title:  </b>{{review.title}}</p>
-                    <p><b>Comment:  </b>{{review.review}}</p>
-                        <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"  ng-click="selectedReview(review)"> Edit </a> <a id="cancel" style="display:none;" href="" onclick="hideWriteReviewDivCancelLink()" ng-click="cancelReview($index)">Cancel</a> |  <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
+                    <p><b>Title: </b>{{review.title}}</p>
+                    <p><b>Comment: </b>{{review.review}}</p>
+                    <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
+                          ng-click="selectedReview($index)"> Edit | </a>
+                        <a href="" ng-click="deleteReview($index,review)">Delete</a></p>
                     <hr>
-                    </div>
                 </div>
+                <!--<div ng-if="selectedIndex == $index" ng-repeat="review in reviewsData">-->
+                <!--<p><b>Reviewer:  </b>{{review.userId}}</p>-->
+                <!--<p class="star-rating" data-score = "{{review.rating}}"></p>-->
+                <!--<p>{{callUpdate()}}</p>-->
+                <!--<p><b>Title:  </b>{{review.title}}</p>-->
+                <!--<p><b>Comment:  </b>{{review.review}}</p>-->
+                <!--<p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"  ng-click="selectedReview(review, $index)"> Edit </a>-->
+                <!--<a id="cancel" style="display:none;" href="" onclick="hideWriteReviewDivCancelLink()" ng-click="cancelReview($index)">Cancel</a>-->
+                <!--|  <a href="" ng-click="deleteReview($index,review)">Delete</a></p>-->
+                <!--<hr>-->
+                <!--</div>-->
+            </div>
         </div>
     </div>
 </div>
@@ -138,6 +162,7 @@
     });
     function showWriteReviewDiv() {
         document.getElementById('writeReviewDiv').style.display = "block";
+        document.getElementById('submit').style.display = "inline";
     }
     function hideWriteReviewDiv() {
         document.getElementById('writeReviewDiv').style.display = "none";
@@ -146,6 +171,7 @@
         document.getElementById('writeReviewDiv').style.display = "block";
         document.getElementById('edit').style.display = "none";
         document.getElementById('cancel').style.display = "inline";
+        document.getElementById('update').style.display = "inline";
     }
 
     function hideWriteReviewDivCancelLink() {

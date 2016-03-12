@@ -83,12 +83,39 @@
             return reviewObj;
         }
 
-        function updateReview(userId, productId, review) {
-            var index = getIndexByUserIdAndProductId(userId,productId);
-            reviews[index].title = review.title;
-            reviews[index].review = review.review;
+        //function updateReview(userId, productId, review) {
+        //    var index = getIndexByUserIdAndProductId(userId,productId);
+        //    reviews[index].title = review.title;
+        //    reviews[index].review = review.review;
+        //
+        //    return findAllReviewsForProduct(productId);
+        //}
 
-            return findAllReviewsForProduct(productId);
+        function updateReview(review, callback)
+        {
+            var reviewIndex = findReviewIndexByReviewId(review._id);
+            console.log(reviewIndex);
+            reviews[reviewIndex] = {
+                "_id" : review._id,
+                "userId" : review.userId,
+                "title": review.title,
+                "review" : review.review,
+                "rating": review.rating,
+                "productId" : review.productId
+            };
+            console.log(reviews[reviewIndex]);
+            callback(reviews[reviewIndex]);
+        }
+
+        function findReviewIndexByReviewId(reviewId)
+        {
+            var index = 0;
+            for (var i = 0; i < reviews.length; i++) {
+                if(reviews[i]._id === reviewId) {
+                    return index;
+                }
+                index++;
+            }
         }
 
         function getIndexByUserUdAndProductId(userId, productId) {
