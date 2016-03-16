@@ -17,6 +17,7 @@
         init();
 
         function logout(){
+            console.log("In Logout");
             UserService
                 .logout()
                 .then(function(){

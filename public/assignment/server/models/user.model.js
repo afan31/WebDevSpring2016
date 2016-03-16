@@ -3,7 +3,7 @@ module.exports= function() {
     var api = {
         createUser: createUser,
         findAll:findAll,
-        findById: findById,
+        findUserById: findUserById,
         deleteUser: deleteUser,
         updateUser: updateUser,
         findUserByUsername: findUserByUsername,
@@ -16,6 +16,14 @@ module.exports= function() {
 
     function createUser(user) {
         user._id = "ID_" + (new Date()).getTime();
+        console.log("In Create user " + user.username);
+
+        for(var u in mock){
+            console.log(mock[u].username);
+            if (mock[u].username === user.username) {
+                return null;
+            }
+        }
         mock.push(user);
         return mock;
     }
@@ -24,7 +32,7 @@ module.exports= function() {
         return mock;
     }
 
-    function findById(userId) {
+    function findUserById(userId) {
         for(var u in mock){
             if (mock[u].userId === userId) {
                 return mock[u];
@@ -34,6 +42,7 @@ module.exports= function() {
     }
 
     function updateUser(user,userId) {
+        console.log("In user model", user);
         var i = "";
         for (i in mock) {
             if (mock[i]._id == userId) {
@@ -77,14 +86,16 @@ module.exports= function() {
         return null;
     }
 
-    function findUserByCredentials(username,password) {
+    function findUserByCredentials(credentials) {
         for(var u in mock){
-            if (mock[u].username === username &&
-                mock[u].password === password) {
+            if (mock[u].username === credentials.username &&
+                mock[u].password === credentials.password) {
                 return mock[u];
             }
         }
         return null;
     }
+
+
 
 }

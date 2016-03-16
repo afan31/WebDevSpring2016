@@ -12,13 +12,22 @@
         vm.register = register;
 
         function init() {
-
+            //UserService
+            //    .getCurrentUser()
+            //    .then(function (response) {
+            //            console.log(response.data);
+            //            vm.currentUser = response.data;
+            //        },
+            //        function (error) {
+            //            console.log(error.statusText);
+            //        });
         }
         init();
 
         function register(user) {
+            console.log(user);
             UserService
-                .register(user)
+                .createUser(user)
                 .then(function(response){
                     var currentUser = response.data;
                     if(currentUser != null) {
