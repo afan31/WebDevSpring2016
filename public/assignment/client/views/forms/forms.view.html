@@ -8,7 +8,7 @@
                         <a href="#/forms">Forms</a>
                     </li>
                     <li role="presentation">
-                        <a href="#/">Fields</a>
+                        <a href="#/fields">Fields</a>
                     </li>
                 </ul>
 
@@ -22,14 +22,14 @@
                     </thead>
                     <tr>
                         <td>
-                            <input ng-model="form.title" type="text" class="form-control text" placeholder="name">
+                            <input ng-model="model.form.title" type="text" class="form-control text" placeholder="name">
                         </td>
                         <td>
-                            <a href="" ng-click="addForm(form)">
+                            <a href="" ng-click="model.addForm(model.form)">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true">
                                 </span>
                             </a>
-                            <a href="" ng-click="updateForm(form)">
+                            <a href="" ng-click="model.updateFormForUser(model.form)">
                                 <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true">
                                 </span>
                             </a>
@@ -37,14 +37,14 @@
                     </tr>
 
 
-                    <tr ng-repeat="form in forms">
+                    <tr ng-repeat="form in model.forms">
                         <td>{{form.title}}</td>
                         <td>
-                            <a ng-click="deleteForm($index)">
+                            <a href="" ng-click="model.deleteForm(form._id)">
                                 <span class="edit-icon-lt glyphicon glyphicon-remove" aria-hidden="true">
                                 </span>
                             </a>
-                            <a ng-click="selectForm($index)">
+                            <a href="" ng-click="model.selectForm($index)">
                                 <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                                 </span>
                             </a>

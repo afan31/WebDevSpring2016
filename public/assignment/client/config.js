@@ -29,10 +29,14 @@
                     }
 
                 })
-
                 .when('/forms', {
                     templateUrl: 'views/forms/forms.view.html',
                     controller: 'FormController',
+                    controllerAs: "model"
+                })
+                .when('/fields', {
+                    templateUrl: 'views/fields/fields.view.html',
+                    controller: 'FieldsController',
                     controllerAs: "model"
                 })
                 .when('/profile', {
