@@ -1,5 +1,5 @@
 var mock = require("./form.mock.json");
-module.exports= function() {
+module.exports= function(uuid) {
     var api = {
         findFieldByFormId: findFieldByFormId,
         findAllFieldsForForm: findAllFieldsForForm,
@@ -37,10 +37,14 @@ module.exports= function() {
     }
 
     function deleteFieldByFormId(formId, fieldId){
+        console.log("MOCK OBJECT ", mock);
         for (var u in mock) {
             if (mock[u]._id === formId) {
+                console.log("INSIDE LOOOP ", mock[u]._id);
                 for (var j in mock[u].fields){
-                    if (mock[u].fields[j]._id === fieldId){
+                    console.log(mock[u].fields[j]._id);
+                    if (mock[u].fields[j]._id == fieldId){
+                        console.log("INSIDE INNNER LOOOOPPP ", mock[u].fields[j]._id);
                         mock[u].fields.splice(j,1);
                         return mock[u].fields;
                     }
@@ -51,7 +55,7 @@ module.exports= function() {
     }
 
     function createFieldForForm(formId, field) {
-        var id = (new Date).getTime();
+        var id = uuid.v1();
         var createdField = {
             "_id": id,
             "label": field["label"],
@@ -73,16 +77,17 @@ module.exports= function() {
         var i = "";
         for (i in mock) {
             if (mock[i]._id == formId) {
-                for (var j in mock[u].fields){
-                    if (mock[u].fields[j]._id === fieldId){
+                for (var j in mock[i].fields){
+                    if (mock[i].fields[j]._id === fieldId){
                         var updatedField = {
                             "_id": newField["_id"],
                             "label": newField["label"],
                             "type": newField["type"],
-                            "placeholder": newField["placeholder"]
+                            "placeholder": newField["placeholder"],
+                            "options": newField["options"]
                         };
                         mock[i].fields[j] = updatedField;
-                        return mock[i].fields[j];
+                        return;
                     }
                 }
             }

@@ -4,6 +4,7 @@ var bodyParser    = require('body-parser');
 var multer        = require('multer');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
+var uuid          = require('node-uuid');
 app.use(express.static(__dirname + '/public'));
 
 
@@ -11,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: "afan" }));
+app.use(session({ secret: "afan", resave: false, saveUninitialized: true }));
 app.use(cookieParser());
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
@@ -23,7 +24,7 @@ app.get('/hello', sayHello);
     res.send('hello world');
 }
 
-require("./public/assignment/server/app.js")(app);
+require("./public/assignment/server/app.js")(app, uuid);
 app.listen(port, ipaddress);
 
 

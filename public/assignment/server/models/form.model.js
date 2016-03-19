@@ -1,5 +1,5 @@
 var mock = require("./form.mock.json");
-module.exports= function() {
+module.exports= function(uuid) {
     var api = {
         findFormById: findFormById,
         findAllFormsForUser: findAllFormsForUser,
@@ -32,9 +32,10 @@ module.exports= function() {
     }
 
     function deleteFormById(index){
+        console.log("IN INDEX DELETE FORM BY ID " +index);
         var i = "";
         for (i in mock) {
-            if (mock[i]._id == mock[index]._id) {
+            if (mock[i]._id == index) {
                 mock.splice(i, 1);
                 return mock;
             }
@@ -43,12 +44,17 @@ module.exports= function() {
     }
 
     function createFormForUser(userId, form) {
-        var id = (new Date).getTime();
+        var id = uuid.v1();
         var createdForm = {
             "_id" : id,
             "userId" : userId,
             "title":form["title"]
         };
+        for (i in mock){
+            if(mock[i].userId == userId && mock[i].title == form["title"]){
+                return;
+            }
+        }
         mock.push(createdForm);
         console.log("FORM MOCK IN CREATE USER ",mock);
         return mock;

@@ -59,6 +59,11 @@
         }
 
         function updateFormForUser(form) {
+            console.log("FORM TITLE " +form.title);
+            if (form.title === vm.form.title){
+                vm.form.title = undefined;
+                return;
+            }
             console.log("In function controller for Update Form ", form._id);
             FormService
                 .updateFormById(form._id, form)

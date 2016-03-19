@@ -28,6 +28,8 @@
         }
 
         function deleteFieldFromForm(formId, fieldId) {
+            console.log("in client service - FormId", formId);
+            console.log("in client service - fieldID ",  fieldId);
             return $http.delete("/api/assignment/form/" +formId+ "/field/" +fieldId);
         }
 

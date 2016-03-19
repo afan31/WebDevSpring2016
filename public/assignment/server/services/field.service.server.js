@@ -10,6 +10,7 @@ module.exports = function(app, fieldModel) {
 
 
     function findFieldByFormId(req,res) {
+        console.log("HEREEEE");
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = fieldModel.findFieldByFormId(formId,fieldId);
@@ -26,6 +27,8 @@ module.exports = function(app, fieldModel) {
     function deleteFieldByFormId(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
+        console.log("In formID service  ****************************", formId);
+        console.log("In FieldID service", fieldId);
         var fields = fieldModel.deleteFieldByFormId(formId,fieldId);
         res.json(fields);
     }
@@ -44,8 +47,9 @@ module.exports = function(app, fieldModel) {
         var fieldId = req.params.fieldId;
         var formId = req.params.formId;
         var newField = req.body;
-        var updatedField = fieldModel.updateFieldByFormId(fieldId,formId,newField);
-        res.json(updatedField);
+        fieldModel.updateFieldByFormId(fieldId,formId,newField);
+        var fields = fieldModel.findAllFieldsForForm(formId);
+        res.json(fields);
     }
 
     function  updateOrderOfFields(req, res) {

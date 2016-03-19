@@ -17,6 +17,7 @@
             //var userId = $routeParams.userId;
             console.log("In field controller");
             vm.formId = $routeParams.formId;
+            console.log(vm.formId);
             FieldService
                 .getFieldsForForm(vm.formId)
                 .then(function (response) {
@@ -88,6 +89,7 @@
         }
 
         function removeField(field){
+            console.log("FIELD ID ", + field._id);
             FieldService
             .deleteFieldFromForm(vm.formId, field._id)
                 .then(function (response) {
@@ -147,15 +149,18 @@
             console.log("Modal field Placeholder is ", vm.showPlaceholder);
             console.log("Modal field Options are 2nd ", vm.modalField.options);
         }
-
+        var tempArray = [];
         function updateField(modalFieldObj) {
             var options = [];
-            if (modalFieldObj.type === "OPTIONS" || modelFieldObj.type === "CHECKBOXES"
-                || modelFieldObj.type === "RADIOS") {
+            if (modalFieldObj.type === "OPTIONS" || modalFieldObj.type === "CHECKBOXES"
+                || modalFieldObj.type === "RADIOS") {
 
-                var optionsArray = modelFieldObj.options.split("\n");
+                var optionsArray = modalFieldObj.options.split("\n");
+                console.log(optionsArray);
                 for (var i = 0; i < optionsArray.length; i++) {
-                    var tempArray = optionsArray[i].split[":"];
+                    console.log(optionsArray[i]);
+                    tempArray = optionsArray[i].split(":");
+                    console.log(tempArray);
                     options.push({
                         "label": tempArray[0],
                         "value": tempArray[1]
@@ -164,7 +169,7 @@
                 modalFieldObj["options"] = options;
             }
             FieldService
-                .updateField(vm.formId, modelFieldObj._id, modalFieldObj)
+                .updateField(vm.formId, modalFieldObj._id, modalFieldObj)
                 .then(function (response) {
                         vm.fields = response.data;
                     },
