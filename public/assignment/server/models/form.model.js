@@ -31,10 +31,10 @@ module.exports= function() {
         return formsArr;
     }
 
-    function deleteFormById(formId){
+    function deleteFormById(index){
         var i = "";
         for (i in mock) {
-            if (mock[i]._id == formId) {
+            if (mock[i]._id == mock[index]._id) {
                 mock.splice(i, 1);
                 return mock;
             }

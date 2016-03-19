@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="FormController">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Forms</h1>
@@ -8,7 +8,7 @@
                         <a href="#/forms">Forms</a>
                     </li>
                     <li role="presentation">
-                        <a href="#/fields">Fields</a>
+                        <a href="/forms">Fields</a>
                     </li>
                 </ul>
 
@@ -38,7 +38,7 @@
 
 
                     <tr ng-repeat="form in model.forms">
-                        <td>{{form.title}}</td>
+                        <td><a href="#/form/{{form._id}}/fields" ng-click="getFieldsForForm(form._id)">{{form.title}}</a></td>
                         <td>
                             <a href="" ng-click="model.deleteForm(form._id)">
                                 <span class="edit-icon-lt glyphicon glyphicon-remove" aria-hidden="true">

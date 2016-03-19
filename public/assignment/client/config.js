@@ -34,9 +34,9 @@
                     controller: 'FormController',
                     controllerAs: "model"
                 })
-                .when('/fields', {
-                    templateUrl: 'views/fields/fields.view.html',
-                    controller: 'FieldsController',
+                .when('/form/:formId/fields', {
+                    templateUrl: 'views/forms/field.view.html',
+                    controller: 'FieldController',
                     controllerAs: "model"
                 })
                 .when('/profile', {

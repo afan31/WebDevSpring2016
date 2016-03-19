@@ -39,7 +39,6 @@
             if (!form) {
                 return;
             }
-
             console.log("in Form controller ",form);
             FormService
                 .createFormForUser(vm.currentUser._id, form)

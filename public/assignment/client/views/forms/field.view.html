@@ -1,0 +1,290 @@
+
+    <div class="container-fluid">
+       <!-- <h1 class="page-header">Form: {{ model.form.title }}</h1> -->
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                        <h1 class="page-header">Forms</h1>
+                        <ul class="nav nav-tabs">
+                            <li role="presentation">
+                                <a href="#/forms">Forms</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="">Fields</a>
+                            </li>
+                        </ul>
+                        <br>
+                        <div class="row" jga-sortable jga-axis="y">
+                        <div ng-repeat="field in model.fields">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <label>{{ field.label}}</label>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="field.type == 'TEXT'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <input type="text" class="form-control" placeholder="{{ field.placeholder }}">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                        data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'EMAIL'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <input type="email" class="form-control" placeholder="{{ field.placeholder }}">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                           data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'TEXTAREA'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <textarea rows=3 class="form-control" placeholder="{{ field.placeholder }}"></textarea>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                           data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'DATE'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                           data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'OPTIONS'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <select class="form-control">
+                                            <option ng-repeat="option in field.options"
+                                                    value="option.value">
+                                                {{option.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                           data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'CHECKBOXES'">
+                                    <form>
+                                        <div class="form-group col-xs-7">
+                                            <div class="checkbox" ng-repeat="option in field.options">
+                                                <label>
+                                                    <input type="checkbox"
+                                                           value="{{option.value}}"/>
+                                                    {{option.label}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <a href="" data-toggle="modal"
+                                               data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                            </a>
+                                            <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                            </a>
+                                            <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                            </a>
+                                            <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                            </a>
+                                        </div>
+                                    </form>
+                            </div>
+                            <div class="row" ng-if="field.type == 'RADIOS'">
+                                    <form>
+                                        <div class="col-xs-5 col-sm-7 form-group">
+                                            <div class="radio" ng-repeat="option in field.options">
+                                                <label>
+                                                    <input type="radio" value="{{ option.label }}"/>
+                                                    {{ option.label}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5 col-sm-5">
+                                            <a href="" data-toggle="modal"
+                                               data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                            </a>
+                                            <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                            </a>
+                                            <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                            </a>
+                                            <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                            </a>
+                                        </div>
+                                    </form>
+                            </div>
+
+                        </div>
+                            </div>
+                        <hr class="lastLine" noshade color="black">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <label>Add New Field:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form>
+                                <div class="form-group col-xs-7 col-sm-7">
+                                    <select ng-model="model.fieldType" class="form-control">
+                                        <option value="0">Single Line Text Field</option>
+                                        <option value="1">Date Field</option>
+                                        <option value="2">Dropdown Field</option>
+                                        <option value="3">Checkboxes Field</option>
+                                        <option value="4">Radio Buttons Field</option>
+                                        <option value="5">MultiLine Text Field</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="" ng-click="model.addField(model.fieldType)">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+   <!-- Code for Modal -->
+   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span></button>
+                   <h5 class="modal-title" id="myModalLabel"> {{ model.fieldName}}</h5>
+               </div>
+               <div class="modal-body">
+                   <form>
+                       <div class="form-group">
+                           <label>
+                               Label: <input type="text" ng-model="model.modalField.label" class="form-control"/>
+                           </label>
+                       </div>
+                       <div class="form-group" ng-if="model.showPlaceholder">
+                           <label>
+                               Placeholder: <input type="text" ng-model="model.modalField.placeholder" class="form-control"/>
+                           </label>
+                       </div>
+                       <div class="form-group" ng-if="model.showOptions">
+                           <label>
+                               Options: <textarea type="text" rows="3" ng-model="model.modalField.options" class="form-control"/>
+                           </label>
+                       </div>
+                   </form>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-primary" data-dismiss="modal"
+                           ng-click ="model.updateField(model.modalField)">
+                       Save
+                   </button>
+               </div>
+           </div>
+       </div>
+   </div>

@@ -10,19 +10,19 @@
         var vm  = this;
 
         function init(){
-            //vm.$location = $location;
+            vm.$location = $location;
         }
         init();
 
-        //function logout(){
-        //    console.log("In Logout");
-        //    UserService
-        //        .logout()
-        //        .then(function(){
-        //            UserService.setCurrentUser(null);
-        //            $location.url("/home");
-        //        });
-        //}
+        function logout(){
+            console.log("In Logout");
+            UserService
+                .logout()
+                .then(function(){
+                    UserService.setCurrentUser(null);
+                    $location.url("/home");
+                });
+        }
     }
 
 
