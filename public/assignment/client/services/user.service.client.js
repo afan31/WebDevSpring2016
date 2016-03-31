@@ -13,12 +13,13 @@
             getProfile : getProfile,
             login : login,
             logout : logout,
-            findAllUsers : findAllUsers,
-            findUserByUsername: findUserByUsername,
-            findUserByCredentials: findUserByCredentials,
-            createUser: createUser,
-            deleteUserById: deleteUserById,
-            updateUser: updateUser
+            register: register
+
+            //findAllUsers : findAllUsers,
+            //findUserByUsername: findUserByUsername,
+            //findUserByCredentials: findUserByCredentials,
+            //deleteUserById: deleteUserById,
+            //updateUser: updateUser
         };
         return api;
 
@@ -42,38 +43,38 @@
             return $http.get("/api/assignment/profile/"+$rootScope.currentUser._id);
         }
 
-        function updateUser(user,userId){
-            console.log("Here in client service "+userId);
-            return $http.put("/api/assignment/user/"+userId, user);
+        function register(user){
+            console.log("In create User functionality");
+            return $http.post("/api/assignment/register",user);
         }
-
 
         function logout() {
             return $http.post("/api/assignment/logout");
         }
 
 
-        function findUserByUsername(username)    {
-            return $http.get("/api/assignment/user?username=" +username);
-        }
-
-        function findUserByCredentials(username, password){
-            return $http.get("/api/assignment/user/user?username="+username+"&password="+password);
-        }
-
-        function findAllUsers(){
-            return $http.get("/api/assignment/user");
-        }
-
-        function createUser(user){
-            console.log("In create User functionality");
-            return $http.post("/api/assignment/user",user);
-        }
-
-        function deleteUserById(userId){
-            return $http.delete("/api/assignment/user/"+userId);
-        }
-
+        //function findUserByUsername(username)    {
+        //    return $http.get("/api/assignment/user?username=" +username);
+        //}
+        //
+        //function findUserByCredentials(username, password){
+        //    return $http.get("/api/assignment/user/user?username="+username+"&password="+password);
+        //}
+        //
+        //function findAllUsers(){
+        //    return $http.get("/api/assignment/user");
+        //}
+        //
+        //
+        //
+        //function deleteUserById(userId){
+        //    return $http.delete("/api/assignment/user/"+userId);
+        //}
+        //
+        //function updateUser(user,userId){
+        //    console.log("Here in client service "+userId);
+        //    return $http.put("/api/assignment/user/"+userId, user);
+        //}
 
     }
 })();

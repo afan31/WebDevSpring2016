@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://localhost:3000/project/#/search/nikon -->
+<html lang="en" ng-app="ShopaholicApp" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="UTF-8">
+    <!-- IE Edge Meta Tag -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Viewport : This is for the display on smaller devices such as mobile, tab etc.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Minified CSS through CDN-->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" href="Shopaholic_files/bootstrap.min.css">
+    <link rel="stylesheet" href="Shopaholic_files/animate.css">
+    <link rel="stylesheet" href="Shopaholic_files/project_style.css">
+    <title>Shopaholic</title>
+</head>
+
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h1> Shopping App</h1>-->
+        <!--<nav ng-controller="NavController">-->
+        <!--<ul class="nav nav-tabs">-->
+            <!--<li class="active"><a href="#/home">Home</a></li>-->
+            <!--<li><a href="#/search">Search</a></li>-->
+        <!--</ul>-->
+
+            <!--{{location.url()}}-->
+
+            <!--</nav>-->
+        <!--<div ng-view></div>-->
+    <!--</div>-->
+
+<body class="test ng-scope" ng-controller="ProjectMainController" cz-shortcut-listen="true">
+    <!-- ngInclude: undefined --><ng-include src="&#39;views/header/header.view.html&#39;" class="ng-scope"><nav class="navbar-wrapper ng-scope">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://localhost:3000/project/#">Shopaholic</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="http://localhost:3000/project/#">Home</a></li>
+                        <li><a href="http://localhost:3000/project/#">About</a></li>
+                        <li><a href="http://localhost:3000/project/#">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://localhost:3000/project/#">Login</a></li>
+                        <li><a href="http://localhost:3000/project/#">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+</ng-include>
+    <!--<ng-include src = "'views/carousel/carousel.view.html'"></ng-include>-->
+    <!--<ng-include src = "'views/home/home.view.html'"></ng-include>-->
+    <!-- ngView:  --><div ng-view="" class="ng-scope"><!--<h2>Search Page</h2>-->
+
+<!--<input ng-model="title"-->
+       <!--class="form-control"-->
+       <!--placeholder="Samsung"/>-->
+<!--<button ng-click="search(title)" class="btn btn-primary btn-block">Search</button>-->
+
+
+<section ng-show="data" class="ng-scope">
+    <h2 class="search-header"> Search Results</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/8848/8848109_sa.jpg" src="Shopaholic_files/8848109_sa.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/8848109" class="ng-binding">Blue Crane Digital - Introduction to the Nikon D3200 Instructional DVD</a></td>
+            <td class="ng-binding">14.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/8848/8848409_sa.jpg" src="Shopaholic_files/8848409_sa.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/8848409" class="ng-binding">Blue Crane Digital - Introduction to the Nikon D5200 Instructional DVD</a></td>
+            <td class="ng-binding">14.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/4962/4962043_sa.jpg" src="Shopaholic_files/4962043_sa.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/4962043" class="ng-binding">Blue Crane Digital - Understanding the Nikon SB-700 Speedlight Instructional DVD</a></td>
+            <td class="ng-binding">4.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/8680/8680262_rc.jpg" src="Shopaholic_files/8680262_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/8680262" class="ng-binding">Bower - 10" Mini Tripod - Silver</a></td>
+            <td class="ng-binding">9.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/6581/6581316_rc.jpg" src="Shopaholic_files/6581316_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/6581316" class="ng-binding">Bower - 14mm f/2.8 Digital Ultrawide-Angle Lens for Most Nikon Digital Cameras - Black</a></td>
+            <td class="ng-binding">419.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/7000/7000875_rc.jpg" src="Shopaholic_files/7000875_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/7000875" class="ng-binding">Bower - 14mm f/2.8 Ultrawide-Angle Lens for Most Nikon AE DSLR Cameras - Black</a></td>
+            <td class="ng-binding">370.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/7000/7000748_rc.jpg" src="Shopaholic_files/7000748_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/7000748" class="ng-binding">Bower - 14mm T/3.1 Ultrawide Cine Lens for Nikon F-Mount VDSLR Cameras - Black</a></td>
+            <td class="ng-binding">499.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/8979/8979332_rc.jpg" src="Shopaholic_files/8979332_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/8979332" class="ng-binding">Bower - 2-in-1 Power Zoom i-TTL Digital External Flash and LED Light - Black</a></td>
+            <td class="ng-binding">169.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/5575/5575545_rc.jpg" src="Shopaholic_files/5575545_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/5575545" class="ng-binding">Bower - 24mm f/1.4 Ultra-Fast Wide-Angle Digital Lens for Nikon DSLR Cameras - Black</a></td>
+            <td class="ng-binding">719.99</td>
+        </tr><!-- end ngRepeat: product in data.products --><tr ng-repeat="product in data.products" class="ng-scope">
+            <td><img height="75px" ng-src="http://img.bbystatic.com/BestBuy_US/images/products/7000/7000810_rc.jpg" src="Shopaholic_files/7000810_rc.jpg"></td>
+            <td><a href="http://localhost:3000/project/#/details/7000810" class="ng-binding">Bower - 24mm T/1.5 Wide-Angle Cine Lens for Most Nikon DSLR Cameras - Black</a></td>
+            <td class="ng-binding">799.99</td>
+        </tr><!-- end ngRepeat: product in data.products -->
+    </tbody>
+</table>
+</section></div>
+    <!--<hr>-->
+    <!--<footer>-->
+        <!--<p class="pull-right"><a href="#">Back to top</a> </p>-->
+        <!--<p>&copy; Afan Ahmad Khan &middot;<a href="#"> Privacy </a> &middot;<a href="#"> Terms</a> </p>-->
+    <!--</footer>-->
+
+
+
+
+
+<!-- javaScript code goes here -->
+<script src="Shopaholic_files/jquery.min.js"></script>
+<script src="Shopaholic_files/bootstrap.min.js"></script>
+<script src="Shopaholic_files/angular.min.js"></script>
+<script src="Shopaholic_files/angular-route.min.js"></script>
+<script src="Shopaholic_files/jquery.raty.min.js"></script>
+<script src="Shopaholic_files/app.js"></script>
+<script src="Shopaholic_files/config.js"></script>
+<script src="Shopaholic_files/projectMain.controller.js"></script>
+<script src="Shopaholic_files/search.controller.js"></script>
+<script src="Shopaholic_files/details.controller.js"></script>
+<script src="Shopaholic_files/product.service.js"></script>
+
+
+
+
+
+</body></html>

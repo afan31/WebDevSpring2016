@@ -27,7 +27,7 @@
         function register(user) {
             console.log(user);
             UserService
-                .createUser(user)
+                .register(user)
                 .then(function(response){
                     var currentUser = response.data;
                     if(currentUser != null) {

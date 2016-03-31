@@ -60,13 +60,16 @@
 
         function updateFormForUser(form) {
             console.log("FORM TITLE " +form.title);
-            if (form.title === vm.form.title){
-                vm.form.title = undefined;
-                return;
-            }
+            console.log("vm.form ", vm.form.title);
+            //if (form.title === vm.form.title){
+            //    console.log("In form title" ,vm.form.title);
+            //    console.log(form.title);
+            //    vm.form.title = undefined;
+            //    return;
+            //}
             console.log("In function controller for Update Form ", form._id);
             FormService
-                .updateFormById(form._id, form)
+                .updateFormById(form._id, form,vm.currentUser._id)
                 .then(function(response){
                         if(response.data) {
                             FormService

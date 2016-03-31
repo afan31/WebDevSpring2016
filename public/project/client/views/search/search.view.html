@@ -1,0 +1,18 @@
+<section ng-show="data">
+    <h2 class="search-header"> Search Results</h2>
+
+    <div>
+        <div class="col-md-4" ng-repeat="product in data.products" ng-if="product.image != undefined">
+            <div class="thumbnail">
+                <a href="#/details/{{product.sku}}"><img height="120" width= "200"  ng-src="{{product.image}}"></a>
+                <div class="caption">
+                        <p class="lead"><a href="#/details/{{product.sku}}">{{product.name}}</a></p>
+                    <p>
+                    <h4>${{product.salePrice}}</h4>
+                    <!--<p>{{product.shortDescription}}</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

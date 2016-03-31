@@ -30,10 +30,12 @@
             return $http.delete("/api/assignment/form/" + formId);
         }
 
-        function updateFormById(formId, newForm) {
+        function updateFormById(formId, newForm, userId) {
             console.log("In updateFormById - formId" +formId);
-            console.log("In updateFormById - form object " +formId);
-            return $http.put("/api/assignment/form/" + formId, newForm);
+            console.log("In updateFormById - form object " +newForm);
+            console.log("In updateFormById - USER ID " +userId);
+            return $http.put("/api/assignment/user/" +userId+ "/form/" + formId, newForm);
+            ///api/assignment/user/:userId/form/:formId
         }
 
         function findFormById(formId) {
