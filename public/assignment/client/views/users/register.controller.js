@@ -27,13 +27,20 @@
         function register(user) {
             console.log(user);
             UserService
-                .register(user)
+                .findUserByUsername(user.username)
                 .then(function(response){
-                    var currentUser = response.data;
-                    if(currentUser != null) {
-                        UserService.setCurrentUser(currentUser);
-                        $location.url("/profile");
+                    if(response.data){
+                        alert("Username is already present");
                     }
+                    UserService
+                    .register(user)
+                        .then(function(response) {
+                            var currentUser = response.data;
+                            if (currentUser != null) {
+                                UserService.setCurrentUser(currentUser);
+                                $location.url("/profile");
+                            }
+                        });
                 });
         }
     }

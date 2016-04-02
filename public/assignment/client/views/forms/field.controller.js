@@ -71,7 +71,11 @@
                 ]
                 },
                 //Multi Line Text Field
-                {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
+                {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"},
+                //Email Text Field
+                {"_id": null, "label": "Email Field", "type": "TEXT", "placeholder": "Email"},
+                //Password Field
+                {"_id": null, "label": "Password Field", "type": "PASSWORD", "placeholder": "Password"}
             ];
             if (fieldTypes[fieldIndex] == undefined){
                 return;
@@ -134,11 +138,25 @@
             }
 
             else if (field.type == "OPTIONS" || field.type == "CHECKBOXES" || field.type == "RADIOS"){
+            //    vm.showPlaceholder = false;
+            //    vm.showOptions = true;
+            //    for (var each in  vm.fieldOptions){
+            //        var singleOption = vm.fieldOptions[each].label + ":" + vm.fieldOptions[each].value + "\n";
+            //        options.push(singleOption);
+            //    }
+            //    vm.modalField.options = options.join("");
+            //}
                 vm.showPlaceholder = false;
                 vm.showOptions = true;
-                for (var each in  vm.fieldOptions){
-                    var singleOption = vm.fieldOptions[each].label + ":" + vm.fieldOptions[each].value + "\n";
-                    options.push(singleOption);
+                var count = 0;
+                //setting of options on modal view
+                for (var each in vm.fieldOptions){
+                    var option = vm.fieldOptions[each].label +":"+ vm.fieldOptions[each].value;
+                    if(count < vm.fieldOptions.length - 1) {
+                        option += "\n"
+                    }
+                    count++;
+                    options.push(option);
                 }
                 vm.modalField.options = options.join("");
             }
@@ -163,7 +181,9 @@
                 for (var i = 0; i < optionsArray.length; i++) {
                     console.log(optionsArray[i]);
                     tempArray = optionsArray[i].split(":");
-                    console.log(tempArray);
+                    if(tempArray[0] === '' || tempArray[1] === ''){
+                        return;
+                    }
                     options.push({
                         "label": tempArray[0],
                         "value": tempArray[1]

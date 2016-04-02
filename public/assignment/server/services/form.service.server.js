@@ -76,13 +76,6 @@ module.exports = function(app, formModel) {
             .then(
                 function(doc) {
                     console.log(doc);
-                    for (var i = 0; i < doc.length; i++){
-                        console.log(doc[i]);
-                        if (doc[i].title === newForm.title){
-                            console.log("IM HEREEEEEEEEEE");
-                            return null;
-                        }
-                    }
                     formModel.updateFormById(formId,newForm)
                         .then(
                             function(doc) {

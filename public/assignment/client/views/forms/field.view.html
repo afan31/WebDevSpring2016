@@ -46,6 +46,32 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="row" ng-if="field.type == 'PASSWORD'">
+                                <form>
+                                    <div class="form-group col-xs-7">
+                                        <input type="password" class="form-control" placeholder="{{ field.placeholder }}">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="" data-toggle="modal"
+                                           data-target="#editModal" ng-click="model.editField(field)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.cloneField(field)">
+                                            <span class="glyphicon glyphicon-plus">
+                                            </span>
+                                        </a>
+                                        <a href="" ng-click="model.removeField(field)">
+                                            <span class="glyphicon glyphicon-remove">
+                                            </span>
+                                        </a>
+                                        <a href="" class="dragIcon">
+                                            <span class="glyphicon glyphicon-align-justify">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="row" ng-if="field.type == 'EMAIL'">
                                 <form>
                                     <div class="form-group col-xs-7">
@@ -192,7 +218,7 @@
                                         <div class="col-xs-5 col-sm-7 form-group">
                                             <div class="radio" ng-repeat="option in field.options">
                                                 <label>
-                                                    <input type="radio" value="{{ option.label }}"/>
+                                                    <input type="radio" name="name" value="{{ option.label }}"/>
                                                     {{ option.label}}
                                                 </label>
                                             </div>
@@ -237,6 +263,8 @@
                                         <option value="3">Checkboxes Field</option>
                                         <option value="4">Radio Buttons Field</option>
                                         <option value="5">MultiLine Text Field</option>
+                                        <option value="6">Email</option>
+                                        <option value="7">Password</option>
                                     </select>
                                 </div>
                                 <div class="col-xs-4">
