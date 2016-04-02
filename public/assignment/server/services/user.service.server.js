@@ -5,16 +5,18 @@ module.exports = function(app, userModel) {
     app.post("/api/assignment/login", login);
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/logout", logout);
+    app.put("/api/assignment/user/:userId", updateUser);
+    app.get("/api/assignment/user?[username=username]", findUserByUsername);
 
     //app.get("/api/assignment/user/:id", findUserById);
 
 
 
 
-    //app.put("/api/assignment/user/:userId", updateUser);
+
     //
     //
-    //app.get("/api/assignment/user?[username=username]", findUserByUsername);
+
     //
     //app.get("/api/assignment/user", findAllUsers);
     //
@@ -78,6 +80,48 @@ module.exports = function(app, userModel) {
         res.send(200);
     }
 
+    function updateUser(req, res) {
+        var user = req.body;
+        var userId = req.params.userId;
+        console.log("IN MODEL UPDATE ", user);
+        userModel.updateUser(user,userId)
+            .then(
+                function(doc) {
+                    console.log(doc);
+                    //req.session.currentUser = doc;
+                    res.json(doc);
+
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    //function findUserByUsername(req, res){
+    //    var user = req.body;
+    //    var username = req.query.username;
+    //    console.log(username);
+    //    var userReturned = userModel.findUserByUsername(username);
+    //    console.log("User Returned is ",userReturned);
+    //    res.json(userReturned);
+    //}
+
+    function findUserByUsername (req, res) {
+        console.log("FIND USERNAME ", req.query.username);
+        userModel
+            .findUserByUsername (req.query.username)
+            .then (
+                function (user) {
+                    //delete user.password;
+                    res.json (user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 
     //
     //function findUserById(req,res) {
@@ -111,15 +155,7 @@ module.exports = function(app, userModel) {
 
 
 
-    //function findUserByUsername(req, res){
-    //    var user = req.body;
-    //    var username = req.query.username;
-    //    console.log(username);
-    //    var userReturned = userModel.findUserByUsername(username);
-    //    console.log("User Returned is ",userReturned);
-    //    res.json(userReturned);
-    //}
-    //
+
     //function findAllUsers(req,res) {
     //    console.log(req);
     //    var users = req.body;

@@ -44,7 +44,7 @@
         }
 
         function reorderFields(formId, fields){
-            console.log("In reOrderFields - formId" +formId);
+            console.log("In reOrderFields - formId" ,formId);
             console.log("In reOrderFields - fields" ,fields);
             return $http.put("/api/assignment/reorder/form/" +formId +"/fields", fields);
         }

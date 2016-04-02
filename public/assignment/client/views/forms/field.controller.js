@@ -21,7 +21,7 @@
             FieldService
                 .getFieldsForForm(vm.formId)
                 .then(function (response) {
-                        vm.fields = response.data;
+                        vm.fields = response.data.fields;
                         console.log("In Fields controller - fields " , vm.fields);
                     },
                     function (error) {
@@ -78,10 +78,11 @@
             }
             console.log(" The field to be added in the controller " ,fieldTypes[fieldIndex]);
             FieldService
-                .createFieldForForm(vm.formId, fieldTypes[fieldIndex])
+                    .createFieldForForm(vm.formId, fieldTypes[fieldIndex])
                 .then(function (response) {
-                        vm.fields = response.data;
-                        console.log("In Fields controller " + vm.fields);
+                        vm.fields = response.data.fields;
+
+                        console.log("In Fields controller " , vm.fields);
                     },
                     function (error) {
                         console.log(error.statusText);
@@ -89,11 +90,12 @@
         }
 
         function removeField(field){
-            console.log("FIELD ID ", + field._id);
+
+            console.log("FIELD ", field);
             FieldService
             .deleteFieldFromForm(vm.formId, field._id)
                 .then(function (response) {
-                    vm.fields = response.data;
+                    vm.fields = response.data.fields;
                 },
                 function (error) {
                     console.log(error.statusText);
@@ -105,7 +107,7 @@
             FieldService
                 .createFieldForForm(vm.formId, field)
                 .then(function (response) {
-                        vm.fields = response.data;
+                        vm.fields = response.data.fields;
                     },
                     function (error) {
                         console.log(error.statusText);
@@ -151,6 +153,7 @@
         }
         var tempArray = [];
         function updateField(modalFieldObj) {
+            console.log("CONTROLLLER ", modalFieldObj);
             var options = [];
             if (modalFieldObj.type === "OPTIONS" || modalFieldObj.type === "CHECKBOXES"
                 || modalFieldObj.type === "RADIOS") {
@@ -171,7 +174,8 @@
             FieldService
                 .updateField(vm.formId, modalFieldObj._id, modalFieldObj)
                 .then(function (response) {
-                        vm.fields = response.data;
+                    console.log("IN FIELD SERVICE for UPDATE ", response.data);
+                        vm.fields = response.data.fields;
                     },
                     function (error) {
                         console.log(error.statusText);

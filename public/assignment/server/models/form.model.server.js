@@ -1,7 +1,5 @@
 //var mock = require("./form.mock.json");
 
-
-
 // pass db and mongoose reference to model
 module.exports= function(db, mongoose) {
 
@@ -16,9 +14,14 @@ module.exports= function(db, mongoose) {
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById : deleteFormById,
         createFormForUser : createFormForUser,
-        updateFormById : updateFormById
+        updateFormById : updateFormById,
+        getMongooseModel : getMongooseModel
     };
     return api;
+
+    function getMongooseModel() {
+        return FormModel;
+    }
 
     function findFormById(formId) {
         var form = FormModel.findById(formId);

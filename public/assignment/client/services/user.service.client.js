@@ -13,7 +13,9 @@
             getProfile : getProfile,
             login : login,
             logout : logout,
-            register: register
+            register: register,
+            updateUser: updateUser,
+            findUserByUsername: findUserByUsername
 
             //findAllUsers : findAllUsers,
             //findUserByUsername: findUserByUsername,
@@ -52,10 +54,14 @@
             return $http.post("/api/assignment/logout");
         }
 
+        function updateUser(user,userId){
+            console.log("Here in client service ",user);
+            return $http.put("/api/assignment/user/"+userId, user);
+        }
 
-        //function findUserByUsername(username)    {
-        //    return $http.get("/api/assignment/user?username=" +username);
-        //}
+        function findUserByUsername(username)    {
+            return $http.get("/api/assignment/user?username=" +username);
+        }
         //
         //function findUserByCredentials(username, password){
         //    return $http.get("/api/assignment/user/user?username="+username+"&password="+password);
@@ -71,10 +77,7 @@
         //    return $http.delete("/api/assignment/user/"+userId);
         //}
         //
-        //function updateUser(user,userId){
-        //    console.log("Here in client service "+userId);
-        //    return $http.put("/api/assignment/user/"+userId, user);
-        //}
+
 
     }
 })();

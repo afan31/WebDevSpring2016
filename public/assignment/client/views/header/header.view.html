@@ -37,11 +37,12 @@
                     <a href="#/login">Login</a>
                 </li>
                 <li ng-show="currentUser">
-                    <a href="#/profile">{{currentUser.firstName}}</a>
+                    <a href="#/profile">{{currentUser.username}}</a>
                 </li>
                 <li ng-show="currentUser">
                     <a href="" ng-click="model.logout()">Logout</a>
                 </li>
+
 
 
                 <!--<li ng-class="{'active': model.$location.url() == '/home'}"-->

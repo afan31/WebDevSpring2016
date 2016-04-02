@@ -10,18 +10,33 @@ module.exports = function(app, fieldModel) {
 
 
     function findFieldByFormId(req,res) {
-        console.log("HEREEEE");
+        //console.log("HEREEEE");
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var field = fieldModel.findFieldByFormId(formId,fieldId);
-        res.json(field);
+        fieldModel.findFieldByFormId(formId,fieldId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findAllFieldsForForm(req,res) {
         var formId = req.params.formId;
-        console.log("In Form id " + formId);
-        var fields = fieldModel.findAllFieldsForForm(formId);
-        res.json(fields);
+        //console.log("In Form id " + formId);
+        fieldModel.findAllFieldsForForm(formId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function deleteFieldByFormId(req, res) {
@@ -29,36 +44,71 @@ module.exports = function(app, fieldModel) {
         var fieldId = req.params.fieldId;
         console.log("In formID service  ****************************", formId);
         console.log("In FieldID service", fieldId);
-        var fields = fieldModel.deleteFieldByFormId(formId,fieldId);
-        res.json(fields);
+        fieldModel.deleteFieldByFormId(formId,fieldId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
 
     function createFieldForForm(req, res) {
         var formId = req.params.formId;
+        console.log(formId);
         var field = req.body;
         console.log("Here in form service for create form" , field);
-        console.log("form id " , +formId);
-        var fields = fieldModel.createFieldForForm(formId,field);
-        res.json(fields);
+        console.log("FORM IDDDDDDD" , formId);
+
+        fieldModel.createFieldForForm(formId,field)
+            .then(
+                function(doc) {
+                    console.log(doc);
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateFieldByFormId(req, res) {
         var fieldId = req.params.fieldId;
         var formId = req.params.formId;
         var newField = req.body;
-        fieldModel.updateFieldByFormId(fieldId,formId,newField);
-        var fields = fieldModel.findAllFieldsForForm(formId);
-        res.json(fields);
+
+        fieldModel.updateFieldByFormId(fieldId,formId,newField)
+        //console.log("UPDATED FIELD ", fieldModel.updateFieldByFormId(fieldId,formId,newField));
+       // fieldModel.findAllFieldsForForm(formId)
+            .then(
+                function(doc) {
+                    console.log(doc);
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function  updateOrderOfFields(req, res) {
         var formId = req.params.formId;
         var fields = req.body;
-        console.log("updateOrderOfFields" + formId);
-        console.log("updateOrderOfFields FORM BODY" , fields);
-        var updatedFields = fieldModel.updateOrderOfFields(formId, fields);
-        res.json(updatedFields);
+        //console.log("updateOrderOfFields" + formId);
+        //console.log("updateOrderOfFields FORM BODY" , fields);
+        fieldModel.updateOrderOfFields(formId, fields)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
 }
