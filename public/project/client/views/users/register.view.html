@@ -8,30 +8,30 @@
                 <div class="form-group">
                     <label class="col-sm-3" for="username">Username:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.username" type="text" class="form-control" id="username" placeholder="Username">
+                        <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3" for="pwd">Password:</label>
+                    <label class="col-sm-3" for="password">Password:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.pwd" type="password" class="form-control" id="pwd" placeholder="Password">
+                        <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3" for="verifyPwd">Verify Password:</label>
+                    <label class="col-sm-3" for="verifyPassword">Verify Password:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.verifyPwd" type="password" class="form-control" id="verifyPwd" placeholder="Verify Password">
+                        <input ng-model="model.user.verifyPassword" type="password" class="form-control" id="verifyPassword" placeholder="Verify Password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3" for="email">Email:</label>
                     <div class="col-sm-9">
-                        <input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Email">
+                        <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <a href="" ng-click="register(user)" class="btn btn-success btn-block">Register</a>
+                        <a href="" ng-click="model.register(model.user)" class="btn btn-success btn-block">Register</a>
                     </div>
                 </div>
             </form>

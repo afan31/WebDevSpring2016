@@ -450,12 +450,12 @@ only screen and (min-device-pixel-ratio : 1.5) {
     margin-bottom: 20px;
 }
 
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
-    font-weight: bold;
-}
+/*.ratings {*/
+    /*padding-right: 10px;*/
+    /*padding-left: 10px;*/
+    /*color: #d17581;*/
+    /*font-weight: bold;*/
+/*}*/
 
 .caption {
     height: 130px;
@@ -465,3 +465,53 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .caption h4 {
     white-space: nowrap;
 }
+
+
+/* star ratings */
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+.star-rating .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .05em .05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.star-rating .star.filled {
+    color: #fd0;
+}
+.star-rating.readonly .star.filled {
+    color: #666;
+}
+
+.orangecolor {
+    color: #ea8246;
+}
+
+/*.rating{*/
+    /*color: #a9a9a9;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+
+/*ul.rating {*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.rating li {*/
+    /*list-style-type: none;*/
+    /*display: inline-block;*/
+    /*padding: 1px;*/
+    /*text-align: center;*/
+    /*font-weight: bold;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.rating .filled {*/
+    /*color: #21568b;*/
+/*}*/

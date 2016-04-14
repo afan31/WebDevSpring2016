@@ -10,12 +10,8 @@
         var api = {
             findProductsByTitle: findProductsByTitle,
             browseProductsByCategory: browseProductsByCategory,
-            findAllReviewsForProduct: findAllReviewsForProduct,
-            createReview: createReview,
-            selectedReview: selectedReview,
-            updateReview: updateReview,
             getIndexByUserUdAndProductId : getIndexByUserUdAndProductId,
-            deleteReview : deleteReview
+            addProd : addProd
         };
         return api;
 
@@ -33,30 +29,12 @@
                 .success(callback);
         }
 
-        function findAllReviewsForProduct(productId){
-            return $http.get("/api/project/product/"+productId);
-        }
-
-        function createReview(userId, productId, review) {
-            console.log("In updateField - formId" +userId);
-            console.log("In updateField - field object " +productId);
-            return $http.post("/api/project/user/" +userId+ "/product/" +productId, review);
-        }
-
-        function selectedReview(reviewObj) {
-            return $http.get("/api/project/review", reviewObj);
-        }
-
-        function updateReview(reviewObj) {
-            return $http.put("/api/project/review", reviewObj);
-        }
-
         function getIndexByUserUdAndProductId(userId, productId) {
             return $http.get("/api/project/user/" +userId+ "/product/" +productId);
         }
 
-        function deleteReview(reviewId,productId, reviewObj){
-            return $http.delete("/api/project/review/" +reviewId+ "/product/" +productId, reviewObj)
+        function addProd(prod){
+            $http.post("/api/project/restaurant",prod);
         }
     }
 })();

@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="col-sm-4">
-            <p class="lead">{{ product.name }}</p>
+            <p class="lead">{{ model.product.name }}</p>
             <div class="list-group table-responsive">
                 <!--<a href="#" class="list-group-item active">Category 1</a>-->
                 <!--<a href="#" class="list-group-item">Price {{product.salePrice}}</a>-->
@@ -13,77 +13,98 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Condition</th>
-                        <td>{{product.condition}}</td>
+                        <td>{{model.product.condition}}</td>
                     </tr>
                     <tr>
                         <th>Manufacturer</th>
-                        <td>{{product.manufacturer}}</td>
+                        <td>{{model.product.manufacturer}}</td>
                     </tr>
                     <tr>
                         <th>Department</th>
-                        <td>{{product.department}}</td>
+                        <td>{{model.product.department}}</td>
                     </tr>
                     <tr>
                         <th>Price</th>
-                        <td>{{product.salePrice}}</td>
+                        <td>{{model.product.salePrice}}</td>
                     </tr>
                     <tr>
                         <th>Manufacture</th>
-                        <td>{{product.manufacturer}}</td>
+                        <td>{{model.product.manufacturer}}</td>
                     </tr>
                     <tr>
                         <th>Class</th>
-                        <td>{{product.class}}</td>
+                        <td>{{model.product.class}}</td>
                     </tr>
                     <tr>
                         <th>Model Number</th>
-                        <td>{{product.modelNumber}}</td>
+                        <td>{{model.product.modelNumber}}</td>
                     </tr>
                     <tr>
                         <th>Warrany Labor</th>
-                        <td>{{product.warrantyLabor}}</td>
+                        <td>{{model.product.warrantyLabor}}</td>
                     </tr>
                     <tr>
                         <th>Warranty Parts</th>
-                        <td>{{product.warrantyParts}}</td>
+                        <td>{{model.product.warrantyParts}}</td>
                     </tr>
                     <tr>
                         <th>Condition</th>
-                        <td>{{product.condition}}</td>
+                        <td>{{model.product.condition}}</td>
                     </tr>
                     <tr>
                         <th>In Store Pickup ?</th>
-                        <td>{{product.inStorePickup}}</td>
+                        <td>{{model.product.inStorePickup}}</td>
                     </tr>
                     <tr>
                         <th>Home Delivery ?</th>
-                        <td>{{product.homeDelivery}}</td>
+                        <td>{{model.product.homeDelivery}}</td>
                     </tr>
                 </table>
+
+                <br><br>
+                <!--{{ model.product}}-->
+
+                <a style="text-decoration: none" ng-hide="model.isliked" href=""
+                   ng-click="model.likeProd(model.product.sku)">
+                    <p class="lead">Like this product? Let us know!</p>
+                    <i title="Like" class="fa fa-thumbs-o-up fa-lg fa-2x"></i></a>
+                <a style="text-decoration: none" ng-if="model.isliked" href=""
+                   ng-click="model.undolikeProd(model.product.sku)">
+                    <p class="lead">Don't like this product? Let us know!</p>
+                    <i title="Unlike" class="fa fa-thumbs-o-down fa-lg fa-2x orangecolor"></i></a>
+                <hr>
+
             </div>
         </div>
 
         <div class="col-sm-8">
 
             <div class="thumbnail">
-                <img class="img-responsive" ng-src="{{product.image}}" alt="http://placehold.it/800x300">
+                <img class="img-responsive" ng-src="{{model.product.image}}" alt="http://placehold.it/800x300">
                 <div class="caption-full">
-                    <h4 class="pull-right">{{product.salePrice}}</h4>
-                    <h4><a href="">{{ product.name }}</a>
+                    <h4 class="pull-right">{{model.product.salePrice}}</h4>
+                    <h4><a href="">{{model.product.name }}</a>
                     </h4>
-                    <p>{{product.longDescription}}</p>
+                    <p>{{model.product.longDescription}}</p>
                     <div class="ratings">
-                        <p class="pull-right">Total Reviews: {{product.customerReviewCount}}</p>
+                        <p class="pull-right">Total Reviews: {{model.product.customerReviewCount}}</p>
                         <!--<p>{{product.customerReviewAverage}}</p>-->
-                        <p class="star-rating ratings" data-score="{{product.customerReviewAverage}}"></p>
-                        <p>{{callUpdate()}}</p>
+                        <!--<p class="star-rating ratings" data-score="{{product.customerReviewAverage}}"></p>-->
+                        <!--<p>{{callUpdate()}}</p>-->
 
 
                     </div>
                 </div>
             </div>
 
-            <div class="well" ng-show="reviewsData">
+
+            <!-- for star rating-->
+
+            <!-- for star rating-->
+
+            <div class="well" ng-show="model.reviewsData">
+
+
 
                 <div class="text-right">
                     <a class="btn btn-success" onclick="showWriteReviewDiv()">Leave a Review</a>
@@ -93,9 +114,21 @@
                     <div class="row">
                         <div class="well margin-well">
                             <h4>What do you think about the product?</h4>
-                            <p ng-model="model.review.rating" class="star-rating" data-score="{{review.rating}}"></p>
-                            <p>{{callUpdate()}}</p>
+                            <!--<p class="star-rating" data-score="model.review.rating"></p>-->
+                            <!--<p>{{model.callUpdate()}}</p>-->
+
+                            <!--<star-rating ng-model="model.rating2" readonly="model.isReadonly"></star-rating>-->
+                            <!--<label>-->
+                                <!--<input type="checkbox" ng-model="model.isReadonly"/>-->
+                                <!--Is Readonly-->
+                            <!--</label>-->
+
+                            <!--<div><strong>Rating 1:</strong> {{model.rating1}}</div>-->
+                            <!--<div><strong>Rating 2:</strong> {{model.rating2}}</div>-->
+
+                            {{ model.review.rating1}}
                             <form role="form" class="ng-pristine ng-valid">
+                                <div star-rating ng-model="model.rating1" max="5" on-rating-select="model.rateFunction(rating)"></div>
                                 <div class="form-group">
                                     <textarea ng-model="model.review.title" placeholder="Title" class="form-control"
                                               rows="1"></textarea>
@@ -104,7 +137,7 @@
                                     <textarea ng-model="model.review.review" placeholder="Your Review" class="form-control"
                                               rows="3"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="submit" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="model.addReview(model.review)"
+                                <button type="submit" class="btn btn-primary" id="submit" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="model.addReview(model.review, model.rating1)"
                                         >Submit
                                 </button>
                                 <button type="submit" class="btn btn-warning" id="update" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="model.updateReview(model.review)">Update
@@ -120,16 +153,19 @@
                 </div>
 
                 <hr>
-                <div ng-repeat="review in reviewsData">
-                    <p><b>Reviewer: </b>{{findUserFirstNameByUserId(review.userId)}}</p>
-                        <p class="pull-right" style="color: #2b542c">{{review.timestamp | date : 'mediumDate'}}</p>
-                    <p class="star-rating" data-score="{{review.rating}}"></p>
-                    <p>{{callUpdate()}}</p>
+                <!--{{model.reviewsData}}-->
+                <div ng-repeat="review in model.reviewsData">
+                    <p><b>Reviewer: </b>{{review.username}}</p>
+                            <!--<p class="pull-right" style="color: #2b542c">{{review.timestamp | date : 'mediumDate'}}</p>-->
+                        <!--{{review.rating}}-->
+                    <div star-rating ng-model="review.rating" max="5" on-rating-select="model.rateFunction(rating)"></div>
                     <p><b>Title: </b>{{review.title}}</p>
                     <p><b>Comment: </b>{{review.review}}</p>
+                    <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
+                    <!--<p class="pull-right" style="color: #2b542c"><b>Updated On: </b>{{review.updatedOn | date : 'mediumDate'}}</p>-->
                     <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
                           ng-click="model.selectedReview($index)"> Edit | </a>
-                        <a href="" ng-click="model.deleteReview($index,review)">Delete</a></p>
+                        <a href="" ng-click="model.deleteReview(review)">Delete</a></p>
                     <hr>
                 </div>
             </div>
@@ -169,4 +205,6 @@
         document.getElementById('edit').style.display = "inline";
         document.getElementById('cancel').style.display = "none";
     }
+
+
 </script>

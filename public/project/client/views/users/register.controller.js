@@ -3,18 +3,45 @@
 (function () {
     angular
         .module('ShopaholicApp')
-        .controller('RegisterController', RegisterController);
-    function RegisterController($scope, $location, $rootScope, UserService){
-        // Declaration of event handler
-        $scope.register = register;
+        .controller('RegisterController', registerController);
 
-        // Implementation of event handler
-        function register(userObject){
-            UserService.createUser(userObject,
-                function(user){
-                    $rootScope.user = user;
-                    $location.url('/profile');
-                })
+
+    function registerController(UserService, $location) {
+        var vm = this;
+
+        vm.register = register;
+
+        function init() {
+            //UserService
+            //    .getCurrentUser()
+            //    .then(function (response) {
+            //            console.log(response.data);
+            //            vm.currentUser = response.data;
+            //        },
+            //        function (error) {
+            //            console.log(error.statusText);
+            //        });
+        }
+        init();
+
+        function register(user) {
+            console.log(user);
+            UserService
+                .findUserByUsername(user.username)
+                .then(function(response){
+                    if(response.data){
+                        alert("Username is already present");
+                    }
+                    UserService
+                        .register(user)
+                        .then(function(response) {
+                            var currentUser = response.data;
+                            if (currentUser != null) {
+                                UserService.setCurrentUser(currentUser);
+                                $location.url("/profile");
+                            }
+                        });
+                });
         }
     }
 })();

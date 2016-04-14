@@ -49,5 +49,5 @@ app.get('/hello', sayHello);
 }
 
 require("./public/assignment/server/app.js")(app, uuid,db, mongoose);
-require("./public/project/server/app.js")(app, uuid);
+require("./public/project/server/app.js")(app, uuid, db, mongoose);
 app.listen(port, ipaddress);

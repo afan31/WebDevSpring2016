@@ -1,102 +1,193 @@
-module.exports = function(app, userModel) {
 
-    app.post("/api/project/user", createUser);
+module.exports = function(app, userModel, productModel) {
+
+    app.post("/api/project/register", register);
     app.get("/api/project/profile/:userId", profile);
     app.post("/api/project/login", login);
-    app.put("/api/project/user/:userId", updateUser);
     app.get("/api/project/loggedin", loggedin);
     app.post("/api/project/logout", logout);
+    app.put("/api/project/user/:userId", updateUser);
     app.get("/api/project/user?[username=username]", findUserByUsername);
+    app.get("/api/project/user/:userid", findUserById);
 
-    app.get("/api/project/user", findAllUsers);
-    app.get("/api/project/user/:id", findUserById);
-    app.get("/api/project/user/user?username=&password=", findUserByCredentials);
-    app.delete("/api/project/user", deleteUserById);
+    app.put("/api/project/user/:userId/product/:productId/like", addLike)
+
+    app.get("/api/project/user/:userId/product/:productId/isLiked", isLiked);
+    app.delete("/api/project/user/:userId/product/:productId/unLike", unLike);
+    app.get("/api/project/user/getLikeDetails/:userId", getLikesforUser);
+
+    function findUserById(req, res){
+        var userId = req.params.userid;
+        userModel
+            .findUserById(userId)
+            .then(function (response) {
+                    if(response != null) {
+                        res.json(response);
+                    }
+                    else{
+                        console.log("User not found by Id, returning null");
+                        res.json(null);
+                    }
+                },
+                function (error) {
+                    res.status (400).send ("Error in findUserById function", error.statusText);
+                });
+    }
 
 
-    function createUser(req, res) {
+
+    function register(req, res) {
         var user = req.body;
-        users = userModel.createUser(user);
-        if (users === null){
-            res.json(null);
-        }else {
-            req.session.currentUser = user;
-            res.json(user);
-        }
-
+        //console.log("User created is ", user);
+        user = userModel.createUser(user)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function (doc) {
+                    req.session.currentUser = doc;
+                    res.json(user);
+                },
+                // send error if promise rejected
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function profile(req, res){
-        var userId =  req.params.userId;
-        console.log("In profile method in server service" +userId);
-        var user = userModel.findUserById(userId);
-        res.json(user);
-    }
 
+        var user = userModel.findUserById(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function login(req, res) {
         var credentials = req.body;
-        var user = userModel.findUserByCredentials(credentials);
-        req.session.currentUser = user;
-        res.json(user);
+        var user = userModel.findUserByCredentials(credentials)
+            .then(
+                function(doc) {
+                    //console.log("This is ",doc);
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
+
     function loggedin(req, res) {
-        console.log("In logged in",req.session.currentUser);
+       // console.log("In logged in",req.session.currentUser);
         res.json(req.session.currentUser);
     }
 
-    function updateUser(req,res){
-        var user = req.body;
-        var userId = req.params.userId;
-        console.log("In server service " + userId );
-        var usersArray = userModel.updateUser(user, userId);
-        req.session.currentUser = user;
-        res.json(usersArray);
-    }
 
     function logout(req, res) {
         req.session.destroy();
         res.send(200);
     }
 
-    function findUserByUsername(req, res){
+    function updateUser(req, res) {
         var user = req.body;
-        var username = req.query.username;
-        console.log(username);
-        var userReturned = userModel.findUserByUsername(username);
-        console.log("User Returned is ",userReturned);
-        res.json(userReturned);
+        var userId = req.params.userId;
+        //console.log("IN MODEL UPDATE ", user);
+        userModel.updateUser(user,userId)
+            .then(
+                function(doc) {
+                    //console.log(doc);
+                    //req.session.currentUser = doc;
+                    res.json(doc);
+
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function findAllUsers(req,res) {
-        console.log(req);
-        var users = req.body;
-        res.json(users);
+    function findUserByUsername (req, res) {
+        //console.log("FIND USERNAME ", req.query.username);
+        userModel
+            .findUserByUsername (req.query.username)
+            .then (
+                function (user) {
+                    //delete user.password;
+                    res.json (user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function findUserById(req,res) {
-        var userId = req.params.id;
-        var user = userModel.findUserById(userId);
-        res.json(user);
+    function addLike(req, res){
+        var userId = req.params.userId;
+        var productId = req.params.productId;
+        //console.log(userId);
+        //console.log(productId);
+        userModel
+            .addLike(userId, productId)
+            .then(function (response) {
+                res.json(200);
+
+            }, function (error) {
+                res.status (400).send ("Error in adding likes to User", error.statusText);
+            })
     }
 
+    function isLiked(req, res){
+        var userId = req.params.userId;
+        var productId = req.params.productId;
+        console.log("in user service, isLiked ", userId);
+        console.log("in user service, isLiked ", productId);
 
-
-    function findUserByCredentials(req,res){
-        var username = req.query.username;
-        var password = req.query.password;
-        var userReturned = userModel.findUserByCredentials(username,password);
-        res.json(userReturned);
+        userModel
+            .isLiked(userId, productId)
+            .then(function (response) {
+                    res.json(response);
+                },
+                function (error) {
+                    res.status (400).send ("Error in retrieving liked products by user", error.statusText);
+                })
     }
 
-
-
-    function deleteUserById(req,res){
-        var user = req.body;
-        var usersArray = userModel.deleteUser(user.userId);
-        res.json(usersArray);
+    function unLike(req, res){
+        var userId = req.params.userId;
+        var productId = req.params.productId;
+        userModel
+            .unLike(userId, productId)
+            .then(function (response) {
+                    res.json(response);
+                },
+                function (error) {
+                    res.status (400).send ("Error in retrieving liked rest by user", error.statusText);
+                })
     }
 
+    function getLikesforUser(req, res){
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(function (response) {
+                if(response != null){
+                    console.log("Likes is ",response.likes);
+                    return productModel.findAllProduct(response.likes);
+                }
+            }, function (error) {
+                res.status (400).send ("Error in findUserById function in getLikes function", error.statusText);
+            })
+            .then(function (response) {
+                console.log(response);
+                res.json(response);
+            }, function (error) {
+                res.status(400).send("Error in getting likes list for routeparams user", error.statusText);
+            })
+    }
 }
-

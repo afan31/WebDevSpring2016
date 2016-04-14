@@ -3,8 +3,9 @@
         .module("ShopaholicApp")
         .controller("CategoryController", categoryController);
 
-    function categoryController($location, $scope, $http, $routeParams, ProductService, $rootScope) {
+    function categoryController($routeParams, ProductService, $rootScope) {
 
+        var vm  =this;
         var catg = $routeParams.catg;
         //console.log(catg);
         if (catg){
@@ -12,7 +13,7 @@
         }
 
         //event handler declaration
-        $scope.browsebyCategory = browsebyCategory;
+        vm.browsebyCategory = browsebyCategory;
 
         //alert($routeParams.catg);
 
@@ -25,7 +26,7 @@
 
         function render(response){
             console.log(response);
-            $rootScope.categoryData=response;
+            vm.categoryData=response;
 
         }
     }

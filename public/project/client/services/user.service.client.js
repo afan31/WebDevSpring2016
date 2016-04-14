@@ -13,13 +13,20 @@
             getProfile : getProfile,
             login : login,
             logout : logout,
-            findAllUsers : findAllUsers,
+            register: register,
+            updateUser: updateUser,
             findUserByUsername: findUserByUsername,
-            findUserByCredentials: findUserByCredentials,
-            createUser: createUser,
-            deleteUserById: deleteUserById,
-            updateUser: updateUser
-        };
+            addLike: addLike,
+            isLiked: isLiked,
+            unLike: unLike,
+            followUser: followUser,
+            isFollowed: isFollowed,
+            unFollowUser: unFollowUser,
+            getFollowersDetails: getFollowersDetails,
+            getFollowingDetails: getFollowingDetails,
+            findLikesForUser: findLikesForUser,
+            findUserById : findUserById,
+            };
         return api;
 
         function setCurrentUser(user){
@@ -42,37 +49,65 @@
             return $http.get("/api/project/profile/"+$rootScope.currentUser._id);
         }
 
-        function updateUser(user,userId){
-            console.log("Here in client service "+userId);
-            return $http.put("/api/project/user/"+userId, user);
+        function register(user){
+            console.log("In create User functionality");
+            return $http.post("/api/project/register",user);
         }
-
 
         function logout() {
             return $http.post("/api/project/logout");
         }
 
+        function updateUser(user,userId){
+            console.log("Here in client service ",user);
+            return $http.put("/api/project/user/"+userId, user);
+        }
 
         function findUserByUsername(username)    {
             return $http.get("/api/project/user?username=" +username);
         }
-
-        function findUserByCredentials(username, password){
-            return $http.get("/api/project/user/user?username="+username+"&password="+password);
+        function addLike(productId, userId){
+            return $http.put("/api/project/user/"+userId+"/product/"+productId+"/like");
         }
 
-        function findAllUsers(){
-            return $http.get("/api/project/user");
+        function isLiked(productId, userId){
+            console.log("Client ",productId);
+            console.log("Client ", userId);
+            return $http.get("/api/project/user/"+userId+"/product/"+productId+"/isLiked");
         }
 
-        function createUser(user){
-            console.log("In create User functionality");
-            return $http.post("/api/project/user",user);
+        function unLike(productId, userId){
+            return $http.delete("/api/project/user/"+userId+"/product/"+productId+"/unLike");
         }
 
-        function deleteUserById(userId){
-            return $http.delete("/api/project/user/"+userId);
+        function followUser(userId, currentUserId){
+            return $http.put("/api/project/user/"+currentUserId+"/follows/"+userId);
         }
+
+        function isFollowed(userId, currentUserId){
+            return $http.get("/api/project/user/"+userId+"/followedBy/"+currentUserId);
+        }
+
+        function unFollowUser(userId, currentUserId){
+            return $http.delete("/api/project/user/"+currentUserId+"/unfollows/"+userId);
+        }
+
+        function getFollowersDetails(userId){
+            return $http.get("/api/project/user/getFollowersDetails/"+userId);
+        }
+
+        function getFollowingDetails(userId){
+            return $http.get("/api/project/user/getFollowingDetails/"+userId);
+        }
+
+        function findLikesForUser(userId){
+            return $http.get("/api/project/user/getLikeDetails/"+userId);
+        }
+
+        function findUserById(userid){
+            return $http.get("/api/project/user/" + userid);
+        }
+
 
 
     }

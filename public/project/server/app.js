@@ -1,10 +1,10 @@
 // pass db and mongoose reference to server side application module
-module.exports = function(app, uuid) {
-    var userModel    = require("./models/user.model.js")(uuid);
-    var productModel = require("./models/product.model.js")(uuid);
-    //var fieldModel = require("./models/field.model.server.js")(uuid);
+module.exports = function(app, uuid,db, mongoose) {
+    var userModel    = require("./models/user.model.server.js")(uuid, db, mongoose);
+    var productModel = require("./models/product.model.server.js")(uuid, db,mongoose);
+    var reviewModel = require("./models/review.model.server.js")(uuid,db,mongoose);
 
-    var userService  = require("./services/user.service.server.js") (app, userModel);
+    var userService  = require("./services/user.service.server.js") (app, userModel, productModel);
     var productService = require("./services/product.service.server.js") (app, productModel);
-    //var fieldService = require("./services/field.service.server.js") (app, fieldModel);
+    var reviewService = require("./services/review.service.server.js") (app, reviewModel);
 }
