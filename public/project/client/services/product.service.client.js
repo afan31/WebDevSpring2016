@@ -11,7 +11,8 @@
             findProductsByTitle: findProductsByTitle,
             browseProductsByCategory: browseProductsByCategory,
             getIndexByUserUdAndProductId : getIndexByUserUdAndProductId,
-            addProd : addProd
+            addProd : addProd,
+            findProdById: findProdById
         };
         return api;
 
@@ -34,7 +35,12 @@
         }
 
         function addProd(prod){
-            $http.post("/api/project/restaurant",prod);
+            return $http.post("/api/project/product",prod);
+        }
+
+        function findProdById(productId){
+            console.log("In client service ",productId);
+            return $http.get("/api/project/product/"+productId);
         }
     }
 })();

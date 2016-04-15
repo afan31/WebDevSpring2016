@@ -9,7 +9,9 @@ module.exports = function(mongoose) {
         email: [String],
         roles: [String],
         //phones:[String],
-        likes:[String]
+        likes:[String],
+        followers:[String],
+        following:[String]
         // collection property sets
         // collection name to 'user'
     }, {collection: 'Shopaholic.user'});

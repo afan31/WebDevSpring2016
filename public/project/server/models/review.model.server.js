@@ -1,15 +1,3 @@
-//var mock = require("./product.mock.json");
-//module.exports= function() {
-//    var api = {
-//        findAllReviewsForProduct: findAllReviewsForProduct,
-//        createReview: createReview,
-//        updateReview:updateReview,
-//        getIndexByUserUdAndProductId: getIndexByUserUdAndProductId,
-//        deleteReview: deleteReview
-//    };
-//    return api;
-
-
 module.exports = function (uuid, mongoose) {
     //load user schema
     var ReviewSchema = require("./review.schema.server.js")(mongoose);
@@ -27,25 +15,25 @@ module.exports = function (uuid, mongoose) {
     return api;
 
     function findAllReviewsForProduct(productId) {
-        console.log(productId);
+        console.log("HERE IN findAllReviewsForProduct", productId);
         return ReviewModel.find({productId: productId});
     }
 
     function addReview(userId, productId, review) {
-        console.log("IN REVIEW MODEL ", review);
+       // console.log("IN REVIEW MODEL ", review);
         review.userId = userId;
         review.productId = productId;
-        console.log("in model ", review);
+       // console.log("in model ", review);
         return ReviewModel.create(review);
     }
 
     function deleteReview(reviewId) {
-        console.log("IN DELETE MODEL ", reviewId);
+        //console.log("IN DELETE MODEL ", reviewId);
         return ReviewModel.remove({'_id': reviewId});
     }
 
     function updateReview(review) {
-        console.log("Review is ",review);
+       // console.log("Review is ",review);
         review.updatedOn = Date.now();
         return ReviewModel.update({$set: review});
     }
@@ -53,4 +41,5 @@ module.exports = function (uuid, mongoose) {
     function findAllReviewsByUserId(userId) {
         return ReviewModel.find({"userId": userId});
     }
+
 };

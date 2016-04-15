@@ -12,14 +12,20 @@
             selectedReview: selectedReview,
             updateReview: updateReview,
             deleteReview : deleteReview,
-            findAllReviewsForProduct: findAllReviewsForProduct
+            findAllReviewsForProduct: findAllReviewsForProduct,
+            findAllReviewsForUser: findAllReviewsForUser
         };
         return api;
 
 
         function findAllReviewsForProduct(productId){
             console.log("in client review " ,productId);
-            return $http.get("/api/project/product/"+productId);
+            return $http.get("/api/project/product/review/"+productId);
+        }
+
+        function findAllReviewsForUser(userId){
+            console.log("in client review user Id" ,userId);
+            return $http.get("/api/project/review/"+userId);
         }
 
         function createReview(userId, productId, review) {

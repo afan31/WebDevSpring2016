@@ -16,6 +16,72 @@ module.exports = function(app, userModel, productModel) {
     app.delete("/api/project/user/:userId/product/:productId/unLike", unLike);
     app.get("/api/project/user/getLikeDetails/:userId", getLikesforUser);
 
+    app.put("/api/project/user/:currentUserId/follows/:userId", followUser);
+    app.get("/api/project/user/:userId/followedBy/:currentUserId",isFollowed);
+    app.delete("/api/project/user/:currentUserId/unfollows/:userId", unFollowUser);
+    //Follow-unfollow
+
+    //return $http.put("/api/project/user/"+currentUserId+"/follows/"+userId);
+
+    //Follow
+    function followUser(req, res){
+        var currentUserId = req.params.currentUserId;
+        var userId = req.params.userId;
+        userModel
+            .followers(userId, currentUserId)//Add currently loggedin user into userid(whose profile currently loggedin
+            //visits) followers list
+            .then(function (response) {
+                //res.json(200);
+                return userModel.following(userId, currentUserId);//Add userid of that user whom currently loggedin user
+                //is following into currently loggedin user following list
+            }, function (error) {
+                res.status (400).send ("Error in adding currently loggedin user into userid's follower list", error.statusText);
+            })
+            .then(function (response) {
+                res.json(200);
+            }, function (error) {
+                res.status (400).send ("Error in adding currently loggedin user into userid's follower list", error.statusText);
+            })
+
+
+
+    }
+
+    function isFollowed(req, res){
+        var currentUserId = req.params.currentUserId;
+        var userId = req.params.userId;
+        userModel
+            .isFollowed(userId, currentUserId)
+            .then(function (response) {
+                res.json(response);
+            }, function (error) {
+                res.status (400).send ("Error in checking if followers list has currently " +
+                    "loggedin user's userId", error.statusText);
+            })
+    }
+
+    function unFollowUser(req, res){
+        var currentUserId = req.params.currentUserId;
+        var userId = req.params.userId;
+        userModel
+            .removeFromFollowers(userId, currentUserId)//Remove currently loggedin user from userid(whose profile currently loggedin
+            //visits) followers list
+            .then(function (response) {
+                console.log("Remove from followers ",response);
+                return userModel.removeFromFollowing(userId, currentUserId);//Remove userid of that user whom currently loggedin user
+
+            }, function (error) {
+                res.status (400).send ("Error in removing currently loggedin user from " +
+                    "userid's follower list", error.statusText);
+            })
+            .then(function (response) {
+                res.json(response);
+            }, function (error) {
+                res.status (400).send ("Error in removing userId from currently " +
+                    "logged in user's following list", error.statusText);
+            })
+    }
+
     function findUserById(req, res){
         var userId = req.params.userid;
         userModel

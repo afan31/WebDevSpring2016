@@ -21,7 +21,7 @@ module.exports = function(db, mongoose) {
             "name":prod.name,
             "imageUrl": prod.thumbnailImage
         };
-    console.log(prodObj);
+    //console.log(prodObj);
         return Product.findOneAndUpdate({'_id':prod.sku},prodObj,{upsert:true});
     }
 
@@ -30,7 +30,7 @@ module.exports = function(db, mongoose) {
     }
 
     function findAllProduct(likeList){
-        console.log("Like-list", likeList);
+        //console.log("Like-list", likeList);
         return Product.find({'_id':{$in:likeList}});
     }
 

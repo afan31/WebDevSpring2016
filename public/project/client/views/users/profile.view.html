@@ -130,81 +130,34 @@
                     </div>
                 </div>
             </div>
+            <!--{{ model.reviewsData }}-->
             <div class="tab-pane fade in" id="tab4">
                 <h3>Reviews</h3>
-                <div class="row">
-                    <div class="container-fluid ng-scope">
-                        <div class="row review-row">
-                            <!--<p>Gadget Name</p>-->
-                            <div class="col-sm-3 container-profile-review-img">
-                                <img class="img-responsive img-gadget-review" src="../../images/review_avatar.jpg">
-                            </div>
-                            <div class="col-sm-9 container-profile-review">
-                                <div class="container">
-                                    <div class="row">
-                                        <h4>Name</h4>
-                                    </div>
-                                    <div class="row">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t
-                                            empor incididunt</p>
-                                    </div>
-                                </div>
-                            </div>
+                <hr>
+                <div ng-repeat="review in model.reviewsData">
+                <div class="container-fluid ng-scope">
+                    <div class="row review-row">
+                        <!--<p>Gadget Name</p>-->
+                        <div class="col-sm-3 container-profile-review-img">
+                            <img class="img-responsive img-gadget-review" ng-src="{{review.image}}">
                         </div>
-                        <hr>
-                        <div class="row review-row">
-                            <!--<p>Gadget Name</p>-->
-                            <div class="col-sm-3">
-                                <img class="img-responsive img-gadget-review" src="../../images/review_avatar.jpg">
-                            </div>
-                            <div class="col-sm-9 container-profile-review">
-                                <div class="container">
-                                    <div class="row">
-                                        <h4>Name</h4>
-                                    </div>
-                                    <div class="row">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempe magna aliqua...</p>
-                                    </div>
+                        <div class="col-sm-9 container-profile-review">
+                            <div class="container">
+                                <div class="row">
+                                    <h4>{{review.productname}}</h4>
                                 </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row review-row">
-                            <!--<p>Gadget Name</p>-->
-                            <div class="col-sm-3">
-                                <img class="img-responsive img-gadget-review" src="../../images/review_avatar.jpg">
-                            </div>
-                            <div class="col-sm-9 container-profile-review">
-                                <div class="container">
-                                    <div class="row">
-                                        <h4>Name</h4>
-                                    </div>
-                                    <div class="row">
-                                        <p>Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore et dolore magna aliqua...</p>
-                                    </div>
+                                <div class="row">
+                                    <p><b>Title: </b>{{review.title}}</p>
+                                    <p><b>Comment: </b>{{review.review}}</p>
+                                    <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
                                 </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row review-row">
-                            <!--<p>Gadget Name</p>-->
-                            <div class="col-sm-3">
-                                <img class="img-responsive img-gadget-review" src="../../images/review_avatar.jpg">
-                            </div>
-                            <div class="col-sm-9 container-profile-review">
-                                <div class="container">
-                                    <div class="row">
-                                        <h4>Name</h4>
-                                    </div>
-                                    <div class="row">
-                                        <p>Lorem ipsum dolor sit amet, consectetur unt ut labore et dolore magna aliqua...</p>
-                                    </div>
-                                </div>
+                                <hr>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+                </div>
             <div class="tab-pane fade in" id="tab5">
             <div class="container-fluid" ng-controller="ProfileController">
                 <div class="row">

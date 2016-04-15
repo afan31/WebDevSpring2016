@@ -36,6 +36,9 @@
         vm.isliked = isliked;
         vm.undolikeProd = undolikeProd;
         vm.findUserByReviewUserId = findUserByReviewUserId;
+        vm.followUser = followUser;
+        vm.isFollowedUser = isFollowedUser;
+        vm.undofollowUser = undofollowUser;
 
         function init() {
             UserService
@@ -84,6 +87,7 @@
                 .then(function (response) {
                         console.log("THis is find all reviews ",response.data);
                         vm.reviewsData = response.data;
+                        console.log("THIS ",vm.reviewsData);
                         vm.findUserByReviewUserId(vm.reviewsData);
                     },
                     function (error) {
@@ -111,7 +115,7 @@
         }
 
         function findUserByReviewUserId(reviews) {
-            console.log(reviews);
+            console.log("Reviews here ",reviews);
             reviews.forEach(function (element, index, arr) {
                 UserService.findUserById(reviews[index].userId)
                     .then(function (response) {
@@ -161,15 +165,6 @@
                     console.log("Error in adding like for a Product", error.statusText);
                 })
         }
-
-        //        function (newReview) {
-        //        console.log("Updated Review is ",newReview);
-        //        vm.reviewsData[$scope.selectedIndex] = newReview;
-        //        vm.selectedIndex = -1;
-        //        vm.review = {};
-        //        renderReview(skuId);
-        //    });
-        //}
 
         function deleteReview(reviewObject) {
             console.log("HERE IN DELETE REVIEW CONTROLLER ", reviewObject);
@@ -241,6 +236,51 @@
                     console.log(response);
                     if(response.status == 200 && (response.data.nModified == 1 || response.data.n == 1)){
                         vm.isliked = false;
+                    }
+                }, function (error) {
+                    console.log("Error in removing like for a Product", error.statusText);
+                })
+        }
+
+        //Code for Follow-following
+
+        function followUser(userId){
+            console.log("Current user id is ", userId);
+            console.log("get current user ", vm.currentUser._id);
+            UserService
+                .followUser(userId, vm.currentUser._id)
+                .then(function (response) {
+                    if(response.status == 200){
+                        vm.isfollowed = true;
+                    }
+                }, function (error) {
+                    console.log("Error in following a user", error.statusText);
+                })
+        }
+
+        function isFollowedUser(userId){
+            UserService
+                .isfollowed(userId, vm.currentUser._id)
+                .then(function (response) {
+                    if(response.data){
+                        vm.isfollowed = true;
+                    }
+                    else{
+                        vm.isfollowed = false;
+                    }
+                }, function (error) {
+                    console.log("Error in retrieving productId from likes Array of current User", error.statusText);
+                })
+        }
+
+        function undofollowUser(userId){
+            console.log("Current user is ",userId)
+            UserService
+                .undoFollowUser(userId, vm.currentUser._id)
+                .then(function (response) {
+                    console.log(response);
+                    if(response.status == 200 && (response.data.nModified == 1 || response.data.n == 1)){
+                        vm.isfollowed = false;
                     }
                 }, function (error) {
                     console.log("Error in removing like for a Product", error.statusText);

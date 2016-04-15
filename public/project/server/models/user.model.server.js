@@ -22,10 +22,55 @@ module.exports= function(db, mongoose) {
         findUserByUsername: findUserByUsername,
         addLike: addLike,
         isLiked: isLiked,
-        unLike: unLike
+        unLike: unLike,
+        followers: followers,
+        following: following,
+        isFollowed: isFollowed,
+        removeFromFollowers: removeFromFollowers,
+        removeFromFollowing: removeFromFollowing
 
     };
     return api;
+
+    function followers(userId, currentUserId){
+        return UserModel.update(
+            {'_id': userId},
+            {
+                $addToSet :{'followers':currentUserId}
+            }
+        );
+    }
+
+    function following(userId, currentUserId){
+        return UserModel.update(
+            {'_id': currentUserId},
+            {
+                $addToSet :{'following':userId}
+            }
+        );
+    }
+
+    function isFollowed(userId, currentUserId){
+        return UserModel.findOne({_id: userId, followers: {$in: [currentUserId]}});
+    }
+
+    function removeFromFollowers(userId, currentUserId){
+        return UserModel.update(
+            {'_id':userId},
+            {
+                $pullAll: {followers: [currentUserId]}
+            }
+        );
+    }
+
+    function removeFromFollowing(userId, currentUserId){
+        return UserModel.update(
+            {'_id':currentUserId},
+            {
+                $pullAll: {following: [userId]}
+            }
+        );
+    }
 
 
     function createUser(user) {

@@ -5,7 +5,7 @@
         .module('ShopaholicApp')
         .controller('ProfileController', profileController);
 
-    function profileController(UserService, $rootScope) {
+    function profileController(UserService, $rootScope, ReviewService, ProductService) {
         var vm = this;
         vm.update = update;
 
@@ -31,6 +31,35 @@
                                     .then(function(response) {
                                         vm.likesData = response.data;
                                             console.log("Likes result is ",response.data);
+                                        ReviewService.findAllReviewsForUser(vm.currentUser._id)
+                                            .then(function(response){
+                                                vm.reviewsData = response.data;
+                                                console.log("Reviews data is ", response.data);
+                                                vm.reviewsData.forEach(function (element, index, arr) {
+                                                    console.log(vm.reviewsData[index].productId);
+                                                    ProductService.findProdById(vm.reviewsData[index].productId)
+                                                        .then(function (res) {
+                                                                if (res.data) {
+                                                                    console.log("Res.data ", res.data.name);
+                                                                    vm.reviewsData[index].image=res.data.imageUrl;
+                                                                    vm.reviewsData[index].productname=res.data.name;
+                                                                    console.log("REVIEWS FULL DATA IS ", vm.reviewsData);
+                                                                }
+                                                            },
+                                                            function (error) {
+                                                                console.log(error.statusText);
+                                                            });
+                                                })
+                                                //console.log(vm.reviewsData["productId"]);
+                                                //ProductService.findProdById(vm.reviewsData.productId)
+                                                //    .then(function(response) {
+                                                //        if (response.data) {
+                                                //            vm.reviewsData[index].image=response.data.imageUrl;
+                                                //            vm.reviewsData[index].name=response.data.name;
+                                                //        }
+                                                //    })
+                                                //console.log(vm.reviewsData);
+                                            })
                                 },
                                     function (error) {
                                         console.log(error.statusText);
@@ -46,8 +75,6 @@
 
         function update(user) {
             console.log("USER IS ",user);
-            //console.log("User Id " +$rootScope.currentUser._id);
-            //var userId = $rootScope.currentUser._id;
             if (!user) {
                 return;
             }

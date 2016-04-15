@@ -20,8 +20,8 @@
             isLiked: isLiked,
             unLike: unLike,
             followUser: followUser,
-            isFollowed: isFollowed,
-            unFollowUser: unFollowUser,
+            isfollowed: isfollowed,
+            undoFollowUser: undoFollowUser,
             getFollowersDetails: getFollowersDetails,
             getFollowingDetails: getFollowingDetails,
             findLikesForUser: findLikesForUser,
@@ -84,11 +84,13 @@
             return $http.put("/api/project/user/"+currentUserId+"/follows/"+userId);
         }
 
-        function isFollowed(userId, currentUserId){
+        function isfollowed(userId, currentUserId){
             return $http.get("/api/project/user/"+userId+"/followedBy/"+currentUserId);
         }
 
-        function unFollowUser(userId, currentUserId){
+        function undoFollowUser(userId, currentUserId){
+            console.log("user to be followed ", userId);
+            console.log("user following ", currentUserId);
             return $http.delete("/api/project/user/"+currentUserId+"/unfollows/"+userId);
         }
 

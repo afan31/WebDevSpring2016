@@ -1,7 +1,8 @@
 module.exports = function (app, reviewModel) {
 
 
-    app.get("/api/project/product/:productId", findAllReviewsForProduct);
+    app.get("/api/project/product/review/:productId", findAllReviewsForProduct);
+    app.get("/api/project/review/:userId", findAllReviewsForUser);
     app.post("/api/project/user/:userId/product/:productId", createReview);
     app.get("/api/project/review", selectedReview);
     app.put("/api/project/review", updateReview);
@@ -10,14 +11,25 @@ module.exports = function (app, reviewModel) {
 
     //$http.delete("/api/project/review/" +reviewId+ "/product/" +productId, reviewObj);
 
-
     function findAllReviewsForProduct(req, res) {
         var productId = req.params.productId;
-        console.log("in sevice server find all reviews ", productId);
+        console.log("in service server find all reviews ", productId);
         reviewModel
             .findAllReviewsForProduct(productId)
             .then(function (products) {
+                console.log("ALL REVIEWS FOR PRODUCTS ",products);
                 res.json(products);
+            });
+    }
+
+    function findAllReviewsForUser(req, res) {
+        var userId = req.params.userId;
+        //console.log("HERE -  reviews for user ", userId);
+        reviewModel
+            .findAllReviewsByUserId(userId)
+            .then(function (reviews) {
+                //console.log("Reviews from db ", reviews);
+                res.json(reviews);
             });
     }
 
@@ -25,9 +37,9 @@ module.exports = function (app, reviewModel) {
         var userId = req.params.userId;
         var productId = req.params.productId;
         var review = req.body;
-        console.log(userId);
-        console.log(productId);
-        console.log("Review at service server is ", review);
+        //console.log(userId);
+        //console.log(productId);
+        //console.log("Review at service server is ", review);
         reviewModel
             .addReview(userId, productId, review)
             .then(function(createdReview){
@@ -74,7 +86,7 @@ module.exports = function (app, reviewModel) {
 
     function deleteReview(req, res) {
         var reviewId = req.params.reviewId;
-        console.log("IN DELETE SERVICE ",reviewId);
+        //console.log("IN DELETE SERVICE ",reviewId);
         reviewModel.deleteReview(reviewId)
             .then(
                 function (doc) {

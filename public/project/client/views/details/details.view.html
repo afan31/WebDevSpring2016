@@ -70,7 +70,7 @@
                     <i title="Like" class="fa fa-thumbs-o-up fa-lg fa-2x"></i></a>
                 <a style="text-decoration: none" ng-if="model.isliked" href=""
                    ng-click="model.undolikeProd(model.product.sku)">
-                    <p class="lead">Don't like this product? Let us know!</p>
+                    <p class="lead">You have liked this product. Click below to dislike it!</p>
                     <i title="Unlike" class="fa fa-thumbs-o-down fa-lg fa-2x orangecolor"></i></a>
                 <hr>
 
@@ -88,24 +88,11 @@
                     <p>{{model.product.longDescription}}</p>
                     <div class="ratings">
                         <p class="pull-right">Total Reviews: {{model.product.customerReviewCount}}</p>
-                        <!--<p>{{product.customerReviewAverage}}</p>-->
-                        <!--<p class="star-rating ratings" data-score="{{product.customerReviewAverage}}"></p>-->
-                        <!--<p>{{callUpdate()}}</p>-->
-
-
                     </div>
                 </div>
             </div>
 
-
-            <!-- for star rating-->
-
-            <!-- for star rating-->
-
             <div class="well" ng-show="model.reviewsData">
-
-
-
                 <div class="text-right">
                     <a class="btn btn-success" onclick="showWriteReviewDiv()">Leave a Review</a>
                 </div>
@@ -114,19 +101,6 @@
                     <div class="row">
                         <div class="well margin-well">
                             <h4>What do you think about the product?</h4>
-                            <!--<p class="star-rating" data-score="model.review.rating"></p>-->
-                            <!--<p>{{model.callUpdate()}}</p>-->
-
-                            <!--<star-rating ng-model="model.rating2" readonly="model.isReadonly"></star-rating>-->
-                            <!--<label>-->
-                                <!--<input type="checkbox" ng-model="model.isReadonly"/>-->
-                                <!--Is Readonly-->
-                            <!--</label>-->
-
-                            <!--<div><strong>Rating 1:</strong> {{model.rating1}}</div>-->
-                            <!--<div><strong>Rating 2:</strong> {{model.rating2}}</div>-->
-
-                            {{ model.review.rating1}}
                             <form role="form" class="ng-pristine ng-valid">
                                 <div star-rating ng-model="model.rating1" max="5" on-rating-select="model.rateFunction(rating)"></div>
                                 <div class="form-group">
@@ -153,19 +127,31 @@
                 </div>
 
                 <hr>
-                <!--{{model.reviewsData}}-->
                 <div ng-repeat="review in model.reviewsData">
                     <p><b>Reviewer: </b>{{review.username}}</p>
-                            <!--<p class="pull-right" style="color: #2b542c">{{review.timestamp | date : 'mediumDate'}}</p>-->
-                        <!--{{review.rating}}-->
                     <div star-rating ng-model="review.rating" max="5" on-rating-select="model.rateFunction(rating)"></div>
                     <p><b>Title: </b>{{review.title}}</p>
                     <p><b>Comment: </b>{{review.review}}</p>
                     <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
                     <!--<p class="pull-right" style="color: #2b542c"><b>Updated On: </b>{{review.updatedOn | date : 'mediumDate'}}</p>-->
-                    <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
-                          ng-click="model.selectedReview($index)"> Edit | </a>
-                        <a href="" ng-click="model.deleteReview(review)">Delete</a></p>
+                    <div ng-show="currentUser._id == review.userId">
+                        <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
+                              ng-click="model.selectedReview($index)"> Edit | </a>
+                            <a href="" ng-click="model.deleteReview(review)">Delete</a>
+                        </p>
+                    </div>
+                    {{ vm.isfollowed}}
+                    <div ng-hide="currentUser._id == review.userId">
+                        <a style="text-decoration: none" ng-hide="model.isfollowed" href=""
+                           ng-click="model.followUser(review.userId)">
+                            <p class="lead">Click below to follow this user!</p>
+                            <i title="Follow" class="fa fa-user fa-lg fa-2x"></i></a>
+                        <a style="text-decoration: none" ng-if="model.isfollowed" href=""
+                           ng-click="model.undofollowUser(review.userId)">
+                            <p class="lead">You have followed this user. Click below to un-follow!</p>
+                            <i title="Un-Follow" class="fa fa-user fa-lg fa-2x orangecolor"></i></a>
+                        <hr>
+                    </div>
                     <hr>
                 </div>
             </div>
