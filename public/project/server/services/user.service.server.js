@@ -34,17 +34,21 @@ module.exports = function(app, userModel, productModel) {
     function uploadImage(req, res) {
 
         var userId      = req.params.userId;
+        console.log()
         var user  = req.body;
         console.log("USER SERVICE ", user);
-        var myFile        = req.file;
 
-        var destination   = myFile.destination;
-        var path          = myFile.path;
-        var originalname  = myFile.originalname;
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
-        var filename      = myFile.filename;
-        user.imageUrl = "/uploads/"+filename;
+        var myFile        = req.file;
+        if (myFile != null) {
+            var destination   = myFile.destination;
+            var path          = myFile.path;
+            var originalname  = myFile.originalname;
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
+            var filename      = myFile.filename;
+            user.imageUrl = "/uploads/"+filename;
+        }
+
 
 
         userModel

@@ -40,8 +40,10 @@
         .controller('SearchController', searchController);
 
 
-    function searchController(ProductService, $rootScope) {
+    function searchController($routeParams,ProductService, $rootScope, $location) {
         var vm = this;
+        console.log("Route PArams ",$routeParams.title);
+        vm.searchParam = $routeParams.title;
 
        // var title = $routeParams.title;
         //console.log("Search Parameter ",title);
@@ -49,28 +51,18 @@
         vm.search = search;
 
         function init() {
-            //if (title){
-            //    search(title);
-            //}
+            if (vm.searchParam){
+                search();
+            }
         }
         init();
 
-        //function loginController(UserService, $location){
-        //    var vm = this;
-        //
-        //    vm.login = login;
-        //
-        //    function init() {
-        //    }
-        //    init();
-
-        function search(title) {
+        function search() {
             var apiKey ="ay4rd26c7bqjh9zutd5ynkm6";
-            alert("IN SEARCH FUNCTION");
-            console.log(title);
-            var searchParam = title;
+            //alert("IN SEARCH FUNCTION");
+            console.log("HElllo", vm.searchParam);
             ProductService
-                .findProductsByTitle(searchParam, render);
+                .findProductsByTitle(vm.searchParam, render);
                 //.then(function(response){
                 //    vm.search = response.data;
                 //});
@@ -78,8 +70,10 @@
 
         function render(response){
             console.log(response);
+            console.log(vm.searchParam);
             vm = response.data;
             $rootScope.data=response;
+            //$location.url('/search/'+vm.searchParam);
 
         }
     }

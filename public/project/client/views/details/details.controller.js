@@ -14,7 +14,7 @@
         //    .success(renderReview);
 
         // Added for star rating -start
-        vm.rating1 = 3;
+        vm.rating1 = 1;
         //vm.rating2 = 2;
         vm.isReadonly = true;
         vm.rateFunction = rateFunction;
@@ -43,9 +43,6 @@
         vm.avgProductRating = avgProductRating;
 
         function isFollowed1(a,b) {
-            //console.log("is followed 1 ....");
-            //console.log("User to be followed ",a);
-            //console.log("FOllowing user is ",b);
             return (b.indexOf(a) > -1);
         }
         function init() {

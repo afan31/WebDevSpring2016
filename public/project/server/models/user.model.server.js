@@ -162,28 +162,21 @@ module.exports= function(db, mongoose) {
 
     function updateUser(user,userId) {
         var deferred = q.defer();
+        console.log("User id in model");
+        console.log(userId)
         console.log("IN MODELLLLL LLLL ",user);
-        delete user._id;
+        //delete user._id;
         user.email = user.email.toString().split(',');
         console.log(user.email);
         //user.phones = user.phones.toString().split(',');
         //console.log(user.phones);
-        UserModel
+        console.log("updating....")
+        return UserModel
             .update (
-                {userId: user._id},
-                {$set: user},
-                function (err, user) {
-                    //console.log("fsdvsdffdfsg",user);
-
-                    if (!err) {
-                        deferred.resolve(user);
-                    } else {
-                        console.log("sdvsdvfdbfdgn");
-                        deferred.reject(err);
-                    }
-                }
+                {_id: userId},
+                {$set: user}
             );
-        return deferred.promise;
+        //return deferred.promise;
     }
 
     function findUserByUsername (username) {

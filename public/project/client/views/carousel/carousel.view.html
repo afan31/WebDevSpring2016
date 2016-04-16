@@ -17,7 +17,7 @@
                 <div class="input-group col-sm-6 col-sm-offset-4">
                     <input ng-model="model.title" type="text" class="search-query form-control" placeholder="What do you wanna buy?"/>
                         <span class="input-group-btn">
-                            <a href="#/search"><button ng-model = "model.title" ng-click="model.search(model.title)" class="btn btn-danger" type="button">
+                            <a href="#/search/{{model.title}}"><button ng-model = "model.title" ng-click="model.search()" class="btn btn-danger" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button></a>
                             {{ model.title }}
@@ -69,15 +69,15 @@
             </a>
         </div>
 
-        <!--<div class="col-sm-6 col-xs-6 img-hover">-->
         <div class="col-md-4 img-hover">
-            <a href="#/browse/abcat0401000">
-                <img class="img-responsive portfolio-item" src="../../../../images/cameras.jpg" alt="http://placehold.it/500x300">
+            <a href="#/browse/pcmcat300300050002">
+                <img class="img-responsive portfolio-item" src="../../../../images/xboxes.jpg" alt="http://placehold.it/500x300">
                 <div class="carousel-caption">
-                    <h4>Cameras</h4>
+                    <h4>Xbox</h4>
                 </div>
             </a>
         </div>
+
 
         <!--<div class="col-sm-6 col-xs-6 img-hover">-->
         <div class="col-md-4 img-hover">
@@ -143,15 +143,16 @@
                 </div>
             </a>
         </div>
-
+  <!--<div class="col-sm-6 col-xs-6 img-hover">-->
         <div class="col-md-4 img-hover">
-            <a href="#/browse/pcmcat300300050002">
-                <img class="img-responsive portfolio-item" src="../../../../images/xboxes.jpg" alt="http://placehold.it/500x300">
+            <a href="#/browse/abcat0401000">
+                <img class="img-responsive portfolio-item" src="../../../../images/cameras.jpg" alt="http://placehold.it/500x300">
                 <div class="carousel-caption">
-                    <h4>Xbox</h4>
+                    <h4>Cameras</h4>
                 </div>
             </a>
         </div>
+
     </div>
 
 

@@ -1,18 +1,20 @@
 
     <section ng-show="model.categoryData">
+        <div class="container">
         <h2 class="search-header"> Search Results</h2>
 
         <div class="row">
-            <div class="col-md-4" ng-repeat="product in model.categoryData.products" ng-if="product.image != undefined">
-                <div class="thumbnail">
-                    <a href="#/details/{{product.sku}}"><img width= "200" height="80" ng-src="{{product.image}}" alt="http://placehold.it/320x150"></a>
+            <div class="col-md-4 col-sm-12 col-xs-12" ng-repeat="product in model.categoryData.products" ng-if="product.image != undefined">
+                <div class="thumbnail" style="height: 300px;">
+                    <a href="#/details/{{product.sku}}"><img ng-src="{{product.image}}" height="120" width="90" alt="http://placehold.it/320x150"></a>
                     <div class="caption">
-                        <p class="lead"><a href="#/details/{{product.sku}}">{{product.name}}</a></p>
+                        <p class="image-descr"><a href="#/details/{{product.sku}}">{{product.name.substring(0,40)}}...</a></p>
                         <p>
-                        <h4>${{product.salePrice}}</h4>
+                        <p class="image-price">${{product.salePrice}}</p>
                         <!--<p>{{product.shortDescription}}</p>-->
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
