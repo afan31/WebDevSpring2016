@@ -15,7 +15,7 @@
                 .then(function (response) {
                         console.log(response.data);
                         vm.currentUser = response.data;
-                    console.log("Current user is ", vm.currentUser._id);
+                        vm.imageApi = "/api/upload/"+vm.currentUser._id;
                         UserService
                             .findUserByUsername(vm.currentUser.username)
                             .then(function (response) {
@@ -44,21 +44,23 @@
                                                                     vm.reviewsData[index].image=res.data.imageUrl;
                                                                     vm.reviewsData[index].productname=res.data.name;
                                                                     console.log("REVIEWS FULL DATA IS ", vm.reviewsData);
+                                                                    UserService.findFollowersList(vm.currentUser._id)
+                                                                        .then(function(response) {
+                                                                            vm.followersData = response.data;
+                                                                            console.log("Followers result --------->>>> ", response.data);
+                                                                            UserService.findFollowingList(vm.currentUser._id)
+                                                                                .then(function (response) {
+                                                                                    vm.followingData = response.data;
+                                                                                    console.log("Followers result --------->>>> ", response.data);
+                                                                                })
+                                                                        })
+
                                                                 }
                                                             },
                                                             function (error) {
                                                                 console.log(error.statusText);
                                                             });
                                                 })
-                                                //console.log(vm.reviewsData["productId"]);
-                                                //ProductService.findProdById(vm.reviewsData.productId)
-                                                //    .then(function(response) {
-                                                //        if (response.data) {
-                                                //            vm.reviewsData[index].image=response.data.imageUrl;
-                                                //            vm.reviewsData[index].name=response.data.name;
-                                                //        }
-                                                //    })
-                                                //console.log(vm.reviewsData);
                                             })
                                 },
                                     function (error) {

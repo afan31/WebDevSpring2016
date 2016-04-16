@@ -72,7 +72,24 @@
                    ng-click="model.undolikeProd(model.product.sku)">
                     <p class="lead">You have liked this product. Click below to dislike it!</p>
                     <i title="Unlike" class="fa fa-thumbs-o-down fa-lg fa-2x orangecolor"></i></a>
+
                 <hr>
+
+
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <p class="lead"> Average Rating!
+                        <h3>{{ model.avgRating }}</h3>
+                            <ng-rating ng-model="model.avgRating"
+                                       editable="false">
+                            </ng-rating>
+                        </p>
+                    </div>
+                </div>
+
+
+
 
             </div>
         </div>
@@ -134,19 +151,19 @@
                     <p><b>Comment: </b>{{review.review}}</p>
                     <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
                     <!--<p class="pull-right" style="color: #2b542c"><b>Updated On: </b>{{review.updatedOn | date : 'mediumDate'}}</p>-->
-                    <div ng-show="currentUser._id == review.userId">
+                    <div ng-show="model.currentUser._id == review.userId">
                         <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
                               ng-click="model.selectedReview($index)"> Edit | </a>
                             <a href="" ng-click="model.deleteReview(review)">Delete</a>
                         </p>
                     </div>
-                    {{ vm.isfollowed}}
-                    <div ng-hide="currentUser._id == review.userId">
-                        <a style="text-decoration: none" ng-hide="model.isfollowed" href=""
+                    <!--{{ vm.isfollowed}}-->
+                    <div ng-hide="model.currentUser._id == review.userId">
+                        <a style="text-decoration: none" ng-if="!(model.isFollowed1(review.userId,model.currentUser.following))" href="javascript:void(0);"
                            ng-click="model.followUser(review.userId)">
                             <p class="lead">Click below to follow this user!</p>
                             <i title="Follow" class="fa fa-user fa-lg fa-2x"></i></a>
-                        <a style="text-decoration: none" ng-if="model.isfollowed" href=""
+                        <a style="text-decoration: none" ng-if="model.isFollowed1(review.userId,model.currentUser.following)" href="javascript:void(0);"
                            ng-click="model.undofollowUser(review.userId)">
                             <p class="lead">You have followed this user. Click below to un-follow!</p>
                             <i title="Un-Follow" class="fa fa-user fa-lg fa-2x orangecolor"></i></a>

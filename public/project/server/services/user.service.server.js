@@ -1,6 +1,9 @@
 
 module.exports = function(app, userModel, productModel) {
 
+    var multer  = require('multer');
+    var upload = multer({ dest: __dirname+'/../../../../public/uploads' });
+
     app.post("/api/project/register", register);
     app.get("/api/project/profile/:userId", profile);
     app.post("/api/project/login", login);
@@ -16,17 +19,66 @@ module.exports = function(app, userModel, productModel) {
     app.delete("/api/project/user/:userId/product/:productId/unLike", unLike);
     app.get("/api/project/user/getLikeDetails/:userId", getLikesforUser);
 
+    app.get("/api/project/user/getFollowersDetails/:userId", getFollowersListForUser);
+    app.get("/api/project/user/getFollowingDetails/:userId", getFollowingListForUser);
+
     app.put("/api/project/user/:currentUserId/follows/:userId", followUser);
     app.get("/api/project/user/:userId/followedBy/:currentUserId",isFollowed);
     app.delete("/api/project/user/:currentUserId/unfollows/:userId", unFollowUser);
-    //Follow-unfollow
 
-    //return $http.put("/api/project/user/"+currentUserId+"/follows/"+userId);
+
+    app.post ("/api/upload/:userId", upload.single('myFile'), uploadImage);
+
+
+
+    function uploadImage(req, res) {
+
+        var userId      = req.params.userId;
+        var user  = req.body;
+        console.log("USER SERVICE ", user);
+        var myFile        = req.file;
+
+        var destination   = myFile.destination;
+        var path          = myFile.path;
+        var originalname  = myFile.originalname;
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+        var filename      = myFile.filename;
+        user.imageUrl = "/uploads/"+filename;
+
+
+        userModel
+            .updateUser(user, userId)
+            .then(function (response) {
+                    //console.log(response);
+                    //res.send(200);
+                    return userModel.findUserById(userId);
+                },
+                function (error) {
+                    res.status (400).send ("Error in updating user by Id", error.statusText);
+                })
+            .then(function (response) {
+                    if(response != null) {
+                        req.session.currentUser = response;
+                        res.redirect(req.header('Referer') + "#/profile");
+                        //res.json(response);
+                    }
+                    else{
+                        console.log("User not found by Id after updating the user, returning null");
+                        res.json(null);
+                    }
+                },
+                function (error) {
+                    res.status (400).send ("Error in findUserById function after updating the user", error.statusText);
+                });
+    }
 
     //Follow
     function followUser(req, res){
         var currentUserId = req.params.currentUserId;
         var userId = req.params.userId;
+        console.log("Current user id ", currentUserId);
+        console.log("User id to be followed ",userId);
         userModel
             .followers(userId, currentUserId)//Add currently loggedin user into userid(whose profile currently loggedin
             //visits) followers list
@@ -150,7 +202,17 @@ module.exports = function(app, userModel, productModel) {
 
 
     function loggedin(req, res) {
-       // console.log("In logged in",req.session.currentUser);
+       //// console.log("In logged in",req.session.currentUser);
+       //var curr = req.session.currentUser;
+       // userModel.findUserByUsername(curr.username).then(
+       //     function(user) {
+       //         req.session.currentUser = user;
+       //         res.send(req.session.currentUser);
+       //     }, function (err) {
+       //         console.log(err);
+       //         res.status(400).send(err);
+       //     }
+       // );
         res.json(req.session.currentUser);
     }
 
@@ -245,6 +307,47 @@ module.exports = function(app, userModel, productModel) {
                 if(response != null){
                     console.log("Likes is ",response.likes);
                     return productModel.findAllProduct(response.likes);
+                }
+            }, function (error) {
+                res.status (400).send ("Error in findUserById function in getLikes function", error.statusText);
+            })
+            .then(function (response) {
+                console.log(response);
+                res.json(response);
+            }, function (error) {
+                res.status(400).send("Error in getting likes list for routeparams user", error.statusText);
+            })
+    }
+
+
+    function getFollowersListForUser(req, res){
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(function (response) {
+                if(response != null){
+                    console.log("Likes is ",response.followers);
+                    return userModel.findAllFollowers(response.followers);
+                }
+            }, function (error) {
+                res.status (400).send ("Error in findUserById function in getLikes function", error.statusText);
+            })
+            .then(function (response) {
+                console.log(response);
+                res.json(response);
+            }, function (error) {
+                res.status(400).send("Error in getting likes list for routeparams user", error.statusText);
+            })
+    }
+
+    function getFollowingListForUser(req, res){
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(function (response) {
+                if(response != null){
+                    console.log("Following is ",response.following);
+                    return userModel.findAllFollowing(response.following);
                 }
             }, function (error) {
                 res.status (400).send ("Error in findUserById function in getLikes function", error.statusText);

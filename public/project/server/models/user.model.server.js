@@ -27,10 +27,21 @@ module.exports= function(db, mongoose) {
         following: following,
         isFollowed: isFollowed,
         removeFromFollowers: removeFromFollowers,
-        removeFromFollowing: removeFromFollowing
+        removeFromFollowing: removeFromFollowing,
+        findAllFollowers: findAllFollowers,
+        findAllFollowing: findAllFollowing
 
     };
     return api;
+
+    function findAllFollowers(followersList){
+        return UserModel.find({'_id':{$in:followersList}});
+    }
+
+    function findAllFollowing(followingList){
+        console.log("IN FOLLOWING MODEL ", followingList);
+        return UserModel.find({'_id':{$in:followingList}});
+    }
 
     function followers(userId, currentUserId){
         return UserModel.update(
@@ -155,8 +166,8 @@ module.exports= function(db, mongoose) {
         delete user._id;
         user.email = user.email.toString().split(',');
         console.log(user.email);
-        user.phones = user.phones.toString().split(',');
-        console.log(user.phones);
+        //user.phones = user.phones.toString().split(',');
+        //console.log(user.phones);
         UserModel
             .update (
                 {userId: user._id},

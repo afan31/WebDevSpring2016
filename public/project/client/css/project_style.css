@@ -1,5 +1,5 @@
 body {
-    padding-bottom: 40px;
+    /*padding-bottom: 40px;*/
     color: #5a5a5a;
 }
 .navbar-wrapper {
@@ -96,21 +96,6 @@ div#homePageCarousel {
     border-radius: 3px;
 }
 
-/*#custom-search-input button {*/
-    /*border: 0;*/
-    /*!*background: none;*!*/
-    /*!** belows styles are working good *!*/
-    /*padding: 2px 5px;*/
-    /*margin-top: 2px;*/
-    /*position: relative;*/
-    /*!*left: -28px;*!*/
-    /*margin-bottom: 0;*/
-    /*-webkit-border-radius: 3px;*/
-    /*-moz-border-radius: 3px;*/
-    /*border-radius: 3px;*/
-    /*color:#ffff4f;*/
-/*}*/
-
 .search-query:focus + button {
     z-index: 3;
 }
@@ -127,8 +112,9 @@ div#homePageCarousel {
 
 #topRow {
     text-align: center;
-    color: brown;
+    color: whitesmoke;
     font-size: large;
+    font-family: 'Fredericka the Great', cursive;
 }
 #topRow h1 {
     font-size:350%;
@@ -148,35 +134,25 @@ div#homePageCarousel {
 }
 
 .category-background{
-    background-color: #774747;
+    background-color: #222222;
     width: 100%;
 }
 
 .headerCatg{
-    color: #ffff4f;
+    color: #d9534f;
+    font-family: 'Fredericka the Great', cursive;
 }
-
-/*.test{*/
-    /*background-color: #774747;*/
-/*}*/
-
-section {
-    /**background-color: whitesmoke;**/
-}
-
-.search-header {
-    margin-top: 4%;
-    text-align: left;
-}
-
-/*.details-background {*/
-    /*background-color: #774747;*/
-/*}*/
-
 
 /*LOGIN PAGE *************************************************************************************************/
 
+.topspace {
+    padding-top: 40px;
 
+}
+
+.topspace #h2 {
+    text-align: center;
+}
 
 
 .main {

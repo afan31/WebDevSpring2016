@@ -26,6 +26,8 @@
             getFollowingDetails: getFollowingDetails,
             findLikesForUser: findLikesForUser,
             findUserById : findUserById,
+            findFollowersList: findFollowersList,
+            findFollowingList: findFollowingList
             };
         return api;
 
@@ -104,6 +106,14 @@
 
         function findLikesForUser(userId){
             return $http.get("/api/project/user/getLikeDetails/"+userId);
+        }
+
+        function findFollowersList(userId){
+            return $http.get("/api/project/user/getFollowersDetails/"+userId);
+        }
+
+        function findFollowingList(userId){
+            return $http.get("/api/project/user/getFollowingDetails/"+userId);
         }
 
         function findUserById(userid){

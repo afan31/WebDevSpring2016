@@ -14,7 +14,7 @@
         //    .success(renderReview);
 
         // Added for star rating -start
-        vm.rating1 = 1;
+        vm.rating1 = 3;
         //vm.rating2 = 2;
         vm.isReadonly = true;
         vm.rateFunction = rateFunction;
@@ -25,7 +25,7 @@
         //added for star-rating -end
 
         vm.callUpdate = callUpdate;
-        renderReview(skuId);
+        //renderReview(skuId);
         vm.addReview = addReview;
         vm.selectedReview = selectedReview;
         vm.updateReview = updateReview;
@@ -37,17 +37,27 @@
         vm.undolikeProd = undolikeProd;
         vm.findUserByReviewUserId = findUserByReviewUserId;
         vm.followUser = followUser;
-        vm.isFollowedUser = isFollowedUser;
-        vm.undofollowUser = undofollowUser;
+       // vm.isFollowedUser = isFollowedUser;
+        vm.undofollowUser = undofollowUser
+        vm.isFollowed1 = isFollowed1;
+        vm.avgProductRating = avgProductRating;
 
+        function isFollowed1(a,b) {
+            //console.log("is followed 1 ....");
+            //console.log("User to be followed ",a);
+            //console.log("FOllowing user is ",b);
+            return (b.indexOf(a) > -1);
+        }
         function init() {
             UserService
                 .getCurrentUser()
                 .then(function (response) {
                     if (response.data) {
                         vm.currentUser = response.data;
+                        renderReview(skuId);
                         console.log("Current User ", vm.currentUser);
                         isliked();
+
                     }
                     else {
                         vm.readonly = true;
@@ -89,6 +99,7 @@
                         vm.reviewsData = response.data;
                         console.log("THIS ",vm.reviewsData);
                         vm.findUserByReviewUserId(vm.reviewsData);
+                        vm.avgProductRating(vm.reviewsData);
                     },
                     function (error) {
                         console.log(error.statusText);
@@ -251,27 +262,31 @@
                 .followUser(userId, vm.currentUser._id)
                 .then(function (response) {
                     if(response.status == 200){
-                        vm.isfollowed = true;
+                     //   vm.isfollowed = true;
+                        vm.reviewsData=[];
+                        init();
+                      //  renderReview(skuId);
                     }
                 }, function (error) {
                     console.log("Error in following a user", error.statusText);
                 })
         }
 
-        function isFollowedUser(userId){
-            UserService
-                .isfollowed(userId, vm.currentUser._id)
-                .then(function (response) {
-                    if(response.data){
-                        vm.isfollowed = true;
-                    }
-                    else{
-                        vm.isfollowed = false;
-                    }
-                }, function (error) {
-                    console.log("Error in retrieving productId from likes Array of current User", error.statusText);
-                })
-        }
+        //function isFollowedUser(userId){
+        //    UserService
+        //        .isfollowed(userId, vm.currentUser._id)
+        //        .then(function (response) {
+        //            if(response.data){
+        //                console.log("RESPONSE IS FOLLOWED IS ",response.data);
+        //                vm.isfollowed = true;
+        //            }
+        //            else{
+        //                vm.isfollowed = false;
+        //            }
+        //        }, function (error) {
+        //            console.log("Error in retrieving productId from likes Array of current User", error.statusText);
+        //        })
+        //}
 
         function undofollowUser(userId){
             console.log("Current user is ",userId)
@@ -280,11 +295,29 @@
                 .then(function (response) {
                     console.log(response);
                     if(response.status == 200 && (response.data.nModified == 1 || response.data.n == 1)){
-                        vm.isfollowed = false;
+                      //  vm.isfollowed = false;
+                        vm.reviewsData=[];
+                        init();
+                       // renderReview(skuId);
                     }
+                  //  vm.isfollowed = false;
+
                 }, function (error) {
                     console.log("Error in removing like for a Product", error.statusText);
                 })
+        }
+
+        function avgProductRating(reviewsData){
+            console.log("REVIEWS DATA ", reviewsData);
+            var avgRating = 0;
+            for(var each in reviewsData){
+                avgRating += parseInt(reviewsData[each].rating);
+            }
+            vm.avgRating = avgRating / reviewsData.length;
+            console.log(vm.avgRating);
+            if (isNaN(vm.avgRating)) {
+                vm.avgRating = 0;
+            }
         }
 
     }

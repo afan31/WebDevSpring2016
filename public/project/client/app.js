@@ -1,4 +1,4 @@
 'use strict';
 (function () {
-    angular.module('ShopaholicApp', ['ngRoute', 'starRating'])
+    angular.module('ShopaholicApp', ['ngRoute', 'starRating', 'ngRating'])
 })();

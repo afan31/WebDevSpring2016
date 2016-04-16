@@ -18,27 +18,44 @@
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .when("/search/:title", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .when("/browse", {
                 templateUrl: "views/category/category.view.html",
                 controller: "CategoryController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+
             })
             .when("/browse/:catg", {
                 templateUrl: "views/category/category.view.html",
                 controller: "CategoryController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .when("/details/:skuId", {
                 templateUrl: "views/details/details.view.html",
                 controller: "DetailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
+
             })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
