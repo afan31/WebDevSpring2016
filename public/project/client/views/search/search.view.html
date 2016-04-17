@@ -1,27 +1,11 @@
-<!--<section ng-show="data">-->
-    <!--<h2 class="search-header"> Search Results</h2>-->
-
-    <!--<div>-->
-        <!--<div class="col-md-4" ng-repeat="product in data.products" ng-if="product.image != undefined">-->
-            <!--<div class="thumbnail" style="height: 300px;">-->
-                <!--<a href="#/details/{{product.sku}}"><img ng-src="{{product.image}}" height="120" width="90" alt="http://placehold.it/320x150"></a>-->
-                <!--<div class="caption">-->
-                    <!--<p class="image-descr"><a href="#/details/{{product.sku}}">{{product.name.substring(0,40)}}...</a></p>-->
-                    <!--<p>-->
-                    <!--<p class="image-price">${{product.salePrice}}</p>-->
-                    <!--&lt;!&ndash;<p>{{product.shortDescription}}</p>&ndash;&gt;-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</section>-->
-
 <section ng-show="data">
     <div class="container">
         <h2 class="search-header"> Search Results</h2>
 
-        <div class="row">
+        <div class="row"
+             infinite-scroll="model.myPagingFunction()"
+             infinite-scroll-disabled='model.busy'
+             infinite-scroll-distance="1">
             <div class="col-md-4 col-sm-12 col-xs-12" ng-repeat="product in data.products" ng-if="product.image != undefined">
                 <div class="thumbnail" style="height: 300px;">
                     <a href="#/details/{{product.sku}}"><img ng-src="{{product.image}}" alt="http://placehold.it/320x150"></a>

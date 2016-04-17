@@ -43,12 +43,13 @@
     function searchController($routeParams,ProductService, $rootScope, $location) {
         var vm = this;
         console.log("Route PArams ",$routeParams.title);
+        vm.myPagingFunction = myPagingFunction;
         vm.searchParam = $routeParams.title;
-
-       // var title = $routeParams.title;
-        //console.log("Search Parameter ",title);
-
         vm.search = search;
+        vm.paginationCounter = 1;
+
+
+
 
         function init() {
             if (vm.searchParam){
@@ -57,21 +58,40 @@
         }
         init();
 
+        function myPagingFunction() {
+            console.log("Here");
+            if (vm.paginationCounter == 1) {
+                vm.paginationCounter = vm.paginationCounter + 1;
+            }
+            else {
+                if (vm.searchParam) {
+                    vm.busy = true;
+                    ProductService
+                        .findProductsByTitle(
+                            vm.searchParam,
+                            vm.paginationCounter,
+                            function (response) {
+                                if (response.products) {
+                                    $rootScope.data.products.push.apply($rootScope.data.products, response.products);
+                                    vm.busy = false;
+                                }
+                            });
+                }
+            }
+        }
+
+
         function search() {
             var apiKey ="ay4rd26c7bqjh9zutd5ynkm6";
             //alert("IN SEARCH FUNCTION");
-            console.log("HElllo", vm.searchParam);
             ProductService
-                .findProductsByTitle(vm.searchParam, render);
-                //.then(function(response){
-                //    vm.search = response.data;
-                //});
+                .findProductsByTitle(vm.searchParam,1, render);
         }
 
         function render(response){
             console.log(response);
             console.log(vm.searchParam);
-            vm = response.data;
+            //vm = response.data;
             $rootScope.data=response;
             //$location.url('/search/'+vm.searchParam);
 

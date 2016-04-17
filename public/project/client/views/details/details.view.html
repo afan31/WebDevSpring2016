@@ -80,13 +80,16 @@
                 <div class="row">
                     <div class="col-xs-8">
                         <p class="lead"> Average Rating!
-                        <h3>{{ model.avgRating }}</h3>
                             <ng-rating ng-model="model.avgRating"
                                        editable="false">
                             </ng-rating>
                         </p>
                     </div>
                 </div>
+
+
+
+
             </div>
         </div>
 
@@ -153,7 +156,7 @@
                             <a href="" ng-click="model.deleteReview(review)">Delete</a>
                         </p>
                     </div>
-                    <!--{{ vm.isfollowed}}-->
+                    {{ vm.isfollowed}}
                     <div ng-hide="model.currentUser._id == review.userId">
                         <a style="text-decoration: none" ng-if="!(model.isFollowed1(review.userId,model.currentUser.following))" href="javascript:void(0);"
                            ng-click="model.followUser(review.userId)">

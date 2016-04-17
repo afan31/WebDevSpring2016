@@ -17,16 +17,17 @@
         return api;
 
 
-        function findProductsByTitle(title, callback)    {
+        function findProductsByTitle(title,pageSize, callback)    {
             var searchParam = title;
-            console.log(searchParam);
-            $http.get("https://api.bestbuy.com/v1/products(name="+searchParam+"*&type!=movie&type!=music&type!=game&type!=BlackTie&type!=Software&productTemplate!=Accessories)?apiKey=ay4rd26c7bqjh9zutd5ynkm6&facet=customerReviewAverage&pageSize=20&format=json")
+            console.log(pageSize);
+            $http.get("https://api.bestbuy.com/v1/products(name="+searchParam+"*&type!=movie&type!=music&type!=game&type!=BlackTie&type!=Software&productTemplate!=Accessories)?apiKey=ay4rd26c7bqjh9zutd5ynkm6&facet=customerReviewAverage&format=json&page="+pageSize)
                 .success(callback);
         }
 
-        function browseProductsByCategory(category, callback)    {
+        function browseProductsByCategory(category,pageSize, callback)    {
             var categoryParam = category;
-            $http.get("https://api.bestbuy.com/v1/products((categoryPath.id="+categoryParam+"*&type!=movie&type!=music&type!=game&type!=BlackTie&type!=Software&productTemplate!=Accessories))?apiKey=ay4rd26c7bqjh9zutd5ynkm6&facet=bestSellingRank&pageSize=20&format=json")
+            var pageParam = pageSize;
+            $http.get("https://api.bestbuy.com/v1/products((categoryPath.id="+categoryParam+"*&type!=movie&type!=music&type!=game&type!=BlackTie&type!=Software&productTemplate!=Accessories))?apiKey=ay4rd26c7bqjh9zutd5ynkm6&facet=bestSellingRank&pageSize=20&format=json&page="+pageParam)
                 .success(callback);
         }
 

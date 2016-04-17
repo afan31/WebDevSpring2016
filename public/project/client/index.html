@@ -23,10 +23,16 @@
     <link href='https://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
 
     <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+    <link rel= "stylesheet" href = "css/loading-bar.css">
+
+
     <title>Shopaholic</title>
+
+
 </head>
 
 <body ng-controller="ProjectMainController">
+<div class="loader"></div>
 
 <ng-include src = "'views/header/header.view.html'"></ng-include>
         <div ng-view class="topspace">
@@ -61,6 +67,10 @@
 
 <script src="directives/starRating.js"></script>
 <script src="js/ng-rating.js"></script>
+<script src="js/ng-infinite-scroll.min.js"></script>
+<script src="js/loading-bar.js"></script>
+
+
 <!--<script src="views/users/login.controller.js"></script>-->
 <!--<script src="views/users/register.controller.js"></script>-->
 <!--<script src="views/users/profile.controller.js"></script>-->
@@ -70,8 +80,5 @@
 <!--<script src="views/header/header.controller.js"></script>-->
 
 
-
-
-
-</body>
 </html>
+
