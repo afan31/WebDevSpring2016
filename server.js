@@ -36,7 +36,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 }
 
-//for running in remote : to be coded
 
 //connect to database
 var db = mongoose.connect(connectionString);
