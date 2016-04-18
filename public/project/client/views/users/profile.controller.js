@@ -8,11 +8,16 @@
     function profileController(UserService, $rootScope, ReviewService, ProductService) {
         var vm = this;
         vm.update = update;
-
         function init() {
+
             UserService
                 .getCurrentUser()
                 .then(function (response) {
+
+                    //if(response.data.role =="admin"){
+                    //    $rootScope.isAdmin = true;
+                    //    console.log("IS ADMINNNNNN " ,$rootScope.isAdmin );
+                    //}
                         console.log(response.data);
                         vm.currentUser = response.data;
                         vm.imageApi = "/api/upload/"+vm.currentUser._id;
