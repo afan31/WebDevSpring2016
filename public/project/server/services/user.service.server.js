@@ -233,7 +233,7 @@ module.exports = function(app, userModel, productModel,securityService) {
 
     function loggedin(req, res) {
         console.log("Here in loggedin");
-        res.send(req.isAuthenticated() && req.user.type === 'assignment'? req.user: null);
+        res.send(req.isAuthenticated() && req.user.type === 'project'? req.user: null);
     }
 
 
