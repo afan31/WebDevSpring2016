@@ -27,7 +27,9 @@
             findLikesForUser: findLikesForUser,
             findUserById : findUserById,
             findFollowersList: findFollowersList,
-            findFollowingList: findFollowingList
+            findFollowingList: findFollowingList,
+            findAllUsers : findAllUsers,
+            deleteUserById : deleteUserById
             };
         return api;
 
@@ -118,6 +120,14 @@
 
         function findUserById(userid){
             return $http.get("/api/project/user/" + userid);
+        }
+
+        function findAllUsers(){
+            return $http.get("/api/project/admin/users/");
+        }
+
+        function deleteUserById(userId) {
+            return $http.delete("/api/project/user/" + userId);
         }
 
 

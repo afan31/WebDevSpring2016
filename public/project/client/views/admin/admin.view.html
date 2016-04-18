@@ -1,0 +1,100 @@
+
+<div ng-controller="AdminController as model" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 main">
+            <h1 class="page-header">Admin Space</h1>
+
+            <h3 class="page-header">Users</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>
+                            <span class="caret"></span>Username
+                        </th>
+                        <th>
+                            <span class="caret"></span>Password
+                        </th>
+                        <th>
+                            <span class="caret"></span>First Name
+                        </th>
+                        <th>
+                            <span class="caret"></span>Last Name
+                        </th>
+                        <th>
+                            <span class="caret"></span>Email
+                        </th>
+                        <th>
+                            <span class="caret"></span>Role
+                        </th>
+                        <th>Action
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input ng-model="model.user.username" type="text" class="form-control text" placeholder="username">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.password" type="text" class="form-control text" placeholder="password">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.firstName" type="text" class="form-control text" placeholder="first name">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.lastName" type="text" class="form-control text" placeholder="last name">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.email" type="text" class="form-control text" placeholder="email">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.role" type="text" class="form-control text" placeholder="role">
+                        </td>
+                        <td>
+                            <a href="" ng-click="model.register(model.user)">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                </span>
+                            </a>
+                            <a href="" ng-click="model.update(model.user)">
+                                <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true">
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+
+
+                    <tr ng-repeat="user in model.userData">
+                        <td>
+                            {{user.username}}
+                        </td>
+                        <td>
+                            {{user.password.substring(0,10)}}...
+                        </td>
+                        <td>
+                            {{user.firstName}}
+                        </td>
+                        <td>
+                            {{user.lastName}}
+                        </td>
+                        <td>
+                            {{user.email.toString()}}
+                        </td>
+                        <td>
+                            {{user.role}}
+                        </td>
+                        <td>
+                            <a href="" ng-click="model.selectUser($index)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil pull-left">
+                                            </span>
+                            </a>
+                            <a href="" ng-click="model.deleteUser(user._id)">
+                                            <span class="glyphicon glyphicon-remove pull-right">
+                                            </span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

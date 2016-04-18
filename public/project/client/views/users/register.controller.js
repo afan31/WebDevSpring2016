@@ -17,10 +17,10 @@
             //    .then(function (response) {
             //            console.log(response.data);
             //            vm.currentUser = response.data;
-            //        },
-            //        function (error) {
-            //            console.log(error.statusText);
-            //        });
+                //        },
+                //        function (error) {
+                //            console.log(error.statusText);
+                //        });
         }
         init();
 

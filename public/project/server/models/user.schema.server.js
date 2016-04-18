@@ -7,7 +7,7 @@ module.exports = function(mongoose) {
         firstName: String,
         lastName: String,
         email: [String],
-        roles: [String],
+        role: {type:String, default:"User"},
         //phones:[String],
         likes:[String],
         followers:[String],

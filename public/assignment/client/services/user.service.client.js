@@ -15,9 +15,9 @@
             logout : logout,
             register: register,
             updateUser: updateUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
 
-            //findAllUsers : findAllUsers,
+            //findAllUsers : findAllUsers
             //findUserByUsername: findUserByUsername,
             //findUserByCredentials: findUserByCredentials,
             //deleteUserById: deleteUserById,

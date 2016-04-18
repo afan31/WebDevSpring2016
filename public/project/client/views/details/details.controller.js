@@ -3,15 +3,9 @@
         .module("ShopaholicApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($routeParams, $http, ProductService, UserService, ReviewService) {
+    function DetailsController($rootScope, $routeParams, $http, ProductService, UserService, ReviewService) {
         var vm = this;
-        //console.log("This vm ", vm.product);
         var skuId = $routeParams.skuId;
-
-
-
-        //$http.get("http://api.bestbuy.com/v1/reviews(sku="+skuId+")?format=json&apiKey=ay4rd26c7bqjh9zutd5ynkm6")
-        //    .success(renderReview);
 
         // Added for star rating -start
         vm.rating1 = 1;
@@ -37,7 +31,6 @@
         vm.undolikeProd = undolikeProd;
         vm.findUserByReviewUserId = findUserByReviewUserId;
         vm.followUser = followUser;
-       // vm.isFollowedUser = isFollowedUser;
         vm.undofollowUser = undofollowUser
         vm.isFollowed1 = isFollowed1;
         vm.avgProductRating = avgProductRating;
@@ -46,6 +39,11 @@
             return (b.indexOf(a) > -1);
         }
         function init() {
+            $rootScope.$on('$routeChangeSuccess', function () {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            });
+
             UserService
                 .getCurrentUser()
                 .then(function (response) {
@@ -70,6 +68,7 @@
                 vm.product = response;
                 console.log("Product is ", vm.product);
             }
+
 
         }
         init();

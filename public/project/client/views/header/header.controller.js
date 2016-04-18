@@ -9,10 +9,19 @@
 
         var vm  = this;
 
+        vm.isAdmin = false;
         vm.logout = logout;
 
         function init(){
             vm.$location = $location;
+            UserService
+                .getCurrentUser()
+                .then(function (response) {
+                   if(response.data.role =="admin"){
+                       vm.isAdmin = true;
+                       console.log("IS ADMINNNNNN " ,vm.isAdmin );
+                   }
+                });
         }
         init();
 

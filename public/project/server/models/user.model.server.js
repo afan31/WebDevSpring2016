@@ -29,7 +29,9 @@ module.exports= function(db, mongoose) {
         removeFromFollowers: removeFromFollowers,
         removeFromFollowing: removeFromFollowing,
         findAllFollowers: findAllFollowers,
-        findAllFollowing: findAllFollowing
+        findAllFollowing: findAllFollowing,
+        findAllUsers: findAllUsers,
+        deleteUserById : deleteUserById
 
     };
     return api;
@@ -218,6 +220,27 @@ module.exports= function(db, mongoose) {
                 $pullAll: {likes: [productId]}
             }
         );
+    }
+
+    function findAllUsers(){
+        var deferred = q.defer();
+
+        UserModel.find({
+
+        }, function(err, users) {
+            if(err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function deleteUserById(index){
+        var usersAfterDeletion = UserModel.remove ({ _id: index})
+        return usersAfterDeletion;
     }
 
 }

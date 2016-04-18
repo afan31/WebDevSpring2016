@@ -31,6 +31,8 @@
                     getLoggedIn: getLoggedIn
                 }
             })
+
+
             .when("/browse", {
                 templateUrl: "views/category/category.view.html",
                 controller: "CategoryController",
@@ -62,6 +64,15 @@
                 controller: "RegisterController",
                 controllerAs: "model"
 
+            })
+
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .when("/login", {
                 templateUrl: "views/users/login.view.html",

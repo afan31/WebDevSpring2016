@@ -35,6 +35,10 @@ module.exports = function(app, userModel, productModel,securityService) {
 
     app.post ("/api/upload/:userId", upload.single('myFile'), uploadImage);
 
+    app.get("/api/project/admin/users/" , findAllUsers);
+
+    app.delete("/api/project/user/:userId" , deleteUserById);
+
 
 
     function uploadImage(req, res) {
@@ -232,7 +236,6 @@ module.exports = function(app, userModel, productModel,securityService) {
 
 
     function loggedin(req, res) {
-        console.log("Here in loggedin");
         res.send(req.isAuthenticated() && req.user.type === 'project'? req.user: null);
     }
 
@@ -378,4 +381,32 @@ module.exports = function(app, userModel, productModel,securityService) {
                 res.status(400).send("Error in getting likes list for routeparams user", error.statusText);
             })
     }
+
+    function findAllUsers(req,res) {
+        userModel
+            .findAllUsers()
+            .then(function(response){
+                console.log("USERS IS ", response.data);
+                res.json(response);
+            },
+                function (error) {
+                    res.status(400).send("Error in getting users list for admin", error.statusText);
+
+                })
+    }
+
+    function deleteUserById(req, res) {
+        var userId = req.params.userId;
+        userModel.deleteUserById(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
 }
