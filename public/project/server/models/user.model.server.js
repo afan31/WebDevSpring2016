@@ -2,7 +2,7 @@
 
 // load q promise library
 var q = require("q");
-
+var bcrypt = require("bcrypt-nodejs");
 // pass db and mongoose reference to model
 module.exports= function(db, mongoose) {
 
@@ -170,7 +170,8 @@ module.exports= function(db, mongoose) {
         console.log(user.email);
         //user.phones = user.phones.toString().split(',');
         //console.log(user.phones);
-        console.log("updating....")
+        console.log("updating....");
+        user.password = bcrypt.hashSync(user.password);
         return UserModel
             .update (
                 {_id: userId},

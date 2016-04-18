@@ -1,12 +1,18 @@
 
-module.exports = function(app, userModel, productModel) {
+module.exports = function(app, userModel, productModel,securityService) {
+
+    var bcrypt = require("bcrypt-nodejs");
 
     var multer  = require('multer');
     var upload = multer({ dest: __dirname+'/../../../../public/uploads' });
 
+    var passport  = securityService.getPassport();
+
+
     app.post("/api/project/register", register);
     app.get("/api/project/profile/:userId", profile);
-    app.post("/api/project/login", login);
+    app.post("/api/project/login", passport.authenticate('project'), login);
+
     app.get("/api/project/loggedin", loggedin);
     app.post("/api/project/logout", logout);
     app.put("/api/project/user/:userId", updateUser);
@@ -160,14 +166,28 @@ module.exports = function(app, userModel, productModel) {
 
     function register(req, res) {
         var user = req.body;
+
         //console.log("User created is ", user);
+        user.password = bcrypt.hashSync(user.password);
+
         user = userModel.createUser(user)
             // handle model promise
             .then(
                 // login user if promise resolved
-                function (doc) {
-                    req.session.currentUser = doc;
-                    res.json(user);
+                function (user) {
+                    if(user){
+
+                    req.login(user, function (err) {
+                        console.log("User in user service register ", user);
+                        if (err) {
+                            console.log("ERROR");
+                            res.status(400).send(err);
+                        } else {
+                            console.log("NO ERROR ",user);
+                            res.json(user);
+                        }
+                    });
+                }
                 },
                 // send error if promise rejected
                 function(err) {
@@ -189,35 +209,31 @@ module.exports = function(app, userModel, productModel) {
             );
     }
 
+    //function login(req, res) {
+    //    var credentials = req.body;
+    //    var user = userModel.findUserByCredentials(credentials)
+    //        .then(
+    //            function(doc) {
+    //                //console.log("This is ",doc);
+    //                req.session.currentUser = doc;
+    //                res.json(doc);
+    //            },
+    //            function (err) {
+    //                res.status(400).send(err);
+    //            }
+    //        );
+    //}
+
     function login(req, res) {
-        var credentials = req.body;
-        var user = userModel.findUserByCredentials(credentials)
-            .then(
-                function(doc) {
-                    //console.log("This is ",doc);
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+        var user = req.user;
+        console.log("login ", user);
+        res.json(user);
     }
 
 
     function loggedin(req, res) {
-       //// console.log("In logged in",req.session.currentUser);
-       //var curr = req.session.currentUser;
-       // userModel.findUserByUsername(curr.username).then(
-       //     function(user) {
-       //         req.session.currentUser = user;
-       //         res.send(req.session.currentUser);
-       //     }, function (err) {
-       //         console.log(err);
-       //         res.status(400).send(err);
-       //     }
-       // );
-        res.json(req.session.currentUser);
+        console.log("Here in loggedin");
+        res.send(req.isAuthenticated() && req.user.type === 'assignment'? req.user: null);
     }
 
 
@@ -229,12 +245,10 @@ module.exports = function(app, userModel, productModel) {
     function updateUser(req, res) {
         var user = req.body;
         var userId = req.params.userId;
-        //console.log("IN MODEL UPDATE ", user);
+        console.log("Update user" , user);
         userModel.updateUser(user,userId)
             .then(
                 function(doc) {
-                    //console.log(doc);
-                    //req.session.currentUser = doc;
                     res.json(doc);
 
                 },
@@ -245,11 +259,12 @@ module.exports = function(app, userModel, productModel) {
     }
 
     function findUserByUsername (req, res) {
-        //console.log("FIND USERNAME ", req.query.username);
+        console.log("FIND USERNAME ", req.query.username);
         userModel
             .findUserByUsername (req.query.username)
             .then (
                 function (user) {
+                    console.log("USER returned is ", user);
                     //delete user.password;
                     res.json (user);
                 },

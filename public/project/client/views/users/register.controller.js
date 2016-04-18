@@ -35,7 +35,9 @@
                     UserService
                         .register(user)
                         .then(function(response) {
+                            console.log("RESPONSE ",response);
                             var currentUser = response.data;
+                            //console.log("Current User ",currentUser);
                             if (currentUser != null) {
                                 UserService.setCurrentUser(currentUser);
                                 $location.url("/profile");

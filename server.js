@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser    = require('body-parser');
 var multer        = require('multer');
+var passport = require('passport');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var uuid          = require('node-uuid');
@@ -14,7 +15,8 @@ app.use(session({   secret: "afan",
     resave: false,
     saveUninitialized: true
 }));
-app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Install and Require the mongoose library
 var mongoose = require('mongoose');
@@ -48,6 +50,10 @@ app.get('/hello', sayHello);
     res.send('hello world');
 }
 
-require("./public/assignment/server/app.js")(app, uuid,db, mongoose);
-require("./public/project/server/app.js")(app, uuid, db, mongoose);
+var userModelAssignment = require("./public/assignment/server/models/user.model.server.js")(db, mongoose);
+var userModelProject = require("./public/project/server/models/user.model.server.js")(db, mongoose);
+var securityService = require("./public/project/common-service/security.js")(userModelAssignment,userModelProject);
+
+require("./public/assignment/server/app.js")(app, uuid,db, mongoose,userModelAssignment,securityService);
+require("./public/project/server/app.js")(app, uuid, db, mongoose,userModelProject, securityService);
 app.listen(port, ipaddress);

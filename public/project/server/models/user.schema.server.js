@@ -12,7 +12,8 @@ module.exports = function(mongoose) {
         likes:[String],
         followers:[String],
         following:[String],
-        imageUrl: String
+        imageUrl: String,
+        type:{type:String, default:"project"}
         // collection property sets
         // collection name to 'user'
     }, {collection: 'Shopaholic.user'});
