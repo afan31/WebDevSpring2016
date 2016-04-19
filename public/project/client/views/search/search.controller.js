@@ -1,37 +1,3 @@
-//(function () {
-//    angular
-//        .module("ShopaholicApp")
-//        .controller("SearchController", searchController);
-//
-//    function searchController($location, $scope, $http, $routeParams, ProductService, $rootScope) {
-//
-//        var apiKey ="ay4rd26c7bqjh9zutd5ynkm6";
-//        var title = $routeParams.title;
-//        console.log(title);
-//        if (title){
-//            search(title);
-//        }
-//
-//        //event handler declaration
-//        $scope.search = search;
-//
-//        //event handler implementations
-//        function search(title){
-//            console.log(title);
-//            $location.url("/search/"+title);
-//            var searchParam = title;
-//            //console.log("https://api.bestbuy.com/v1/products((search="+searchParam+"))?apiKey=ay4rd26c7bqjh9zutd5ynkm6&format=json" );
-//            ProductService.findProductsByTitle(searchParam, render);
-//        }
-//
-//        function render(response){
-//            console.log(response);
-//            $rootScope.data=response;
-//        }
-//    }
-//})();
-
-
 'use strict';
 
 (function () {
@@ -42,14 +8,12 @@
 
     function searchController($routeParams,ProductService, $rootScope, $location) {
         var vm = this;
-        console.log("Route PArams ",$routeParams.title);
+        //console.log("Route PArams ",$routeParams.title);
         vm.myPagingFunction = myPagingFunction;
         vm.searchParam = $routeParams.title;
         vm.search = search;
+        vm.searchOnEnter = searchOnEnter;
         vm.paginationCounter = 1;
-
-
-
 
         function init() {
             if (vm.searchParam){
@@ -82,6 +46,7 @@
 
 
         function search() {
+            console.log("THIS IS ", vm.searchParam);
             var apiKey ="ay4rd26c7bqjh9zutd5ynkm6";
             //alert("IN SEARCH FUNCTION");
             ProductService
@@ -89,12 +54,15 @@
         }
 
         function render(response){
-            console.log(response);
-            console.log(vm.searchParam);
-            //vm = response.data;
             $rootScope.data=response;
-            //$location.url('/search/'+vm.searchParam);
+        }
 
+        function searchOnEnter(event, title) {
+            if (event.keyCode === 13) {
+                $location.url("/search/"+title);
+                search();
+                //$state.go("home.result", {keyword: keyword, isCategory: false});
+            }
         }
     }
 })();

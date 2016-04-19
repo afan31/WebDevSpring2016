@@ -148,7 +148,7 @@
                     <div star-rating ng-model="review.rating" max="5" on-rating-select="model.rateFunction(rating)"></div>
                     <p><b>Title: </b>{{review.title}}</p>
                     <p><b>Comment: </b>{{review.review}}</p>
-                    <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
+                    <p class="pull-right" style="color: #2b542c"><b>Created: </b>{{review.createdOn | date : 'mediumDate'}}</p>
                     <!--<p class="pull-right" style="color: #2b542c"><b>Updated On: </b>{{review.updatedOn | date : 'mediumDate'}}</p>-->
                     <div ng-show="model.currentUser._id == review.userId">
                         <p><a id="edit" style="text-decoration: none" href=""

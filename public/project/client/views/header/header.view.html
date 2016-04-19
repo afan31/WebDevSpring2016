@@ -11,26 +11,26 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#/home">Home</a></li>
+                        <li><a href="#/home" data-target="#navbar" data-toggle="collapse">Home</a></li>
                         <li ng-class="{'active': model.$location.url().indexOf('/admin')>=0}"
                             ng-show="currentUser.role === 'admin' ">
-                            <a href="#/admin">Admin</a></li>
+                            <a href="#/admin" data-target="#navbar" data-toggle="collapse">Admin</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--<li><a href="#/login">Login</a></li>-->
                         <!--<li><a href="#/register">Register</a></li>-->
                         <li ng-hide="currentUser" ng-class="{'active': model.$location.url() == '/register'}">
-                            <a href="#/register">Register</a>
+                            <a href="#/register" data-target="#navbar" data-toggle="collapse">Register</a>
                         </li>
                         <li ng-hide="currentUser" ng-class="{'active': model.$location.url() == '/login'}">
                             <a href="#/login" data-target="#navbar" data-toggle="collapse">Login</a>
                         </li>
                         <li ng-show="currentUser">
-                            <a href="#/profile">{{currentUser.username}}</a>
+                            <a href="#/profile" data-target="#navbar" data-toggle="collapse">{{currentUser.username}}</a>
                         </li>
                         <li ng-hide="!currentUser"
                             ng-click="model.logout()">
-                            <a href="">Logout</a>
+                            <a href="" data-target="#navbar" data-toggle="collapse">Logout</a>
                         </li><ul>
                 </div>
         </div>
