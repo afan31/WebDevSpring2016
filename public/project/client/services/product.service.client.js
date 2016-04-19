@@ -36,6 +36,7 @@
         }
 
         function addProd(prod){
+            console.log("in client ", prod);
             return $http.post("/api/project/product",prod);
         }
 

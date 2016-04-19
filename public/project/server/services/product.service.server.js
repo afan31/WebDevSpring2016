@@ -11,7 +11,7 @@ module.exports = function (app, productModel) {
                 res.json(resposne);
 
             }, function (error) {
-                res.status (400).send ("Error in adding restaurant to restaurant collection", error.statusText);
+                res.status (400).send ("Error in adding product to restaurant collection", error.statusText);
             })
     }
 
@@ -25,7 +25,7 @@ module.exports = function (app, productModel) {
                 res.json(response);
 
             }, function (error) {
-                res.status (400).send ("Error in adding restaurant to restaurant collection", error.statusText);
+                res.status (400).send ("Error in adding product to restaurant collection", error.statusText);
             })
     }
 

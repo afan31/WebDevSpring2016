@@ -17,11 +17,9 @@ module.exports = function(db, mongoose) {
     function addProd(prod){
         //console.log("Product is" ,prod);
         var prodObj = {
-            "_id":prod.sku,
             "name":prod.name,
             "imageUrl": prod.thumbnailImage
         };
-    //console.log(prodObj);
         return Product.findOneAndUpdate({'_id':prod.sku},prodObj,{upsert:true});
     }
 
