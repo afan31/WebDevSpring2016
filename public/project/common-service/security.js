@@ -36,7 +36,7 @@ module.exports = function (assignmentModel, projectModel) {
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    if (user && bcrypt.compareSync(password,user.password)) {
+                    if (user) {
                         console.log("I am here");
                         return done(null, user);
                     } else {
