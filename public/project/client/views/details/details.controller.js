@@ -228,7 +228,8 @@
             UserService
                 .addLike(skuId, vm.currentUser._id)
                 .then(function (response) {
-                    if(response.status == 200){
+                    if(response.status == 200 || response.data.n == 1){
+                        console.log("RESPONSE FOR LIKE ", response);
                         vm.isliked = true;
                         ProductService.addProd(vm.product);
                     }
