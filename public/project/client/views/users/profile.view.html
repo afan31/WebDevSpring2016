@@ -9,7 +9,7 @@
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
             <div ng-if="model.isdifferentUser" class="alert alert-warning">
-                <strong>Warning!</strong> You are viewing <b>{{model.visitor.username}}'s</b> profile. You are not allowed to make any changes.
+               You are viewing <strong>{{model.visitor.username}}'s</strong> profile. You won't be able to make any changes here.
             </div>
             <div class="card hovercard">
                 <div class="card-background">
@@ -58,7 +58,8 @@
                 <div class="btn-group" role="group">
                     <button type="button" id="editProfile" class="btn btn-default" href="#tab5" data-toggle="tab"><span
                             class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                        <div class="hidden-xs">Edit Profile</div>
+                        <div ng-if="!model.isdifferentUser" class="hidden-xs">Edit Profile</div>
+                        <div ng-if="model.isdifferentUser" class="hidden-xs">{{model.visitor.username}}'s profile</div>
                     </button>
                 </div>
             </div>
@@ -66,7 +67,8 @@
             <div class="well">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
-                        <h3 class="sub-heading">Products you liked</h3>
+                        <h3 ng-if="!model.isdifferentUser" class="sub-heading">Products you liked</h3>
+                        <h3 ng-if="model.isdifferentUser" class="sub-heading">Products liked by <strong>{{model.visitor.username}}</strong></h3>
                         <div class="row">
                             <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="prod in model.likesData">
                                 <div class="thumbnail" style="height: 200px;">
@@ -80,7 +82,8 @@
 
                     </div>
                     <div class="tab-pane fade in" id="tab2">
-                        <h3 class="sub-heading">People following you</h3>
+                        <h3 ng-if="!model.isdifferentUser" class="sub-heading">People following you</h3>
+                        <h3 ng-if="model.isdifferentUser" class="sub-heading">People following <strong>{{model.visitor.username}}</strong></h3>
 
                         <div class="row">
                             <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="user in model.followersData">
@@ -95,7 +98,8 @@
 
 
                     <div class="tab-pane fade in" id="tab3">
-                        <h3 class="sub-heading">People you following</h3>
+                        <h3 ng-if="!model.isdifferentUser" class="sub-heading">People you following</h3>
+                        <h3 ng-if="model.isdifferentUser" class="sub-heading">People <strong>{{model.visitor.username}}</strong> follows</h3>
                         <div class="row">
                             <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="user in model.followingData">
                                 <div class="thumbnail" style="height: 200px;">
@@ -108,7 +112,8 @@
 
 
                     <div class="tab-pane fade in" id="tab4">
-                        <h3 class="sub-heading">Reviews</h3>
+                        <h3 ng-if="!model.isdifferentUser" class="sub-heading">Reviews written by you </h3>
+                        <h3 ng-if="model.isdifferentUser" class="sub-heading">Reviews written by <strong>{{model.visitor.username}}</strong></h3>
                         <hr>
                         <div ng-repeat="review in model.reviewsData">
                             <div class="container-fluid ng-scope">
@@ -136,7 +141,8 @@
                         <div class="container-fluid" ng-controller="ProfileController">
                             <div class="row">
                                 <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 main">
-                                    <h3 class="sub-heading">Profile</h3>
+                                    <h3 ng-if="!model.isdifferentUser" class="sub-heading">Your Profile</h3>
+                                    <h3 ng-if="model.isdifferentUser" class="sub-heading"><strong>{{model.visitor.username}}'s</strong> profile</h3>
                                     <hr>
                                     <form class="form-horizontal" role="form" action="{{model.imageApi}}"
                                           method="post"
