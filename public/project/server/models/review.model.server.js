@@ -35,10 +35,12 @@ module.exports = function (uuid, mongoose) {
     }
 
     function updateReview(review) {
+        var id = review._id;
+        delete review._id;
         var deferred = q.defer();
         return ReviewModel
             .update(
-                {_id: review._id},
+                {_id: id},
                 {$set: review}
             );
     }
