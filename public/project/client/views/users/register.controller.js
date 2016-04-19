@@ -10,6 +10,7 @@
         var vm = this;
 
         vm.register = register;
+        vm.isUsernamePresent = false;
 
         function init() {
             //UserService
@@ -30,19 +31,20 @@
                 .findUserByUsername(user.username)
                 .then(function(response){
                     if(response.data){
-                        alert("Username is already present");
+                        vm.isUsernamePresent = true;
+                    }else {
+                        UserService
+                            .register(user)
+                            .then(function (response) {
+                                console.log("RESPONSE ", response);
+                                var currentUser = response.data;
+                                //console.log("Current User ",currentUser);
+                                if (currentUser != null) {
+                                    UserService.setCurrentUser(currentUser);
+                                    $location.url("/profile");
+                                }
+                            });
                     }
-                    UserService
-                        .register(user)
-                        .then(function(response) {
-                            console.log("RESPONSE ",response);
-                            var currentUser = response.data;
-                            //console.log("Current User ",currentUser);
-                            if (currentUser != null) {
-                                UserService.setCurrentUser(currentUser);
-                                $location.url("/profile");
-                            }
-                        });
                 });
         }
     }

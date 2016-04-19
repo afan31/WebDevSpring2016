@@ -1,12 +1,12 @@
-<h3 class="search-header details-background">Product Details</h3>
+
 
 <div class="search-header details-background container">
-
+    <h2 class=" headerColor details-background">Product Details</h2>
     <div class="row">
 
         <div class="col-sm-4">
             <p class="lead">{{ model.product.name }}</p>
-            <div class="list-group table-responsive">
+            <div class="list-group details table-responsive">
                 <table class="table table-striped">
                     <tr>
                         <th>Condition</th>
@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <th>Price</th>
-                        <td>{{model.product.salePrice}}</td>
+                        <td>${{model.product.salePrice}}</td>
                     </tr>
                     <tr>
                         <th>Manufacture</th>
@@ -59,58 +59,59 @@
                 </table>
 
                 <br><br>
-                <!--{{ model.product}}-->
 
+                <div class="text-center">
+                    <p ng-hide="model.isliked" class="lead custom">Like this product? Let us know!</p>
                 <a style="text-decoration: none" ng-hide="model.isliked" href=""
                    ng-click="model.likeProd(model.product.sku)">
-                    <p class="lead">Like this product? Let us know!</p>
+
                     <i title="Like" class="fa fa-thumbs-o-up fa-lg fa-2x"></i></a>
+                    <p ng-if="model.isliked" class="lead custom">You have liked this product. <b class="dangerText">Click below to dislike it!</b></p>
                 <a style="text-decoration: none" ng-if="model.isliked" href=""
                    ng-click="model.undolikeProd(model.product.sku)">
-                    <p class="lead">You have liked this product. Click below to dislike it!</p>
+
                     <i title="Unlike" class="fa fa-thumbs-o-down fa-lg fa-2x orangecolor"></i></a>
 
                 <hr>
 
 
-
-                <div class="row">
-                    <div class="col-xs-8">
-                        <p class="lead"> Average Rating!
-                            <ng-rating ng-model="model.avgRating"
+                        <p class="lead custom"> Average Rating!</p>
+                           <p> <ng-rating ng-model="model.avgRating"
                                        editable="false">
                             </ng-rating>
                         </p>
-                    </div>
+                    <p class="lead">{{model.avgRating}}/5</p>
+
                 </div>
 
-
-
-
-            </div>
+          </div>
         </div>
 
         <div class="col-sm-8">
 
             <div class="thumbnail">
-                <img class="img-responsive" ng-src="{{model.product.image}}" alt="http://placehold.it/800x300">
+                <img class="img-responsive" ng-src="{{model.product.image}}" alt="Loading ...">
                 <div class="caption-full">
-                    <h4 class="pull-right">{{model.product.salePrice}}</h4>
+                    <h4 class="pull-right">${{model.product.salePrice}}</h4>
                     <h4><a href="">{{model.product.name }}</a>
                     </h4>
                     <p>{{model.product.longDescription}}</p>
-                    <div class="ratings">
-                        <p class="pull-right">Total Reviews: {{model.product.customerReviewCount}}</p>
-                    </div>
                 </div>
+            </div>
+
+            <div ng-if="!model.currentUser" class="alert alert-info">
+                <strong>Not logged in?</strong> Login to 'Like' this product or write a review about it.
+            </div>
+
+            <div ng-if="model.reviewsData.length===0" class="alert alert-info">
+                <strong>No reviews?</strong> Help others by writing a review.
             </div>
 
             <div class="well" ng-show="model.reviewsData">
                 <div class="text-right">
-                    <a class="btn btn-success" onclick="showWriteReviewDiv()">Leave a Review</a>
+                    <a class="btn btn-success" ng-click="model.showReview()">Leave a Review</a>
                 </div>
-
-                <div id="writeReviewDiv" style="display:none;" class="panel-body">
+                <div id="writeReviewDiv" style="display:block;" class="panel-body" ng-if="model.abc">
                     <div class="row">
                         <div class="well margin-well">
                             <h4>What do you think about the product?</h4>
@@ -124,13 +125,13 @@
                                     <textarea ng-model="model.review.review" placeholder="Your Review" class="form-control"
                                               rows="3"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="submit" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="model.addReview(model.review, model.rating1)"
+                                <button type="submit" class="btn btn-primary" id="submit" ng-if="model.xyz" ng-click="model.addReview(model.review, model.rating1)"
                                         >Submit
                                 </button>
-                                <button type="submit" class="btn btn-warning" id="update" style="display:none;" onclick="hideWriteReviewDiv()" ng-click="model.updateReview(model.review)">Update
+                                <button type="submit" class="btn btn-warning" id="update" ng-if="!model.xyz" ng-click="model.updateReview(model.review, model.rating1)">Update
                                 </button>
 
-                                <button type="submit" class="btn btn-info" id="cancel" style="display:none;" href="" onclick="hideWriteReviewDivCancelLink()"
+                                <button type="submit" class="btn btn-info" id="cancel" href=""
                                         ng-click="model.cancelReview($index)">
                                     Cancel
                                 </button>
@@ -139,29 +140,32 @@
                     </div>
                 </div>
 
+
+
                 <hr>
                 <div ng-repeat="review in model.reviewsData">
-                    <p><b>Reviewer: </b>{{review.username}}</p>
+                    <p><b>Reviewer: </b><a  href="#/profile/{{review.userId}}" style="text-decoration: none">{{review.username}}</a>    <b class="message">Click on the name to visit this profile</b></p>
                     <div star-rating ng-model="review.rating" max="5" on-rating-select="model.rateFunction(rating)"></div>
                     <p><b>Title: </b>{{review.title}}</p>
                     <p><b>Comment: </b>{{review.review}}</p>
                     <p class="pull-right" style="color: #2b542c"><b>Created On: </b>{{review.createdOn | date : 'mediumDate'}}</p>
                     <!--<p class="pull-right" style="color: #2b542c"><b>Updated On: </b>{{review.updatedOn | date : 'mediumDate'}}</p>-->
                     <div ng-show="model.currentUser._id == review.userId">
-                        <p><a id="edit" href="" onclick="showWriteReviewDivCancelLink()"
+                        <p><a id="edit" style="text-decoration: none" href=""
                               ng-click="model.selectedReview($index)"> Edit | </a>
-                            <a href="" ng-click="model.deleteReview(review)">Delete</a>
+                            <a href="" style="text-decoration: none" ng-click="model.deleteReview(review)">Delete</a>
                         </p>
                     </div>
-                    {{ vm.isfollowed}}
                     <div ng-hide="model.currentUser._id == review.userId">
+                        <p  ng-if="!(model.isFollowed1(review.userId,model.currentUser.following))" class="custom">Click below to follow this user!</p>
                         <a style="text-decoration: none" ng-if="!(model.isFollowed1(review.userId,model.currentUser.following))" href="javascript:void(0);"
                            ng-click="model.followUser(review.userId)">
-                            <p class="lead">Click below to follow this user!</p>
+
                             <i title="Follow" class="fa fa-user fa-lg fa-2x"></i></a>
+                        <p ng-if="(model.isFollowed1(review.userId,model.currentUser.following))"class="custom">You have followed this user.<b class="dangerText"> Click below to un-follow!</b></p>
                         <a style="text-decoration: none" ng-if="model.isFollowed1(review.userId,model.currentUser.following)" href="javascript:void(0);"
                            ng-click="model.undofollowUser(review.userId)">
-                            <p class="lead">You have followed this user. Click below to un-follow!</p>
+
                             <i title="Un-Follow" class="fa fa-user fa-lg fa-2x orangecolor"></i></a>
                         <hr>
                     </div>
@@ -185,25 +189,8 @@
             return $(this).attr('data-score');
         }
     });
-    function showWriteReviewDiv() {
-        document.getElementById('writeReviewDiv').style.display = "block";
-        document.getElementById('submit').style.display = "inline";
-    }
-    function hideWriteReviewDiv() {
-        document.getElementById('writeReviewDiv').style.display = "none";
-    }
-    function showWriteReviewDivCancelLink() {
-        document.getElementById('writeReviewDiv').style.display = "block";
-        document.getElementById('edit').style.display = "none";
-        document.getElementById('cancel').style.display = "inline";
-        document.getElementById('update').style.display = "inline";
-    }
 
-    function hideWriteReviewDivCancelLink() {
-        document.getElementById('writeReviewDiv').style.display = "none";
-        document.getElementById('edit').style.display = "inline";
-        document.getElementById('cancel').style.display = "none";
-    }
-
-
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>

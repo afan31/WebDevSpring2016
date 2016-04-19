@@ -6,6 +6,8 @@
     function DetailsController($rootScope, $routeParams, $http, ProductService, UserService, ReviewService) {
         var vm = this;
         var skuId = $routeParams.skuId;
+        vm.abc = false;
+        vm.xyz = true;
 
         // Added for star rating -start
         vm.rating1 = 1;
@@ -34,11 +36,13 @@
         vm.undofollowUser = undofollowUser
         vm.isFollowed1 = isFollowed1;
         vm.avgProductRating = avgProductRating;
+        vm.showReview = showReview;
 
         function isFollowed1(a,b) {
             return (b.indexOf(a) > -1);
         }
         function init() {
+
             $rootScope.$on('$routeChangeSuccess', function () {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
@@ -47,8 +51,13 @@
             UserService
                 .getCurrentUser()
                 .then(function (response) {
+                    console.log("RESPONSE ", response.data);
+                    if(!response.data){
+                        vm.isliked = false;
+                    }
                     if (response.data) {
                         vm.currentUser = response.data;
+
                         renderReview(skuId);
                         console.log("Current User ", vm.currentUser);
                         isliked();
@@ -114,6 +123,7 @@
                 .then(function (response) {
                         console.log("RESPONSE DATA FOR ADD REVIEW IS" , response.data);
                         vm.reviewsData = response.data;
+                        vm.abc = false;
                         renderReview(skuId);
                     },
                     function (error) {
@@ -138,6 +148,8 @@
         }
 
         function selectedReview(ratingIndex) {
+            vm.abc = true;
+            vm.xyz = false;
             console.log("Selected Reviews data ", vm.reviewsData[ratingIndex]);
             vm.selectedIndex = ratingIndex;
             //var editReview = ProductService.selectedReview(234,$routeParams.skuId,reviewObject);
@@ -152,20 +164,23 @@
 
             console.log(editReview);
 
-            vm.editReview = editReview;
+            vm.review = editReview;
         }
 
-        function updateReview(review) {
+        function updateReview(review, rating) {
             review.userId = vm.currentUser._id;
+            review.rating = rating;
             console.log("THIS IS UPDATED REVIEW ", review);
             ReviewService
                 .updateReview(review)
                 .then(function (response) {
-                    if (response.status == 200) {
+                    console.log("Here is the response ",response);
+                    if (response) {
                         console.log("Updated Review is ",response);
                         vm.reviewsData[vm.selectedIndex] = response;
                         vm.selectedIndex = -1;
                         vm.review = {};
+                        vm.abc = false;
                         renderReview(skuId);
                     }
                 }, function (error) {
@@ -190,6 +205,7 @@
         }
 
         function cancelReview(reviewIndex) {
+            vm.abc = false;
             vm.selectedIndex = reviewIndex;
             vm.selectedIndex = -1;
             vm.review = null;
@@ -207,6 +223,7 @@
 
 
         function likeProd(productId){
+            console.log("Here in likeProd");
             console.log("get current user ", vm.currentUser);
             UserService
                 .addLike(skuId, vm.currentUser._id)
@@ -221,6 +238,7 @@
         }
 
         function isliked(){
+            console.log("Here in liked ");
             console.log("get current user here ", vm.currentUser);
             UserService
                 .isLiked(skuId, vm.currentUser._id)
@@ -268,22 +286,6 @@
                 })
         }
 
-        //function isFollowedUser(userId){
-        //    UserService
-        //        .isfollowed(userId, vm.currentUser._id)
-        //        .then(function (response) {
-        //            if(response.data){
-        //                console.log("RESPONSE IS FOLLOWED IS ",response.data);
-        //                vm.isfollowed = true;
-        //            }
-        //            else{
-        //                vm.isfollowed = false;
-        //            }
-        //        }, function (error) {
-        //            console.log("Error in retrieving productId from likes Array of current User", error.statusText);
-        //        })
-        //}
-
         function undofollowUser(userId){
             console.log("Current user is ",userId)
             UserService
@@ -314,6 +316,13 @@
             if (isNaN(vm.avgRating)) {
                 vm.avgRating = 0;
             }
+        }
+
+        function showReview() {
+            vm.abc = true;
+            vm.xyz = true;
+            console.log("show review ",vm.abc);
+
         }
 
     }

@@ -1,17 +1,32 @@
 <div class="container-fluid profileBackground" ng-controller="ProfileController">
 
+
+
+
     <div class="row">
+
+
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
+            <div ng-if="model.isdifferentUser" class="alert alert-warning">
+                <strong>Warning!</strong> You are viewing <b>{{model.visitor.username}}'s</b> profile. You are not allowed to make any changes.
+            </div>
             <div class="card hovercard">
                 <div class="card-background">
                     <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
                     <!-- http://lorempixel.com/850/280/people/9/ -->
                 </div>
-                <div class="useravatar">
+
+                <div ng-if="!model.isdifferentUser" class="useravatar">
                     <img alt="" ng-src="{{model.currentUser.imageUrl}}"/>
                 </div>
-                <div class="card-info"><span class="card-title">{{model.currentUser.username}}</span>
+                <div ng-if="model.isdifferentUser" class="useravatar">
+                    <img alt="" ng-src="{{model.visitor.imageUrl}}"/>
+                </div>
+                <div ng-if="!model.isdifferentUser" class="card-info"><span class="card-title">{{model.currentUser.username}}</span>
+
+                </div>
+                <div ng-if="model.isdifferentUser" class="card-info"><span class="card-title">{{model.visitor.username}}</span>
 
                 </div>
             </div>
@@ -128,13 +143,20 @@
                                           enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label class="col-sm-3" for="username">Username:</label>
-                                            <div class="col-sm-9">
-                                                <input ng-model="model.currentUser.username" type="text"
+                                            <div ng-if="!model.isdifferentUser" class="col-sm-9">
+                                                <input readonly="true" ng-model="model.currentUser.username" type="text"
                                                        class="form-control" name="username" id="username"
-                                                       placeholder="Username" ng-readonly="readonly">
+                                                       placeholder="Username">
                                             </div>
+
+                                            <div ng-if="model.isdifferentUser" class="col-sm-9">
+                                                <input readonly="true" ng-model="model.visitor.username" type="text"
+                                                       class="form-control" name="username" id="usernameV"
+                                                       placeholder="Username">
+                                            </div>
+
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-if="!model.isdifferentUser" class="form-group">
                                             <label class="col-sm-3" for="pwd">Password:</label>
                                             <div class="col-sm-9">
                                                 <input ng-model="model.currentUser.password" name="password"
@@ -144,28 +166,44 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3" for="firstName">First Name:</label>
-                                            <div class="col-sm-9">
+                                            <div ng-if="!model.isdifferentUser" class="col-sm-9">
                                                 <input ng-model="model.currentUser.firstName" name="firstName"
                                                        type="text"
                                                        class="form-control" id="firstName" placeholder="First Name">
                                             </div>
+
+                                            <div ng-if="model.isdifferentUser" class="col-sm-9">
+                                                <input readonly="true" ng-model="model.visitor.firstName" name="firstName"
+                                                       type="text"
+                                                       class="form-control" id="firstNameV" placeholder="First Name">
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3" for="lastName">Last Name:</label>
-                                            <div class="col-sm-9">
+                                            <div ng-if="!model.isdifferentUser" class="col-sm-9">
                                                 <input ng-model="model.currentUser.lastName" name="lastName" type="text"
                                                        class="form-control search" id="lastName"
+                                                       placeholder="Last Name">
+                                            </div>
+                                            <div ng-if="model.isdifferentUser" class="col-sm-9">
+                                                <input readonly="true" ng-model="model.visitor.lastName" name="lastName" type="text"
+                                                       class="form-control search" id="lastNameV"
                                                        placeholder="Last Name">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3" for="email">Email:</label>
-                                            <div class="col-sm-9">
+                                            <div ng-if="!model.isdifferentUser" class="col-sm-9">
                                                 <input ng-model="model.currentUser.email" name="email" type="email"
                                                        class="form-control" id="email" placeholder="Email">
                                             </div>
+
+                                            <div ng-if="model.isdifferentUser" class="col-sm-9">
+                                                <input readonly="true" ng-model="model.visitor.email" name="email" type="email"
+                                                       class="form-control" id="emailV" placeholder="Email">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-if="!model.isdifferentUser" class="form-group">
                                             <label class="col-sm-3">Upload Photo:</label>
                                             <div class="col-sm-9">
                                                 <input type="file" name="myFile" class="form-control"/>

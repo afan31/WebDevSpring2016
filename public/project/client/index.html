@@ -24,6 +24,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
     <link rel= "stylesheet" href = "css/loading-bar.css">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
 
 
     <title>Shopaholic</title>
@@ -32,10 +33,10 @@
 </head>
 
 <body ng-controller="ProjectMainController">
-<div class="loader"></div>
 
-<ng-include src = "'views/header/header.view.html'"></ng-include>
-        <div ng-view class="topspace">
+
+<ng-include src = "'views/header/header.view.html'"  style="font-family: Noto Serif;"></ng-include>
+        <div ng-view class="topspace" style="font-family: Noto Serif;">
 
         </div>
 </body>

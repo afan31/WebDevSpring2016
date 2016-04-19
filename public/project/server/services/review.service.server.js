@@ -54,11 +54,12 @@ module.exports = function (app, reviewModel) {
 
     function updateReview(req, res) {
         var reviewForUpdate = req.body;
-        var updatedReview = reviewModel.updateReview(reviewForUpdate)
+        console.log("REVIEW UPDATEEEE ", reviewForUpdate);
+        reviewModel.updateReview(reviewForUpdate)
             .then(
                 function (doc) {
-                    //console.log("This is ",doc);
-                    req.session.currentUser = doc;
+                    console.log("This is ",doc);
+                    //req.session.currentUser = doc;
                     res.json(doc);
                 },
                 function (err) {

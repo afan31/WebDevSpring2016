@@ -38,6 +38,7 @@
         }
 
         function updateReview(reviewObj) {
+            console.log("Client review ",reviewObj);
             return $http.put("/api/project/review", reviewObj);
         }
 

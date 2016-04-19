@@ -1,6 +1,10 @@
 <div class="container-fluid registerBackground" ng-controller="LoginController">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <div class="alert alert-info">
+                <strong>Welcome Back!</strong> Please provide your credentials to continue.
+            </div>
             <h1 class="page-header">Login</h1>
 
             <form class="form-horizontal" role="form">
@@ -22,6 +26,9 @@
                     </div>
                 </div>
             </form>
+            <div ng-if="model.notUser" class="alert alert-danger">
+                <strong>Welcome Back!</strong> Please provide your credentials to continue.
+            </div>
         </div>
     </div>
 </div>

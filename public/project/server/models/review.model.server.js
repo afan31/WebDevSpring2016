@@ -1,3 +1,5 @@
+var q = require("q");
+
 module.exports = function (uuid, mongoose) {
     //load user schema
     var ReviewSchema = require("./review.schema.server.js")(mongoose);
@@ -33,12 +35,15 @@ module.exports = function (uuid, mongoose) {
     }
 
     function updateReview(review) {
-       // console.log("Review is ",review);
-        review.updatedOn = Date.now();
-        return ReviewModel.update({$set: review});
+        var deferred = q.defer();
+        return ReviewModel
+            .update(
+                {_id: review._id},
+                {$set: review}
+            );
     }
 
-    function findAllReviewsByUserId(userId) {
+        function findAllReviewsByUserId(userId) {
         return ReviewModel.find({"userId": userId});
     }
 
