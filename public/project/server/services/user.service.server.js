@@ -172,7 +172,7 @@ module.exports = function(app, userModel, productModel,securityService) {
         var user = req.body;
 
         //console.log("User created is ", user);
-        user.password = bcrypt.hashSync(user.password);
+        //user.password = bcrypt.hashSync(user.password);
 
         user = userModel.createUser(user)
             // handle model promise

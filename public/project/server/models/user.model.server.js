@@ -173,7 +173,7 @@ module.exports= function(db, mongoose) {
         //user.phones = user.phones.toString().split(',');
         //console.log(user.phones);
         console.log("updating....");
-        user.password = bcrypt.hashSync(user.password);
+        //user.password = bcrypt.hashSync(user.password);
         return UserModel
             .update (
                 {_id: userId},
