@@ -10,6 +10,7 @@
         vm.update = update;
 
         function init() {
+            console.log("here");
             UserService
                 .getCurrentUser()
                 .then(function (response) {

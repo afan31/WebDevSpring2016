@@ -16,8 +16,9 @@
             register: register,
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
+            registerAdmin: registerAdmin,
 
-            //findAllUsers : findAllUsers
+            findAllUsers : findAllUsers
             //findUserByUsername: findUserByUsername,
             //findUserByCredentials: findUserByCredentials,
             //deleteUserById: deleteUserById,
@@ -50,6 +51,11 @@
             return $http.post("/api/assignment/register",user);
         }
 
+        function registerAdmin(user){
+            console.log("In create User functionality");
+            return $http.post("/api/assignment/register/admin",user);
+        }
+
         function logout() {
             return $http.post("/api/assignment/logout");
         }
@@ -62,21 +68,10 @@
         function findUserByUsername(username)    {
             return $http.get("/api/assignment/user?username=" +username);
         }
-        //
-        //function findUserByCredentials(username, password){
-        //    return $http.get("/api/assignment/user/user?username="+username+"&password="+password);
-        //}
-        //
-        //function findAllUsers(){
-        //    return $http.get("/api/assignment/user");
-        //}
-        //
-        //
-        //
-        //function deleteUserById(userId){
-        //    return $http.delete("/api/assignment/user/"+userId);
-        //}
-        //
+
+        function findAllUsers(){
+            return $http.get("/api/project/admin/users/");
+        }
 
 
     }

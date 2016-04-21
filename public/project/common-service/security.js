@@ -54,7 +54,7 @@ module.exports = function (assignmentModel, projectModel) {
         done(null, user);
     }
     function deserializeUser(user, done) {
-        if(user.type=== 'assignment'){
+        if(user.type === 'assignment'){
             assignmentModel
                 .findUserById(user._id)
                 .then(
@@ -72,7 +72,7 @@ module.exports = function (assignmentModel, projectModel) {
                 .findUserById(user._id)
                 .then(
                     function (user) {
-                        console.log("desiaralize assigment user");
+                        console.log("desiaralize project user");
                         done(null, user);
                     },
                     function (err) {

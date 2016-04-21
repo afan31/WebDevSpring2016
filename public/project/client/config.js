@@ -74,7 +74,7 @@
                 controller: "AdminController",
                 controllerAs: "model",
                 resolve: {
-                    getLoggedIn: getLoggedIn
+                    checkLoggedIn: checkLoggedIn
                 }
             })
             .when("/login", {

@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- IE Edge Meta Tag -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Viewport : This is for the display on smaller devices such as mobile, tab etc.-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Minified CSS through CDN-->
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel = "stylesheet" href = "../../client/css/style.css">
-    <title>Admin</title>
-
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script>-->
-
-</head>
-<body>
-
-<div class="container-fluid">
+<div ng-controller="AdminController as model"  class="container-fluid">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Admin</h1>
@@ -34,88 +15,71 @@
                             <span class="caret"></span>Password
                         </th>
                         <th>
+                            <span class="caret"></span>Emails
+                        </th>
+                        <th>
+                            <span class="caret"></span>Phone
+                        </th>
+                        <th>
                             <span class="caret"></span>Role
                         </th>
-                        <th>Action
+                        <th>
+                            Action
                         </th>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" class="form-control text" placeholder="username">
+                            <input ng-model="model.user.username" type="text" class="form-control text" placeholder="username">
                         </td>
                         <td>
-                            <input type="password" class="form-control" placeholder="password">
+                            <input ng-model="model.user.password" type="text" class="form-control text" placeholder="password">
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="role1,role2">
+                            <input ng-model="model.user.email" type="text" class="form-control text" placeholder="email">
                         </td>
                         <td>
-                            <a href="#">
+                            <input ng-model="model.user.phones" type="text" class="form-control text" placeholder="phones">
+                        </td>
+                        <td>
+                            <input ng-model="model.user.role" type="text" class="form-control text" placeholder="role">
+                        </td>
+                        <td>
+                            <a href="" ng-click="model.register(model.user)">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true">
                                 </span>
                             </a>
-                            <a href="#">
+                            <a href="" ng-click="model.update(model.user)">
                                 <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true">
                                 </span>
                             </a>
                         </td>
                     </tr>
-                    <tr>
+
+
+                    <tr ng-repeat="user in model.userData">
                         <td>
-                            alice
+                            {{user.username}}
                         </td>
                         <td>
+                            {{user.password}}
                         </td>
                         <td>
-                            student
+                            {{user.email}}
                         </td>
                         <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true">
-                                </span>
+                            {{user.phones}}
+                        </td>
+                        <td>
+                            {{user.role}}
+                        </td>
+                        <td>
+                            <a href="" ng-click="model.selectUser($index)">
+                                            <span class="edit-icon-lt glyphicon glyphicon-pencil pull-left">
+                                            </span>
                             </a>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true">
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            bob
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            faculty | admin
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true">
-                                </span>
-                            </a>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true">
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            charlie
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true">
-                                </span>
-                            </a>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true">
-                                </span>
+                            <a href="" ng-click="model.deleteUser(user._id)">
+                                            <span class="glyphicon glyphicon-remove pull-right">
+                                            </span>
                             </a>
                         </td>
                     </tr>

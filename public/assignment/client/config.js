@@ -17,7 +17,7 @@
                 .when('/login', {
                     templateUrl: 'views/users/login.view.html',
                     controller: 'LoginController',
-                    controllerAs: "model",
+                    controllerAs: "model"
 
                 })
                 .when('/home', {
@@ -53,11 +53,12 @@
                         checkLoggedIn: checkLoggedIn
                     }
                 })
-                .when('/admin', {
-                    templateUrl: 'views/admin/admin.view.html',
-                    controller: 'AdminController',
+                .when("/admin", {
+                    templateUrl: "views/admin/admin.view.html",
+                    controller: "AdminController",
                     controllerAs: "model",
                     resolve: {
+                        getLoggedIn: getLoggedIn,
                         checkLoggedIn: checkLoggedIn
                     }
                 })

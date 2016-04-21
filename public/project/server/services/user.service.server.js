@@ -35,9 +35,11 @@ module.exports = function(app, userModel, productModel,securityService) {
 
     app.post ("/api/upload/:userId", upload.single('myFile'), uploadImage);
 
-    app.get("/api/project/admin/users/" , findAllUsers);
+    app.get("/api/project/admin/users" , findAllUsers);
 
     app.delete("/api/project/user/:userId" , deleteUserById);
+
+    app.post("/api/project/register/admin", registerAdmin);
 
 
 
@@ -200,6 +202,28 @@ module.exports = function(app, userModel, productModel,securityService) {
             );
     }
 
+    function registerAdmin(req, res) {
+        var user = req.body;
+
+        //console.log("User created is ", user);
+        //user.password = bcrypt.hashSync(user.password);
+
+        user = userModel.createUser(user)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function (user) {
+                    if(user){
+                        res.json(user);
+                    }
+                },
+                // send error if promise rejected
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
     function profile(req, res){
 
         var user = userModel.findUserById(userId)
@@ -213,20 +237,6 @@ module.exports = function(app, userModel, productModel,securityService) {
             );
     }
 
-    //function login(req, res) {
-    //    var credentials = req.body;
-    //    var user = userModel.findUserByCredentials(credentials)
-    //        .then(
-    //            function(doc) {
-    //                //console.log("This is ",doc);
-    //                req.session.currentUser = doc;
-    //                res.json(doc);
-    //            },
-    //            function (err) {
-    //                res.status(400).send(err);
-    //            }
-    //        );
-    //}
 
     function login(req, res) {
         var user = req.user;
@@ -383,10 +393,11 @@ module.exports = function(app, userModel, productModel,securityService) {
     }
 
     function findAllUsers(req,res) {
+        console.log("In project ");
         userModel
             .findAllUsers()
             .then(function(response){
-                console.log("USERS IS ", response.data);
+                console.log("there ",response.data);
                 res.json(response);
             },
                 function (error) {

@@ -11,13 +11,16 @@ module.exports = function(app, userModel, securityService) {
     app.post("/api/assignment/logout", logout);
     app.put("/api/assignment/user/:userId", updateUser);
     app.get("/api/assignment/user?[username=username]", findUserByUsername);
+    app.get("/api/project/admin/users/" , findAllUsers);
 
+    app.post("/api/assignment/register", register);
+    app.post("/api/assignment/register/admin", registerAdmin);
 
     function register(req, res) {
         var user = req.body;
 
         //console.log("User created is ", user);
-        user.password = bcrypt.hashSync(user.password);
+        //user.password = bcrypt.hashSync(user.password);
 
         user = userModel.createUser(user)
             // handle model promise
@@ -36,6 +39,28 @@ module.exports = function(app, userModel, securityService) {
                                 res.json(user);
                             }
                         });
+                    }
+                },
+                // send error if promise rejected
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function registerAdmin(req, res) {
+        var user = req.body;
+
+        //console.log("User created is ", user);
+        //user.password = bcrypt.hashSync(user.password);
+
+        user = userModel.createUser(user)
+            // handle model promise
+            .then(
+                // login user if promise resolved
+                function (user) {
+                    if(user){
+                        res.json(user);
                     }
                 },
                 // send error if promise rejected
@@ -107,6 +132,19 @@ module.exports = function(app, userModel, securityService) {
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function findAllUsers(req,res) {
+        userModel
+            .findAllUsers()
+            .then(function(response){
+                    console.log("USERS IS ", response.data);
+                    res.json(response);
+                },
+                function (error) {
+                    res.status(400).send("Error in getting users list for admin", error.statusText);
+
+                })
     }
 
 }

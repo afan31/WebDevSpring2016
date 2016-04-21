@@ -16,21 +16,18 @@
         vm.deleteUser = deleteUser;
 
         function init(){
-
             findAllUsers();
-
-
         }
         init();
 
         function findAllUsers() {
-            //console.log("here");
+            console.log("here");
             UserService
-                .findAllUsers()
+                    .findAllUsers()
                 .then(function (response) {
-                    if(response.status == 200){
+                    console.log("Response ", response);
+                    if(response.data){
                         vm.userData= response.data;
-                        //console.log("USERSSSSSSSSSSSSSSS ", vm.userData);
                     }
                 }, function (error) {
                     console.log("Error in getting all users", error.statusText);
@@ -43,12 +40,14 @@
             UserService
                 .findUserByUsername(user.username)
                 .then(function(response){
+                    console.log(response);
                     if(response.data){
                         alert("Username is already present");
                     }
                     UserService
-                        .register(user)
+                        .registerAdmin(user)
                         .then(function(response) {
+                            console.log(response.data);
                             findAllUsers();
                             vm.user= null;
 
@@ -69,6 +68,7 @@
             UserService
                 .updateUser(user, user._id)
                 .then(function (response) {
+                    console.log("RESPONSE ", response);
                         vm.userData = response.data;
                         findAllUsers();
                         vm.user= null;

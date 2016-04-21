@@ -29,7 +29,8 @@
             findFollowersList: findFollowersList,
             findFollowingList: findFollowingList,
             findAllUsers : findAllUsers,
-            deleteUserById : deleteUserById
+            deleteUserById : deleteUserById,
+            registerAdmin : registerAdmin
             };
         return api;
 
@@ -57,6 +58,12 @@
             console.log("In create User functionality");
             return $http.post("/api/project/register",user);
         }
+
+        function registerAdmin(user){
+            console.log("In create User functionality");
+            return $http.post("/api/project/register/admin",user);
+        }
+
 
         function logout() {
             return $http.post("/api/project/logout");
@@ -123,7 +130,8 @@
         }
 
         function findAllUsers(){
-            return $http.get("/api/project/admin/users/");
+            console.log("In project");
+            return $http.get("/api/project/admin/users");
         }
 
         function deleteUserById(userId) {

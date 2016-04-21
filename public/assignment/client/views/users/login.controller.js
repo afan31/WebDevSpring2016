@@ -15,6 +15,8 @@
         init();
 
         function login(user) {
+            console.log("username ",user.username );
+            console.log("password ",user.password );
             if (!user) {
                 return;
             }
@@ -24,7 +26,9 @@
                     password: user.password
                 })
                 .then(function(response){
+                    console.log("Here",response.data);
                     if(response.data) {
+                        console.log("Here",response.data);
                         UserService.
                             setCurrentUser(response.data);
                             $location.url("/profile");

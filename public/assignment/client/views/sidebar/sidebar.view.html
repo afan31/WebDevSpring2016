@@ -1,18 +1,3 @@
-<!--<ul class="nav nav-sidebar">-->
-    <!--<li ng-class="{'active' : location.url() == '/'}">-->
-        <!--<a href="#/home">Home<span class="sr-only">(current)</span></a>-->
-    <!--</li>-->
-    <!--<li ng-class="{'active' : location.url() == '/profile'}" ng-show="user">-->
-        <!--<a href="#/profile">Profile</a>-->
-    <!--</li>-->
-    <!--<li ng-class="{'active' : location.url() == '/admin'}" ng-show="user.roles.indexOf('admin') >= 0">-->
-        <!--<a href="#/admin">Admin</a>-->
-    <!--</li>-->
-    <!--<li ng-class="{'active' : location.url() == '/forms'}" ng-show="user">-->
-        <!--<a href="#/forms">Form</a>-->
-    <!--</li>-->
-<!--</ul>-->
-
 <ul class="nav nav-sidebar" ng-controller="SidebarController as model">
     <li ng-class="{'active': model.$location.url() == '/home'}"><a href="#/home">Home
         <span class="sr-only">(current)</span></a></li>
@@ -23,8 +8,8 @@
     </li>
 
     <li ng-class="{'active': model.$location.url().indexOf('/admin')>=0}"
-        ng-show="currentUser">
-        <a href="#/admin">Admin</a>
+        ng-show="currentUser.role === 'admin' ">
+        <a href="#/admin" data-target="#navbar" data-toggle="collapse">Admin</a>
     </li>
 
     <li ng-class="{'active': model.$location.url() == '/forms'}"

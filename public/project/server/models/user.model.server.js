@@ -167,9 +167,9 @@ module.exports= function(db, mongoose) {
         console.log("User id in model");
         console.log(userId)
         console.log("IN MODELLLLL LLLL ",user);
-        //delete user._id;
+        //var id = user._id;
+        delete user._id;
         user.email = user.email.toString().split(',');
-        console.log(user.email);
         //user.phones = user.phones.toString().split(',');
         //console.log(user.phones);
         console.log("updating....");
@@ -223,19 +223,23 @@ module.exports= function(db, mongoose) {
     }
 
     function findAllUsers(){
-        var deferred = q.defer();
 
-        UserModel.find({
-
-        }, function(err, users) {
-            if(err) {
-                // reject promise if error
-                deferred.reject(err);
-            } else {
-                deferred.resolve(users);
-            }
-        });
-        return deferred.promise;
+        return UserModel.find();
+        //var deferred = q.defer();
+        ////console.log(UserModel);
+        //
+        //UserModel.find(
+        //
+        //), function(err, users) {
+        //    if(err) {
+        //        // reject promise if error
+        //        deferred.reject(err);
+        //    } else {
+        //        console.log("Users ", users);
+        //        deferred.resolve(users);
+        //    }
+        //};
+        //return deferred.promise;
     }
 
     function deleteUserById(index){
