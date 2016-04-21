@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(mongoose) {
 
     //use mongoose to declare a user schema

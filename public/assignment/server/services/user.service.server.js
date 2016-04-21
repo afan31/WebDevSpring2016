@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(app, userModel, securityService) {
 
     var bcrypt = require("bcrypt-nodejs");

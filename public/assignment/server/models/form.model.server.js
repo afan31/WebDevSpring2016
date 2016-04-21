@@ -1,4 +1,4 @@
-//var mock = require("./form.mock.json");
+'use strict';
 
 // pass db and mongoose reference to model
 module.exports= function(db, mongoose) {

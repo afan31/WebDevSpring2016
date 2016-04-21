@@ -1,3 +1,4 @@
+'use strict';
 // pass db and mongoose reference to server side application module
 module.exports = function(app, uuid,db, mongoose, userModel, securityService) {
     //var userModel    = require("./models/user.model.server.js")(uuid, db, mongoose);

@@ -1,4 +1,4 @@
-//var mock = require("./user.mock.json");
+'use strict';
 
 // load q promise library
 var q = require("q");
