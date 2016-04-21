@@ -18,10 +18,11 @@
             findUserByUsername: findUserByUsername,
             registerAdmin: registerAdmin,
 
-            findAllUsers : findAllUsers
+            findAllUsers : findAllUsers,
+            deleteUserById: deleteUserById
             //findUserByUsername: findUserByUsername,
             //findUserByCredentials: findUserByCredentials,
-            //deleteUserById: deleteUserById,
+
             //updateUser: updateUser
         };
         return api;
@@ -70,7 +71,11 @@
         }
 
         function findAllUsers(){
-            return $http.get("/api/project/admin/users/");
+            return $http.get("/api/assignment/admin/users");
+        }
+
+        function deleteUserById(userId) {
+            return $http.delete("/api/assignment/user/" + userId);
         }
 
 

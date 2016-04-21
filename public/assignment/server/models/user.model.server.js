@@ -18,7 +18,8 @@ module.exports= function(db, mongoose) {
         findUsersByIds: findUserByIds,
         updateUser: updateUser,
         findUserByUsername: findUserByUsername,
-        findAllUsers: findAllUsers
+        findAllUsers: findAllUsers,
+        deleteUserById: deleteUserById
     };
     return api;
 
@@ -100,8 +101,13 @@ module.exports= function(db, mongoose) {
     function updateUser(user,userId) {
         var deferred = q.defer();
         delete user._id;
-        user.email = user.email.toString().split(',');
-        user.phones = user.phones.toString().split(',');
+        if (user.email){
+            user.email = user.email.toString().split(',');
+        }
+        if(user.phones){
+            user.phones = user.phones.toString().split(',');
+        }
+
         //user.password = bcrypt.hashSync(user.password);
         console.log("UPDATED USER WILL BE ", user);
         //UserModel
@@ -163,8 +169,15 @@ module.exports= function(db, mongoose) {
         return deferred.promise;
     }
 
-    function findAllUsers() {
+    function findAllUsers(){
+
         return UserModel.find();
+
+    }
+
+    function deleteUserById(index){
+        var usersAfterDeletion = UserModel.remove ({ _id: index})
+        return usersAfterDeletion;
     }
 
 }

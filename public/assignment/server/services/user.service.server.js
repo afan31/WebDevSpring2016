@@ -14,6 +14,11 @@ module.exports = function(app, userModel, securityService) {
     app.get("/api/project/admin/users/" , findAllUsers);
 
     app.post("/api/assignment/register", register);
+
+    app.get("/api/assignment/admin/users" , findAllUsers);
+
+    app.delete("/api/assignment/user/:userId" , deleteUserById);
+
     app.post("/api/assignment/register/admin", registerAdmin);
 
     function register(req, res) {
@@ -135,16 +140,31 @@ module.exports = function(app, userModel, securityService) {
     }
 
     function findAllUsers(req,res) {
+        console.log("In project ");
         userModel
             .findAllUsers()
             .then(function(response){
-                    console.log("USERS IS ", response.data);
+                    console.log("there ",response.data);
                     res.json(response);
                 },
                 function (error) {
                     res.status(400).send("Error in getting users list for admin", error.statusText);
 
                 })
+    }
+
+    function deleteUserById(req, res) {
+        var userId = req.params.userId;
+        userModel.deleteUserById(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
 }

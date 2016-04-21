@@ -62,12 +62,6 @@
             if (!user) {
                 return;
             }
-            //for ( var i = 0; i < vm.userData.length; i++){
-            //    if (vm.userData[i].username == user.username){
-            //        alert("username already exists");
-            //        return;
-            //    }
-            //}
             UserService
                 .updateUser(user, user._id)
                 .then(function (response) {
