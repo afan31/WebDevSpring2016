@@ -20,6 +20,7 @@
 
             findAllUsers : findAllUsers,
             deleteUserById: deleteUserById
+            //findUserById: findUserById
             //findUserByUsername: findUserByUsername,
             //findUserByCredentials: findUserByCredentials,
 
@@ -69,6 +70,10 @@
         function findUserByUsername(username)    {
             return $http.get("/api/assignment/user?username=" +username);
         }
+
+        //function findUserById(userId)    {
+        //    return $http.get("/api/assignment/user?userId=" +userId);
+        //}
 
         function findAllUsers(){
             return $http.get("/api/assignment/admin/users");

@@ -11,6 +11,8 @@ module.exports = function(app, userModel, securityService) {
     app.post("/api/assignment/logout", logout);
     app.put("/api/assignment/user/:userId", updateUser);
     app.get("/api/assignment/user?[username=username]", findUserByUsername);
+
+    //app.get("/api/assignment/user?[userId=userId]", findUserById);
     app.get("/api/project/admin/users/" , findAllUsers);
 
     app.post("/api/assignment/register", register);
@@ -138,6 +140,23 @@ module.exports = function(app, userModel, securityService) {
                 }
             );
     }
+
+    //function findUserById (req, res) {
+    //    console.log("FIND USERID ", req.query.userId);
+    //    userModel
+    //        .findUserById(req.query.userId)
+    //        .then (
+    //            function (user) {
+    //                //delete user.password;
+    //                console.log("server user returned  *********** ",user )
+    //                res.json (user);
+    //            },
+    //            function (err) {
+    //                res.status(400).send(err);
+    //            }
+    //        );
+    //}
+
 
     function findAllUsers(req,res) {
         console.log("In project ");

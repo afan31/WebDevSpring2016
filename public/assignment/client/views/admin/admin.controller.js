@@ -63,6 +63,13 @@
                 alert("Username or password is missing");
                 return;
             }
+            for ( var i = 0; i < vm.userData.length; i++){
+                if (vm.userData[i].username == user.username){
+                    alert("username already exists");
+                    vm.user = {};
+                    return;
+                }
+            }
             console.log(user);
             UserService
                 .findUserByUsername(user.username)
@@ -104,17 +111,22 @@
                     });
         }
 
-        function selectUser(selectedIndex) {
+        function selectUser(username) {
+            UserService
+                .findUserByUsername(username)
+                .then(function (response) {
+                    var userReturned = response.data;
             var selectedUser = {
-                "_id" : vm.userData[selectedIndex]._id,
-                "username" : vm.userData[selectedIndex].username,
-                "password" : vm.userData[selectedIndex].password,
-                "firstName" : vm.userData[selectedIndex].firstName,
-                "lastName" : vm.userData[selectedIndex].lastName,
-                "email" : vm.userData[selectedIndex].email,
-                "role" : vm.userData[selectedIndex].role,
+                "_id" : userReturned._id,
+                "username" :userReturned.username,
+                "password" : userReturned.password,
+                "firstName" : userReturned.firstName,
+                "lastName" : userReturned.lastName,
+                "email" : userReturned.email,
+                "roles" : userReturned.roles,
             };
             vm.user = selectedUser;
+        });
         }
 
         function deleteUser(userId) {

@@ -81,10 +81,10 @@
                             {{user.lastName}}
                         </td>
                         <td>
-                            {{user.roles}}
+                            {{user.roles.join(",")}}
                         </td>
                         <td>
-                            <a href="" ng-click="model.selectUser($index)">
+                            <a href="" ng-click="model.selectUser(user.username)">
                                             <span class="edit-icon-lt glyphicon glyphicon-pencil pull-left">
                                             </span>
                             </a>
