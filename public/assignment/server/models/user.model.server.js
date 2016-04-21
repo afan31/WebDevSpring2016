@@ -107,6 +107,9 @@ module.exports= function(db, mongoose) {
         if(user.phones){
             user.phones = user.phones.toString().split(',');
         }
+        if(user.roles){
+            user.roles = user.roles.toString().split(',');
+        }
 
         //user.password = bcrypt.hashSync(user.password);
         console.log("UPDATED USER WILL BE ", user);

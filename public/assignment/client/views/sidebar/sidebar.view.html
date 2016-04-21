@@ -6,9 +6,8 @@
         ng-show="currentUser">
         <a href="#/profile">Profile</a>
     </li>
-
     <li ng-class="{'active': model.$location.url().indexOf('/admin')>=0}"
-        ng-show="currentUser.role === 'admin' ">
+        ng-show="currentUser.roles.indexOf('admin') != -1 ">
         <a href="#/admin" data-target="#navbar" data-toggle="collapse">Admin</a>
     </li>
 
