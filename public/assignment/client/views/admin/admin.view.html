@@ -16,18 +16,18 @@
                             Username
                         </th>
                         <th>Password</th>
-                        <th ng-click="model.order1('firstName')">
+                        <th ng-click="model.order('firstName')">
                     <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"
-                          ng-show="(model.predicate1 == 'firstName') && (model.reverse == true)"></span>
+                          ng-show="(model.predicate == 'firstName') && (model.reverse == true)"></span>
                     <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"
-                          ng-show="(model.predicate1 == 'firstName') && (model.reverse == false)"></span>
+                          ng-show="(model.predicate == 'firstName') && (model.reverse == false)"></span>
                             FirstName
                         </th>
-                        <th ng-click="model.order2('lastName')">
+                        <th ng-click="model.order('lastName')">
                     <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"
-                          ng-show="(model.predicate2 == 'lastName') && (model.reverse == true)"></span>
+                          ng-show="(model.predicate == 'lastName') && (model.reverse == true)"></span>
                     <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"
-                          ng-show="(model.predicate2 == 'lastName') && (model.reverse == false)"></span>
+                          ng-show="(model.predicate == 'lastName') && (model.reverse == false)"></span>
                             LastName
                         </th>
                         <th>
@@ -66,8 +66,7 @@
                     </tr>
 
 
-                    <tr ng-repeat="user in model.userData | orderBy:model.predicate:model.reverse
-                    | orderBy:model.predicate1:model.reverse | orderBy:model.predicate2:model.reverse">
+                    <tr ng-repeat="user in model.userData | orderBy:model.predicate:model.reverse">
                         <td>
                             {{user.username}}
                         </td>

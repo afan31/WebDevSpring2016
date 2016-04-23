@@ -15,8 +15,8 @@
         vm.selectUser = selectUser;
         vm.deleteUser = deleteUser;
         vm.predicate = 'username';
-        vm.predicate1 = 'firstName';
-        vm.predicate2 = 'lastName';
+        //vm.predicate1 = 'firstName';
+        //vm.predicate2 = 'lastName';
         vm.reverse = true;
 
         function init(){
@@ -32,16 +32,16 @@
             vm.predicate = predicate;
 
         };
-        vm.order1 = function (predicate1) {
-            vm.reverse = (vm.predicate1 === predicate1) ? !vm.reverse : false;
-            vm.predicate1 = predicate1;
-
-        };
-        vm.order2 = function (predicate2) {
-            vm.reverse = (vm.predicate2 === predicate2) ? !vm.reverse : false;
-            vm.predicate2 = predicate2;
-
-        };
+        //vm.order1 = function (predicate1) {
+        //    vm.reverse = (vm.predicate1 === predicate1) ? !vm.reverse : false;
+        //    vm.predicate1 = predicate1;
+        //
+        //};
+        //vm.order2 = function (predicate2) {
+        //    vm.reverse = (vm.predicate2 === predicate2) ? !vm.reverse : false;
+        //    vm.predicate2 = predicate2;
+        //
+        //};
 
         function findAllUsers() {
             //console.log("here");
